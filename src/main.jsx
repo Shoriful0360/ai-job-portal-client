@@ -8,7 +8,7 @@ import Router from './Router/Router'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-    <Router></Router>
+      <Router></Router>
     </BrowserRouter>
   </StrictMode>,
 )
