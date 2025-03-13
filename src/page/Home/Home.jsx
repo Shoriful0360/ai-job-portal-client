@@ -9,7 +9,7 @@ const Home = () => {
             <header>
                 <Navbar />
             </header>
-            <main>
+            <main className="min-h-[calc(100vh-300px)]">
                 <Outlet></Outlet>
             </main>
             <footer>

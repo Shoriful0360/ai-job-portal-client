@@ -1,4 +1,5 @@
-import Banner from "../../Section/Banner";
+
+import Banner from "../../component/Homepage/Banner";
 import State from "../../Section/State";
 import SuggestedJob from "../../Section/SuggestedJob";
 
