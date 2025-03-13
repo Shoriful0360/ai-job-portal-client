@@ -7,7 +7,15 @@ import { BrowserRouter } from 'react-router'
 import Router from './Router/Router'
 
 
+
 createRoot(document.getElementById('root')).render(
+  
+    <StrictMode>
+      <BrowserRouter>
+        <Router></Router>
+      </BrowserRouter>
+    </StrictMode>,
+  
   <StrictMode>
     <BrowserRouter>
       <Router></Router>
