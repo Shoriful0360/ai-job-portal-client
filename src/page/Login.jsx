@@ -1,19 +1,40 @@
+import { useContext } from "react";
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../Utility/AuthProvidor";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const handleSubmit = e => {
+    const { login } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const handleSubmit = async e => {
         e.preventDefault()
         const email = e.target.email.value
         const password = e.target.password.value
 
-     console.log(email,password)
-        
+        try {
+            await login(email, password)
+
+            Swal.fire({
+                title: "Login SuccessFully!",
+                icon: "success",
+                draggable: true
+            });
+            navigate('/')
+
+
+        } catch (error) {
+            Swal.fire({
+                title: "Something Else . Please Try Again!",
+                icon: "error",
+                draggable: true
+            });
+        }
     }
     return (
         <div className="my-9 mx-auto card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
             <div className="card-body">
-                <form  onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <fieldset className="fieldset mb-36">
                         <p className="text-8xl font-bold text-gray-600 mx-auto"><IoPersonCircleSharp /></p>
                         <p className="text-2xl font-bold text-gray-600 mx-auto">Login</p>
