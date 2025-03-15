@@ -4,7 +4,7 @@ import JobCard from "./JobCard";
 const RecentJobs = () => {
     return (
      <>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 mx-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10 md:mx-10 mx-4">
             <JobCard />
             <JobCard />
             <JobCard />

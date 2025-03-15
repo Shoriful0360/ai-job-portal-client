@@ -23,7 +23,34 @@ const Banner = () => {
            
         </div>
     </div>
-     
+     {/* search */}
+     <div className="join border-16 border-r rounded-[50px]  border-[#5D5955] mt-4 w-full">
+  <div className=''>
+    <div>
+      <input className="input text-[#6b7c8a] text-base h-16 rounded-l-[50px] " placeholder="Search key Words..." />
+    </div>
+  </div>
+  <select className="select h-16  text-gray-400  ">
+    <option className='text-gray-400' disabled selected>Location</option>
+    <option>All Country</option>
+    <option>Bangladesh</option>
+    <option>India</option>
+    <option>USA</option>
+    <option>Canada</option>
+    <option>Pakistan</option>
+  </select>
+  <select className="select h-16  text-[#6b7c8a] join-item">
+    <option disabled selected>Category</option>
+    <option>IT & Software</option>
+    <option>Business & Marketing</option>
+    <option>Education & Training</option>
+    <option>Legal & Law</option>
+  </select>
+  <div className="indicator">
+    
+    <button className="btn h-16   px-5 text-white rounded-r-[50px] bg-[#26AE61] join-item">Search</button>
+  </div>
+</div>
     </div>
   </div>
 </div>

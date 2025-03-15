@@ -3,7 +3,7 @@
 const CategoryCard = ({item}) => {
     const{icon,img,number,title}=item || {}
     return (
-        <div className="group relative  overflow-hidden rounded-lg shadow-md border bg-white">
+        <div className="group relative  overflow-hidden rounded-lg shadow-xl border-green-600 border  bg-white">
         {/* Image Section with Hover Effect */}
         <img 
             src={img} 

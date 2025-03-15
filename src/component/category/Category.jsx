@@ -11,7 +11,7 @@ const Category = () => {
     },[])
    
     return (
-        <div className="mt-10 mx-10 py-10">
+        <div className="mt-10 md:mx-10 mx-4 py-10">
          <div className="text-center max-w-2xl mx-auto space-y-3">
          <h1 className="text-5xl font-bold ">Job Category</h1> 
          <p>Here are some well-structured descriptions for different job categories in your AI job portal. You can use them directly or modify them as needed.</p>
