@@ -1,0 +1,68 @@
+[
+    {
+      "id": 1,
+      "title": "IT & Software",
+      "icon": "💻",
+      "img": "https://jobslab-reactjs.netlify.app/assets/img/category/dataentry.jpg",
+      "paragraph": "Explore top opportunities in programming, web development, AI, and IT support. Ideal for tech enthusiasts!",
+      "number": 120
+    },
+    {
+      "id": 2,
+      "title": "Business & Marketing",
+      "icon": "📈",
+      "img": "https://jobslab-reactjs.netlify.app/assets/img/category/delivery.jpg",
+      "paragraph": "Find jobs in digital marketing, sales, finance, and business management. Grow your career in the corporate world!",
+      "number": 85
+    },
+    {
+      "id": 3,
+      "title": "Engineering & Technical",
+      "icon": "🔧",
+      "img": "https://jobslab-reactjs.netlify.app/assets/img/category/customercare.jpg",
+      "paragraph": "Join the world of engineering with roles in mechanical, civil, and electrical fields. Build the future!",
+      "number": 60
+    },
+    {
+      "id": 4,
+      "title": "Creative & Design",
+      "icon": "🎨",
+      "img": "https://jobslab-reactjs.netlify.app/assets/img/category/designer.jpg",
+      "paragraph": "Turn your creativity into a profession! Opportunities in graphic design, content creation, and video editing.",
+      "number": 40
+    },
+    {
+      "id": 5,
+      "title": "Healthcare & Medical",
+      "icon": "🏥",
+      "img": "https://jobslab-reactjs.netlify.app/assets/img/category/receptionist.jpg",
+      "paragraph": "Make an impact with jobs in healthcare, nursing, and medical research. Help people live better lives!",
+      "number": 90
+    },
+    {
+      "id": 6,
+      "title": "Education & Training",
+      "icon": "📚",
+      "img": "https://jobslab-reactjs.netlify.app/assets/img/category/teacher.jpg",
+      "paragraph": "Teach, mentor, and inspire! Find jobs in schools, universities, and corporate training sectors.",
+      "number": 50
+    },
+    {
+      "id": 7,
+      "title": "Legal & Law",
+      "icon": "⚖️",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7W6jGH1hCjVeYZxbUJxFDn5L12rNZ8aKM3A&s",
+      "paragraph": "Pursue careers in law and justice. Opportunities for lawyers, paralegals, and legal advisors.",
+      "number": 30
+    },
+    
+    {
+      "id": 8,
+      "title": "Retail & E-commerce",
+      "icon": "🛒",
+      "img": "https://clevertap.com/wp-content/uploads/2020/12/Ecommerce-Trends-for-2021_Header.png",
+      "paragraph": "Work in dynamic retail environments, from store management to online marketplace operations.",
+      "number": 45
+    }
+  ]
+  
