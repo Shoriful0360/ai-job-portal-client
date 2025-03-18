@@ -3,7 +3,7 @@ import React from 'react';
 const RightSide = () => {
     return (
         <div>
-         right side
+         right side content
         </div>
     );
 };
