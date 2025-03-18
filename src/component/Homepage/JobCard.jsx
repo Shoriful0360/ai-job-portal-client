@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 
 const JobCard = () => {
@@ -19,7 +20,9 @@ const JobCard = () => {
           <h2 className="card-title">Product  Redesign</h2>
           <p>2708 Scenic Way, IL 64552</p>
           <div className="card-actions mt-4">
-            <button className="btn border-[#26AE61] text-[#26AE61] hover:bg-[#26AE61] hover:text-white border-2 text-[#26AE61 ]">APPLY NOW</button>
+          <Link to={'/job-details'}>
+          <button className="btn border-[#26AE61] text-[#26AE61] hover:bg-[#26AE61] hover:text-white border-2 text-[#26AE61 ]">APPLY NOW</button>
+          </Link>
           </div>
         </div>
       </div>
