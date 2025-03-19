@@ -6,9 +6,7 @@ const JobCard = () => {
     return (
         <div className="card group relative   border-[#F4F4F4] border-2 border-spacing-0.5 border-b-fuchsia-200">
             <button className='text-[#26AE61] btn w-fit absolute top-2 left-2 bg-[#E4F6EA]'>FULL TIME</button>
-            <div >
-            <FaHeart className='w-10 h-10 bg-[#26AE61] rounded-full px-2 absolute right-2 text-red-600 top-2'  />
-            </div>
+           
         <figure className="px-10 pt-10">
           <img
             src="https://utouchdesign.com/themes/envato/escort/assets/img/company_logo_1.png"
@@ -19,7 +17,7 @@ const JobCard = () => {
           <h2 className="card-title">Product  Redesign</h2>
           <p>2708 Scenic Way, IL 64552</p>
           <div className="card-actions mt-4">
-            <button className="btn border-[#26AE61] text-[#26AE61] hover:bg-[#26AE61] hover:text-white border-2 text-[#26AE61 ]">APPLY NOW</button>
+            <button className="btn border-[#26AE61] text-[#26AE61] hover:bg-[#26AE61] hover:text-white border-2 text-[#26AE61 ]">Details</button>
           </div>
         </div>
       </div>

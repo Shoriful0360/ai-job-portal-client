@@ -4,11 +4,11 @@ import { Link, NavLink, Outlet } from "react-router";
 import { AuthContext } from "../Utility/AuthProvidor";
 
 const Dashboard = () => {
-    const { user, logout } = useContext(AuthContext)
+    const { user} = useContext(AuthContext)
     return (
-        <div className="mx-8 mt-5">
+        <div className="">
 
-            <div className="flex justify-between">
+            <div className="flex justify-between px-8 py-5 ">
                 <div className="drawer drawer-end z-50">
                     <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                     <div className="flex items-center gap-5">
@@ -16,7 +16,7 @@ const Dashboard = () => {
                             {/* Page content here */}
                             <label htmlFor="my-drawer-4" className="btn font-bold text-2xl"><TiThMenuOutline /></label>
                         </div>
-                        <div><span className="text-lg font-bold p-0 m-0 md:text-2xl lg:text-4xl sm:font-extrabold">JobVision AI</span></div>
+                        <div><Link to='/' className="text-lg font-bold p-0 m-0 md:text-2xl lg:text-4xl sm:font-extrabold">JobVision AI</Link></div>
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -70,7 +70,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="mx-8">
                 <Outlet></Outlet>
             </div>
         </div>

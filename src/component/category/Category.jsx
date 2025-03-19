@@ -9,7 +9,7 @@ const Category = () => {
         .then(res=>res.json())
         .then(data=>setCategoryJob(data))
     },[])
-   
+    console.log(categoryJob)
     return (
         <div className="mt-10 md:mx-10 mx-4 py-10">
          <div className="text-center max-w-2xl mx-auto space-y-3">

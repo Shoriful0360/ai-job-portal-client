@@ -5,3 +5,7 @@
 .clr{
     color: #26AE61;
 }
+.active{
+    background-color: black;
+    color: azure;
+}
