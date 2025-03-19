@@ -6,6 +6,7 @@ import FindJob from "../page/FindJob";
 import Employers from "../page/Employers";
 import Candidates from "../page/Candidates";
 import HomePage from "../page/Home/HomePage";
+<<<<<<< HEAD
 import Dashboard from "../Dashboard/Dashboard";
 import AdminProfile from "../AdminRoute/AdminProfile";
 import ManageJob from "../AdminRoute/ManageJob";
@@ -20,6 +21,9 @@ import MyAppliedJob from "../JobSeekerRoute/MyAppliedJob";
 import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
+=======
+import JobDetails from "../page/jobDetails/JobDetails";
+>>>>>>> 45f993c4e1653fe76f9a72c87192ea818c0b5976
 
 
 const Router = () => {
@@ -27,12 +31,23 @@ const Router = () => {
         <div>
             <Routes>
                 <Route path="/" element={<Home />}>
+<<<<<<< HEAD
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/login" element={<Login></Login>}></Route>
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+=======
+                <Route path="/" element={<HomePage></HomePage>}></Route>
+                <Route path="/job-details" element={<JobDetails></JobDetails>}></Route>
+              
+                <Route path="/login" element={<Login></Login>}></Route>
+                <Route path="/register" element={<Register></Register>}></Route>
+                <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
+                <Route path="/employers" element={<Employers></Employers>}></Route>
+                <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+>>>>>>> 45f993c4e1653fe76f9a72c87192ea818c0b5976
                 </Route>
 
                 {/* dashboard route */}

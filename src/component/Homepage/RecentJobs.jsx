@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import JobCard from "./JobCard";
 
 
@@ -16,7 +15,7 @@ const RecentJobs = () => {
             <JobCard />
         </div>
           <div className="flex justify-center mt-10 ">
-          <Link to='/findJobs' className="uppercase btn bg-[#26AE61] text-white">Browse All Job</Link>
+          <button className="uppercase btn bg-[#26AE61] text-white">Browse All Job</button>
           </div>
           </>
     );
