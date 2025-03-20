@@ -4,7 +4,7 @@ import { Link, NavLink, Outlet } from "react-router";
 import { AuthContext } from "../Utility/AuthProvidor";
 
 const Dashboard = () => {
-    const { user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     return (
         <div className="">
 
@@ -69,7 +69,7 @@ const Dashboard = () => {
                     }
                 </div>
             </div>
-
+            
             <div className="mx-8">
                 <Outlet></Outlet>
             </div>

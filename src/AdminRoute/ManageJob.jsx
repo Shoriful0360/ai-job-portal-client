@@ -41,16 +41,16 @@ const ManageJob = () => {
         }
 
     }
-    // Accept pending job
+    // Accept pending job & Post verified Job Collection
     const handleVerify = async (id) => {
 
         try {
-            await axiosSecure.patch(`/pendingProperty/${id}`)
+            await axiosSecure.patch(`/acceptJob/${id}`)
             refetch()
-            const { data } = await axiosSecure.get(`/pendingProperty/${id}`)
-            await axiosSecure.post('/verifyProperty', data)
+            const { data } = await axiosSecure.get(`/pendingJob/${id}`)
+            await axiosSecure.post('/verifyJob', data)
             Swal.fire({
-                title: "Verified Property Added Successfully!",
+                title: "Job Verified Successfully!",
                 icon: "success",
                 draggable: true
             });

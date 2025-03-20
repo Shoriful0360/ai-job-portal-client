@@ -49,7 +49,6 @@ const Navbar = () => {
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 hidden sm:block rounded-full mr-1">
                     <img
-
                       referrerPolicy='noreferrer'
                       title={user?.displayName}
                       alt=""
@@ -59,7 +58,7 @@ const Navbar = () => {
                 <ul
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] pt3 w-52 p-2 shadow">
-                  <li><a className='text-sm  text-gray-700 font-bold'><Link>Profile</Link></a></li>
+                  <li className='text-sm  text-gray-700 font-bold'><Link>Profile</Link></li>
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </div>
@@ -69,7 +68,7 @@ const Navbar = () => {
             <button className='btn btn-ghost'> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
         }
 
-       
+
       </div>
     </div>
   );
