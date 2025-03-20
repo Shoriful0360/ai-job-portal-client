@@ -54,7 +54,6 @@ const Dashboard = () => {
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 hidden sm:block rounded-full ">
                                         <img
-
                                             referrerPolicy='noreferrer'
                                             title={user?.displayName}
                                             alt=""

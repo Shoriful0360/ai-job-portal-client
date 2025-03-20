@@ -15,7 +15,7 @@ const RecentJobs = () => {
             <JobCard />
         </div>
           <div className="flex justify-center mt-10 ">
-          <button className="uppercase btn bg-[#26AE61] text-white">Browse All Job</button>
+          <button className="uppercase btn bg-gradient-to-r from-blue-400 to-blue-950 text-white">Browse All Job</button>
           </div>
           </>
     );
