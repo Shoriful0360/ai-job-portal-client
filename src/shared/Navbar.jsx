@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Utility/AuthProvidor';
 
 const Navbar = () => {
   const link = <>
     <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
-      <Link to='/'>Home</Link>
+      <NavLink to='/'>Home</NavLink>
     </li>
     <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
-      <Link to='/findJobs'>FindJobs</Link>
+      <NavLink to='/findJobs'>FindJobs</NavLink>
     </li>
     <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
-      <Link to='/employers'>Employers</Link>
+      <NavLink to='/employers'>Employers</NavLink>
     </li>
     <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
-      <Link to='/candidates'>Candidates</Link>
+      <NavLink to='/candidates'>Candidates</NavLink>
     </li>
   </>
   const { user, logout } = useContext(AuthContext)
@@ -49,7 +49,6 @@ const Navbar = () => {
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 hidden sm:block rounded-full mr-1">
                     <img
-
                       referrerPolicy='noreferrer'
                       title={user?.displayName}
                       alt=""
@@ -59,8 +58,8 @@ const Navbar = () => {
                 <ul
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] pt3 w-52 p-2 shadow">
-                  <li><a className='text-sm  text-gray-700 font-bold'>Profile</a></li>
-                  <li><a className='text-sm  text-gray-700 font-bold'>Dashboard</a></li>
+                  <li className='text-sm  text-gray-700 font-bold'><Link>Profile</Link></li>
+                  <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </div>
               <Link onClick={logout} className="btn  text-sm font-bold text-gray-600">log Out</Link>
@@ -69,7 +68,7 @@ const Navbar = () => {
             <button className='btn btn-ghost'> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
         }
 
-       
+
       </div>
     </div>
   );

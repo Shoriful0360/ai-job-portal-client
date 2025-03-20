@@ -40,6 +40,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, async currentUser => {
             if (currentUser && currentUser?.photoURL) {
+                
               setUser(currentUser)
             } else {
 
