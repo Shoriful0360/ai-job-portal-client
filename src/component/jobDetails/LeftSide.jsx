@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BsCalendar3, BsCreditCard2Back } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
 import { FaMinus } from "react-icons/fa";
@@ -5,9 +6,20 @@ import { GiSmartphone } from "react-icons/gi";
 import { HiOutlineUser } from "react-icons/hi";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { Link } from "react-router";
+import ApplyModal from "../Modal/ApplyModal";
 
 
 const LeftSide = () => {
+    
+    let [isOpen, setIsOpen] = useState(true)
+    function open() {
+        setIsOpen(true)
+      }
+    
+      function close() {
+        setIsOpen(false)
+      }
+  
     return (
       <div>
           <div className="flex w-full flex-col px-2 rounded-xl py-4 border border-gray-200  lg:flex-row">
@@ -24,7 +36,7 @@ const LeftSide = () => {
           <p>2708 Scenic Way, IL 64552</p>
           <div className="card-actions mt-4">
        
-          <button className="btn border-[#26AE61] text-[#26AE61] hover:bg-[#26AE61] hover:text-white border-2 text-[#26AE61 ]">APPLY NOW</button>
+          <button onClick={open} className="btn border-[#26AE61] text-[#26AE61] hover:bg-[#26AE61] hover:text-white border-2 text-[#26AE61 ]">APPLY NOW</button>
         
           </div>
         </div>
@@ -99,6 +111,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
         </div>
 
       </div>
+      <ApplyModal isOpen={isOpen} close={close} />
       </div>
     );
 };
