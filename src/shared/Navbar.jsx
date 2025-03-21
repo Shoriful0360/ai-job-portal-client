@@ -43,7 +43,7 @@ const Navbar = () => {
 
 
         {
-          user ?
+          user && user?.photoURL ?
             <span className='flex justify-center items-center'>
               <div className="dropdown dropdown-end justify-center items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
