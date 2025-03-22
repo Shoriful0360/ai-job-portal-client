@@ -8,13 +8,51 @@ import { VscGitStashApply } from "react-icons/vsc";
 import { IoSave } from "react-icons/io5";
 import { Link } from "react-router";
 import UseAxios from "../../Utility/UseAxios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Utility/AuthProvidor";
 import Swal from "sweetalert2";
+import ApplyModal from "../Modal/ApplyModal";
 const LeftSide = ({ detailsJob }) => {
+
+  const [file,setFile]=useState(null)
+  const [fileInfo,setFileInfo]=useState(null);
+
+ const [isOpen, setIsOpen] = useState(false)
   const { user } = useContext(AuthContext)
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, status, title, _id, experience, requirement } = detailsJob
   const axiosSecure = UseAxios()
+
+//  modal functionality
+  function open() {
+    
+      setIsOpen(true)
+    }
+  
+    function close() {
+      setIsOpen(false)
+    }
+
+// file upload
+const handlefileChange=(event)=>{
+const selectedFile=event.target.files[0]
+if(selectedFile){
+setFile(selectedFile)
+setFileInfo({
+  name:selectedFile.name,
+  type:selectedFile.type,
+  size: formatFilesizes(selectedFile.size)
+})
+}
+}
+// file format
+const formatFilesizes=(bytes)=>{
+  const kilobytes=bytes/1024;
+  if(kilobytes <1024){
+    return`${kilobytes.toFixed(2)}KB`
+  }
+  const megabytes=kilobytes /1024;
+  return `${megabytes.toFixed(2)}MB`
+}
 
   //  Job Save in WishList Route
   const handleSave = async () => {
@@ -67,8 +105,8 @@ const LeftSide = ({ detailsJob }) => {
               <p>{category}</p>
               <div className="card-actions mt-4">
 
-                <button>
-                  <Link to={`/details/${_id}`} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW</Link>
+                <button onClick={open} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]">
+                 <span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW
                 </button>
                 <button onClick={handleSave}>
                   <Link className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>SAVE JOB</Link>
@@ -141,6 +179,7 @@ const LeftSide = ({ detailsJob }) => {
         </div>
 
       </div>
+      <ApplyModal isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
     </div>
   );
 };
