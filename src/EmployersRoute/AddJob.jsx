@@ -18,6 +18,7 @@ const AddJob = () => {
         const title = e.target.title.value
         const description = e.target.description.value
         const category = e.target.category.value
+        const requirement = e.target.requirement.value
         const location = e.target.location.value
         const minSalary = e.target.minSalary.value
         const maxSalary = e.target.maxSalary.value
@@ -30,35 +31,36 @@ const AddJob = () => {
         const jobType = e.target.jobType.value
         const jobTime = e.target.jobTime.value
         const image = e.target.image.value
+        const experience = e.target.experience.value
         const email = e.target.email.value
         const name = e.target.name.value
         const jobPostTime = new Date()
         const status = 'pending'
-        if (title.length < 15 ) {
+        if (title.length < 15) {
             return Swal.fire({
                 title: 'Title Minimum 20 Character Long !',
                 icon: "error",
                 draggable: true
             });
         }
-       
+
 
         const jobAllData =
-            { title, description, category, location, minSalary, maxSalary, deadline, skill, jobTime, jobType, image, name, email, status, jobPostTime }
+            { title, description, category, requirement, location, minSalary, maxSalary, deadline, skill, jobTime, jobType, image, experience, name, email, status, jobPostTime }
 
-            try {
-                await axiosSecure.post('/pendingJob', jobAllData)
-                Swal.fire({
-                    title: "Added SuccessFully!",
-                    icon: "success",
-                    draggable: true
-                });
+        try {
+            await axiosSecure.post('/pendingJob', jobAllData)
+            Swal.fire({
+                title: "Added SuccessFully!",
+                icon: "success",
+                draggable: true
+            });
 
-            } catch {
-    
-            } finally {
-             
-            }
+        } catch {
+
+        } finally {
+
+        }
     }
 
 
@@ -86,6 +88,9 @@ const AddJob = () => {
                                 <option value="Legal & Law">Legal & Law</option>
                                 <option value="Retail & E-commerce">Retail & E-commerce</option>
                             </select>
+
+                            <label className=" fieldset-label text-sm font-bold text-gray-700">Requirement</label>
+                            <input type="text" name="requirement" className="input w-full" required placeholder="Requirement" />
 
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Location</label>
                             <input type="text" name="location" className="input w-full" required placeholder="Location" />
@@ -115,6 +120,17 @@ const AddJob = () => {
                                 <option value="9 Hours">9 Hours</option>
                                 <option value="10 Hours">10 Hours</option>
                                 <option value="12 Hours">12 Hours</option>
+                            </select>
+
+                            <label className=" fieldset-label text-sm font-bold text-gray-700">Minimum Experience</label>
+                            <select type="text" name="experience" className="input w-full" required placeholder="" >
+                                <option value="1 Year">1 Year</option>
+                                <option value="2 Years">2 Years</option>
+                                <option value="3 Years">3 Years</option>
+                                <option value="4 Years">4 Years</option>
+                                <option value="5 Years">5 Years</option>
+                                <option value="6 Years">6 Years</option>
+                                <option value="7 Years">7 Years</option>
                             </select>
 
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Employer Logo</label>

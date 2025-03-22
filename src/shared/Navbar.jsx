@@ -4,23 +4,23 @@ import { AuthContext } from '../Utility/AuthProvidor';
 
 const Navbar = () => {
   const link = <>
-    <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
+    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/'>Home</NavLink>
     </li>
-    <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
+    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/findJobs'>FindJobs</NavLink>
     </li>
-    <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
+    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
-    <li className='text-sm  text-gray-700 font-bold  px-4 py-2'>
+    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/candidates'>Candidates</NavLink>
     </li>
   </>
   const { user, logout } = useContext(AuthContext)
 
   return (
-    <div className="navbar bg-gray-200 shadow-sm">
+    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -32,7 +32,7 @@ const Navbar = () => {
             {link}
           </ul>
         </div>
-        <button className='btn btn-ghost'><Link className="text-lg font-bold p-0 m-0 md:text-2xl lg:text-4xl sm:font-extrabold">JobVision AI</Link></button>
+        <button className=''><Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent"><i>JobVision AI</i></Link></button>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal ">
@@ -43,11 +43,11 @@ const Navbar = () => {
 
 
         {
-          user ?
+          user && user?.photoURL ?
             <span className='flex justify-center items-center'>
               <div className="dropdown dropdown-end justify-center items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 hidden sm:block rounded-full mr-1">
+                  <div className="w-10 hidden sm:block rounded-full ">
                     <img
                       referrerPolicy='noreferrer'
                       title={user?.displayName}
@@ -62,7 +62,7 @@ const Navbar = () => {
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </div>
-              <Link onClick={logout} className="btn  text-sm font-bold text-gray-600">log Out</Link>
+              <Link onClick={logout} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
             </span>
             :
             <button className='btn btn-ghost'> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
