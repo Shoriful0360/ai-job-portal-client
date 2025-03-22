@@ -22,6 +22,7 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
+import ApplyJob from "../page/ApplyJob";
 
 
 const Router = () => {
@@ -36,7 +37,8 @@ const Router = () => {
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
-                    <Route path="/job-details" element={<JobDetails></JobDetails>}></Route>
+                    <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
+                    <Route path="/details/:id" element={<ApplyJob></ApplyJob>}></Route>
 
                     <Route path="/login" element={<Login></Login>}></Route>
                     <Route path="/register" element={<Register></Register>}></Route>

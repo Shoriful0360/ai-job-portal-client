@@ -48,7 +48,12 @@ const ManageJob = () => {
             await axiosSecure.patch(`/acceptJob/${id}`)
             refetch()
             const { data } = await axiosSecure.get(`/pendingJob/${id}`)
-            await axiosSecure.post('/verifyJob', data)
+            const updateData = {
+                ...data,
+                jobPostTime : new Date(),
+                applyCandidate : 0
+            }
+            await axiosSecure.post('/verifyJob', updateData)
             Swal.fire({
                 title: "Job Verified Successfully!",
                 icon: "success",
