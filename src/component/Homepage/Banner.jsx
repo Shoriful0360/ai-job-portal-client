@@ -36,13 +36,13 @@ const Banner = () => {
           <SwiperSlide>
             <img className='h-[350px] lg:h-[650px] md:h-[400px] opacity-85 transform rotate-b-12 image-container sm:w-full   object-cover' src={pic3} alt="" />
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <img className='h-[350px] lg:h-[650px] md:h-[400px] opacity-85  transform rotate-b-12 image-container sm:w-full   object-cover' src={pic4} alt="" />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </div>
 
-      <div className='image-container absolute inset-0  z-30 bg-black opacity-60'></div>
+      <div className='image-container absolute inset-0  z-30 bg-black opacity-60 '></div>
 
       <div className='absolute top-20 left-24 z-40 items-center sm:flex md:top-16 md:right-20 lg:top-32 lg:gap-60'>
         <div className=''>

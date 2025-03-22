@@ -9,7 +9,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 const JobDetails = () => {
     const { id } = useParams()
-    console.log(id)
+    
     const axiosSecure = UseAxios()
     const { data: detailsJob = [], refetch } = useQuery({
         queryKey: ['detailsJob',id],

@@ -20,7 +20,7 @@ const Navbar = () => {
   const { user, logout } = useContext(AuthContext)
 
   return (
-    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50 ">
+    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
