@@ -5,25 +5,12 @@ import { GoUpload } from 'react-icons/go';
 
 
 
-const ApplyModal = ({isOpen,close}) => {
+const ApplyModal = ({isOpen,close,handlefileChange,fileInfo}) => {
   const [visible,setvisible]=useState(false)
    
-    // let [isOpen, setIsOpen] = useState(true)
-    // function open() {
-    //     setIsOpen(true)
-    //   }
-    
-    //   function close() {
-    //     setIsOpen(false)
-    //   }
     return (
         <div>
-             {/* <Button
-        onClick={open}
-        className="rounded-md bg-black/20 py-2 px-4 text-sm font-medium text-white focus:outline-none data-[hover]:bg-black/30 data-[focus]:outline-1 data-[focus]:outline-white"
-      >
-        Open dialog
-      </Button> */}
+           
 
       <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -61,7 +48,7 @@ const ApplyModal = ({isOpen,close}) => {
                 <div className='flex flex-col w-max mx-auto text-center'>
                   <label>
                     <input
-                  
+                  onChange={handlefileChange}
                      
                       className='text-sm cursor-pointer w-36 hidden'
                       type='file'
@@ -70,9 +57,24 @@ const ApplyModal = ({isOpen,close}) => {
                      
                     
                     />
-                    <div className='flex gap-2 text-xl font-bold text-gray-500 items-center'>
-                    <GoUpload /> Upload File
+                    {
+                      fileInfo ?
+                      <div className="flex gap-2 items-center  bg-gray-100">
+                      <p className='bg-red-600 py-2 rounded-md text-white uppercase text-xl px-2'> {fileInfo.type.split("/")[1]}</p> {/* Extracting the extension */}
+                     <div>
+                     <p> {fileInfo.name}</p>
+                     <p>{fileInfo.size}</p> {/* File size in KB or MB */}
+                     </div>
                     </div>
+                      :
+                      <div className='flex gap-2 text-xl font-bold text-gray-500 items-center'>
+                      
+                      <GoUpload /> Upload File
+                      </div>
+                      
+
+                    }
+                 
                   </label>
                 </div>
               </div>

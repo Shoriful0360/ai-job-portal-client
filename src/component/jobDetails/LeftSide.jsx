@@ -10,8 +10,10 @@ import ApplyModal from "../Modal/ApplyModal";
 
 
 const LeftSide = () => {
-    
-    let [isOpen, setIsOpen] = useState(true)
+    const [file,setFile]=useState(null)
+    const [fileInfo,setFileInfo]=useState(null);
+    console.log(fileInfo)
+   const [isOpen, setIsOpen] = useState(false)
     function open() {
         setIsOpen(true)
       }
@@ -19,7 +21,27 @@ const LeftSide = () => {
       function close() {
         setIsOpen(false)
       }
-  
+  // file upload
+  const handlefileChange=(event)=>{
+const selectedFile=event.target.files[0]
+if(selectedFile){
+  setFile(selectedFile)
+  setFileInfo({
+    name:selectedFile.name,
+    type:selectedFile.type,
+    size: formatFilesizes(selectedFile.size)
+  })
+}
+  }
+  // file format
+  const formatFilesizes=(bytes)=>{
+    const kilobytes=bytes/1024;
+    if(kilobytes <1024){
+      return`${kilobytes.toFixed(2)}KB`
+    }
+    const megabytes=kilobytes /1024;
+    return `${megabytes.toFixed(2)}MB`
+  }
     return (
       <div>
           <div className="flex w-full flex-col px-2 rounded-xl py-4 border border-gray-200  lg:flex-row">
@@ -111,7 +133,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
         </div>
 
       </div>
-      <ApplyModal isOpen={isOpen} close={close} />
+      <ApplyModal isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
       </div>
     );
 };

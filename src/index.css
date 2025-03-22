@@ -8,3 +8,7 @@
 .gray{
     color: rgb(138, 138, 138);
 }
+.active{
+    background-color: black;
+    color: azure;
+}
