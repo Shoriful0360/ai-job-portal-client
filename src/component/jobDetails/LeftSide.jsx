@@ -12,51 +12,48 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Utility/AuthProvidor";
 import Swal from "sweetalert2";
 import ApplyModal from "../Modal/ApplyModal";
+
+
 const LeftSide = ({ detailsJob }) => {
-
-  const [file,setFile]=useState(null)
-  const [fileInfo,setFileInfo]=useState(null);
-
- const [isOpen, setIsOpen] = useState(false)
+  const [file, setFile] = useState(null)
+  const [fileInfo, setFileInfo] = useState(null);
+  const [isOpen, setIsOpen] = useState(false)
   const { user } = useContext(AuthContext)
-  const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, status, title, _id, experience, requirement } = detailsJob
+  const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, status, title, _id, experience, requirement ,educationLevel} = detailsJob
   const axiosSecure = UseAxios()
 
-//  modal functionality
+  //  modal functionality
   function open() {
-    
-      setIsOpen(true)
-    }
-  
-    function close() {
-      setIsOpen(false)
-    }
-
-// file upload
-const handlefileChange=(event)=>{
-const selectedFile=event.target.files[0]
-if(selectedFile){
-setFile(selectedFile)
-setFileInfo({
-  name:selectedFile.name,
-  type:selectedFile.type,
-  size: formatFilesizes(selectedFile.size)
-})
-}
-}
-// file format
-const formatFilesizes=(bytes)=>{
-  const kilobytes=bytes/1024;
-  if(kilobytes <1024){
-    return`${kilobytes.toFixed(2)}KB`
+    setIsOpen(true)
   }
-  const megabytes=kilobytes /1024;
-  return `${megabytes.toFixed(2)}MB`
-}
+  function close() {
+    setIsOpen(false)
+  }
+  // file upload
+  const handlefileChange = (event) => {
+    const selectedFile = event.target.files[0]
+    if (selectedFile) {
+      setFile(selectedFile)
+      setFileInfo({
+        name: selectedFile.name,
+        type: selectedFile.type,
+        size: formatFilesizes(selectedFile.size)
+      })
+    }
+  }
+  // file format
+  const formatFilesizes = (bytes) => {
+    const kilobytes = bytes / 1024;
+    if (kilobytes < 1024) {
+      return `${kilobytes.toFixed(2)}KB`
+    }
+    const megabytes = kilobytes / 1024;
+    return `${megabytes.toFixed(2)}MB`
+  }
 
   //  Job Save in WishList Route
   const handleSave = async () => {
-    const saveData = { category, deadline, description, companyEmail: email, companyLogo: image, jobTime, skill, jobType, location, maxSalary, minSalary, companyName: name, status, title, jobId: _id, experience, requirement, jobSeekerEmail: user?.email }
+    const saveData = { category, deadline, description, companyEmail: email, companyLogo: image, jobTime, skill, jobType, location, maxSalary, minSalary, companyName: name, status, title, jobId: _id, experience, requirement, jobSeekerEmail: user?.email,educationLevel }
     try {
       Swal.fire({
         title: "Are you sure?",
@@ -68,7 +65,7 @@ const formatFilesizes=(bytes)=>{
         confirmButtonText: "Yes, Save it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const data  = await axiosSecure.post(`/saveJob/${user?.email}?jobId=${_id}`, saveData)
+          const data = await axiosSecure.post(`/saveJob/${user?.email}?jobId=${_id}`, saveData)
           if (data.data.insertedId) {
             Swal.fire({
               title: "Save SuccessFully!",
@@ -106,7 +103,7 @@ const formatFilesizes=(bytes)=>{
               <div className="card-actions mt-4">
 
                 <button onClick={open} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]">
-                 <span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW
+                  <span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW
                 </button>
                 <button onClick={handleSave}>
                   <Link className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>SAVE JOB</Link>
@@ -179,7 +176,7 @@ const formatFilesizes=(bytes)=>{
         </div>
 
       </div>
-      <ApplyModal isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
+      <ApplyModal detailsJob={detailsJob} isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
     </div>
   );
 };
