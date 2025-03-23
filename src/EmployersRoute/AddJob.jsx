@@ -139,7 +139,6 @@ const AddJob = () => {
 
                             <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Educational Level</label>
                             <select type="text" name="educationLevel" className="input w-full" required placeholder="">
-                                <option value="">Select an option</option>
                                 <option value="ssc">SSC</option>
                                 <option value="hsc">HSC</option>
                                 <option value="diploma(Complete)">Diploma(Complete)</option>

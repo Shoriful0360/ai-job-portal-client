@@ -1,4 +1,4 @@
-import { BsCalendar3, BsCreditCard2Back } from "react-icons/bs";
+import { BsCreditCard2Back } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
@@ -12,13 +12,14 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Utility/AuthProvidor";
 import Swal from "sweetalert2";
 import ApplyModal from "../Modal/ApplyModal";
+import { FaMoneyBillWave } from "react-icons/fa";
 
-
-const LeftSide = ({ detailsJob }) => {
+const LeftSide = ({ detailsJob, refetch}) => {
   const [file, setFile] = useState(null)
   const [fileInfo, setFileInfo] = useState(null);
   const [isOpen, setIsOpen] = useState(false)
   const { user } = useContext(AuthContext)
+ 
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, status, title, _id, experience, requirement ,educationLevel} = detailsJob
   const axiosSecure = UseAxios()
 
@@ -115,7 +116,7 @@ const LeftSide = ({ detailsJob }) => {
         <div className="divider lg:divider-horizontal"></div>
         <div className="card  grow rounded-box grid  pl-4  space-y-6 md:block ">
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
-            <BsCalendar3 />
+            <FaMoneyBillWave />
             {minSalary}k - {maxSalary}k / Month
           </p>
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
@@ -176,7 +177,7 @@ const LeftSide = ({ detailsJob }) => {
         </div>
 
       </div>
-      <ApplyModal detailsJob={detailsJob} isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
+      <ApplyModal refetch={refetch} detailsJob={detailsJob} isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
     </div>
   );
 };

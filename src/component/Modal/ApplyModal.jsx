@@ -8,9 +8,10 @@ import { compareAsc } from "date-fns";
 import UseAxios from '../../Utility/UseAxios';
 
 
-const ApplyModal = ({ isOpen, close, detailsJob }) => {
+const ApplyModal = ({ isOpen, close, detailsJob ,refetch}) => {
   const axiosSecure = UseAxios()
   const { user } = useContext(AuthContext)
+  console.log(detailsJob)
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, title, _id, experience, requirement, applyCandidate } = detailsJob
 
   // apply job post
@@ -46,12 +47,14 @@ const ApplyModal = ({ isOpen, close, detailsJob }) => {
 
     try {
       const data = await axiosSecure.post(`/applyJob/${user?.email}?jobId=${_id}`, applyData)
+      const updateData = await axiosSecure.patch(`/updateApplyCount/${_id}`)
       if (data.data.insertedId) {
         Swal.fire({
           title: "Job Apply Successful!",
           icon: "success",
           draggable: true
         });
+        refetch()
         close()
       } else {
         Swal.fire({
@@ -59,6 +62,7 @@ const ApplyModal = ({ isOpen, close, detailsJob }) => {
           icon: "error",
           draggable: true
         });
+        refetch()
         close()
       }
       
@@ -93,6 +97,8 @@ const ApplyModal = ({ isOpen, close, detailsJob }) => {
 
                 <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Experience</label>
                 <select type="text" name="experience" className="input w-full" required placeholder="" >
+                  <option value="1 Year">No Experience</option>
+                  <option value="1 Year">6 Month</option>
                   <option value="1 Year">1 Year</option>
                   <option value="2 Years">2 Years</option>
                   <option value="3 Years">3 Years</option>
@@ -104,7 +110,6 @@ const ApplyModal = ({ isOpen, close, detailsJob }) => {
 
                 <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Educational Level</label>
                 <select type="text" name="educationLevel" className="input w-full" required placeholder="">
-                  <option value="">Select an option</option>
                   <option value="ssc">SSC</option>
                   <option value="hsc">HSC</option>
                   <option value="diploma(Complete)">Diploma(Complete)</option>

@@ -32,7 +32,7 @@ const JobDetails = () => {
             <JobBanner />
             <div className="grid md:px-10 px-4 mt-10 gap-4  lg:grid-cols-9">
                 <div className="lg:col-span-6">
-                    <LeftSide detailsJob={detailsJob}></LeftSide>
+                    <LeftSide detailsJob={detailsJob} refetch={refetch}></LeftSide>
                 </div>
                 <div className="lg:col-span-3 ">
                     <RightSide />
