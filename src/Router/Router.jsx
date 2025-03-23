@@ -38,7 +38,7 @@ const Router = () => {
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
-                    <Route path="/details/:id" element={<ApplyJob></ApplyJob>}></Route>
+      
 
                     <Route path="/login" element={<Login></Login>}></Route>
                     <Route path="/register" element={<Register></Register>}></Route>
