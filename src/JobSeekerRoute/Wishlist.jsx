@@ -26,7 +26,6 @@ const Wishlist = () => {
                     <thead>
                         <tr className="text-blue-500">
                             <th></th>
-                            <th>Name</th>
                             <th>Title</th>
                             <th>Location</th>
                             <th> Price/Value </th>
@@ -38,8 +37,7 @@ const Wishlist = () => {
                         {
                             JobSeekerSaveJobs.map(JobSeekerSaveJob =>
                                 <tr className="bg-base-200" key={JobSeekerSaveJob._id}>
-                                    <th><img className="w-12 h-12" src={JobSeekerSaveJob.companyLogo } alt="" /></th>
-                                    <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.companyName}</td>
+                                    <th><img title={JobSeekerSaveJob.companyName} className="w-12 h-12 object-cover" src={JobSeekerSaveJob.companyLogo } alt="" /></th>                                  
                                     <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.title}</td>
                                     <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.location}</td>
                                     <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.minSalary}$ - {JobSeekerSaveJob.maxSalary}$</td>

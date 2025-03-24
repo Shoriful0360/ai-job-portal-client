@@ -3,9 +3,10 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Utility/AuthProvidor";
 import Swal from "sweetalert2";
+import { FcGoogle } from "react-icons/fc";
 import pic from '../../public/Photo/login page pic.webp'
 const Login = () => {
-    const { login } = useContext(AuthContext)
+    const { login, googleLogin } = useContext(AuthContext)
     const navigate = useNavigate()
     const handleSubmit = async e => {
         e.preventDefault()
@@ -37,7 +38,7 @@ const Login = () => {
             >
                 <div className="card-body ">
                     <form onSubmit={handleSubmit}>
-                        <fieldset className="fieldset mb-36">
+                        <fieldset className="fieldset mb-16">
                             <p className="text-8xl font-bold text-gray-600 mx-auto"><IoPersonCircleSharp /></p>
                             <p className="text-2xl font-bold text-gray-600 mx-auto">Login</p>
                             <label className="fieldset-label text-white font-bold">Email</label>
@@ -46,6 +47,7 @@ const Login = () => {
                             <input required type="password" name="password" className="input" placeholder="Password" />
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
+                        <button onClick={googleLogin} className="border  mb-12 block border-blue-400 mx-auto p-1 rounded-full bg-white"><span className="text-5xl font-extrabold "><FcGoogle /></span></button>
                         <div className="text-center">
                             <p className="text-sm font-bold">You have No Account</p>
                             <Link to='/register' className="text-lg font-bold text-white underline">Sign Up</Link>
