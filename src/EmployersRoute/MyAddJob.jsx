@@ -56,7 +56,7 @@ const MyAddJob = () => {
                                 }</p>
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"> <BsCreditCard2Back />{myAddJob.jobType}</p>
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><MdOutlineAccessTimeFilled />{myAddJob.deadline}</p>
-                                <p className="flex  items-center text-sm my-1 sm:my-3 bg-blue-500 text-white rounded-xl p-2 font-bold"><Link className="ml-4">View Candidates</Link></p>
+                                <p className="mr-40 sm:mr-0 text-sm my-1 sm:my-3 bg-blue-500 text-white rounded-xl p-2 font-bold"><Link className="ml-4">View Candidates</Link></p>
                             </div>
                         </div>
 
