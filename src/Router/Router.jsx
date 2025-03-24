@@ -22,7 +22,7 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
-import ApplyJob from "../page/ApplyJob";
+
 
 
 const Router = () => {
