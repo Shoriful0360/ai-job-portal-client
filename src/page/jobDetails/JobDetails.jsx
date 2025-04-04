@@ -7,27 +7,35 @@ import ApplyModal from "../../component/Modal/ApplyModal";
 
 import UseAxios from "../../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
-import { FaLocationDot } from "react-icons/fa6";
+
 
 const JobDetails = () => {
     const { id } = useParams()
-    
+
     const axiosSecure = UseAxios()
     const { data: detailsJob = [], refetch } = useQuery({
-        queryKey: ['detailsJob',id],
+        queryKey: ['detailsJob', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/verifyJob/${id}`)
             return data
         }
     })
     // const {category,deadline,description, email,image,jobTime,jobType,location,maxSalary, minSalary, name,status,title,_id} = detailsJob
+    const { data: categoryJob = [], } = useQuery({
+        queryKey: ['categoryJob', detailsJob],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/verifiedCategoryJob/${detailsJob?.category}?id=${id}`)
+            return data
+        }
+    })
+    console.log(categoryJob)
     return (
        <>
         <div >
             <JobBanner />
             <div className="grid md:px-10 px-4 mt-10 gap-4  lg:grid-cols-9">
                 <div className="lg:col-span-6">
-                    <LeftSide detailsJob={detailsJob}></LeftSide>
+                    <LeftSide detailsJob={detailsJob} refetch={refetch}></LeftSide>
                 </div>
                 <div className="lg:col-span-3 ">
                     <RightSide />

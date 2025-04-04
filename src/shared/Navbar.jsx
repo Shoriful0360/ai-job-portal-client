@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Utility/AuthProvidor';
-
+import pic from '../../public/Photo/icons8-permanent-job-96.png'
 const Navbar = () => {
   const link = <>
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
@@ -32,7 +32,12 @@ const Navbar = () => {
             {link}
           </ul>
         </div>
-        <button className=''><Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent"><i>JobVision AI</i></Link></button>
+        <button className='flex items-center sm:gap-2'>
+          <img className='w-8 sm:w-10' src={pic} alt="" />
+          <Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">
+            <i>JobVision AI</i>
+          </Link>
+        </button>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal ">
@@ -65,7 +70,7 @@ const Navbar = () => {
               <Link onClick={logout} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
             </span>
             :
-            <button className='btn btn-ghost'> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
+            <button className='btn '> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
         }
 
 
