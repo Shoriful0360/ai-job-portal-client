@@ -1,99 +1,158 @@
 
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useState } from 'react';
-import { GoUpload } from 'react-icons/go';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../Utility/AuthProvidor';
+import { imageUpload } from '../../Utility/imageUpload';
+import Swal from 'sweetalert2';
+import { compareAsc } from "date-fns";
+import UseAxios from '../../Utility/UseAxios';
 
 
+const ApplyModal = ({ isOpen, close, detailsJob ,refetch}) => {
+  const axiosSecure = UseAxios()
+  const { user } = useContext(AuthContext)
+  console.log(detailsJob)
+  const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, title, _id, experience, requirement, applyCandidate } = detailsJob
 
-const ApplyModal = ({isOpen,close}) => {
-  const [visible,setvisible]=useState(false)
-   
-    // let [isOpen, setIsOpen] = useState(true)
-    // function open() {
-    //     setIsOpen(true)
-    //   }
-    
-    //   function close() {
-    //     setIsOpen(false)
-    //   }
-    return (
-        <div>
-             {/* <Button
-        onClick={open}
-        className="rounded-md bg-black/20 py-2 px-4 text-sm font-medium text-white focus:outline-none data-[hover]:bg-black/30 data-[focus]:outline-1 data-[focus]:outline-white"
-      >
-        Open dialog
-      </Button> */}
+  // apply job post
+  const handleApply = async (e) => {
+    e.preventDefault()
+    const jobSeekerName = e.target.name.value
+    const jobSeekerEmail = e.target.email.value
+    const Photo = e.target.photo.files[0]
+    const jovSeekerImage = await imageUpload(Photo)
+    const jobSeekerExperience = e.target.experience.value
+    const jobSeekerEducation = e.target.educationLevel.value
+    const resume = e.target.resume.files[0]
+    const jobSeekerResume = await imageUpload(resume)
 
-      <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <DialogPanel
-              transition
-              className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
-            >
-              <DialogTitle as="h3" className="text-base/7 font-medium ">
-              Applying for Web Devloper job
-              </DialogTitle>
-              <h1></h1>
-              <p>MediaCom Bangladesh</p> 
-              <div className="divider"></div>
-              <div className=''>
-                <h3 className='mb-2'>Confirm your availability</h3>
-               <label className='flex gap-2 mb-2'>
-               <input type="radio" name="radio-1" onChange={()=>setvisible(false)} className="radio" defaultChecked /> <p>Yes, I am avialable to join immediately</p> <br />
-               </label>
-             
-               <label className=''>
-               <input type="radio" name="radio-1" className="radio" onChange={()=>setvisible(true)} /> No <span className='text-gray-500'>(Please specify your avialability)</span> <br />
-           {
-            visible &&  <textarea type="text" placeholder="eg. I am avialable for in-office work in Pune immediately, but will require a week to relocate" className="textarea textarea-success w-full mt-4"></textarea>
-           }
-               
-               
-               </label>
-             {/* resume */}
-             <div className='mt-2 space-y-3'>
-              <h3>Custom resume <span className='text-gray-500'>(Optional)</span></h3>
-              <p className='text-gray-500'>Employer can download and view this resume</p>
+    if (jobSeekerEmail === email) {
+      return Swal.fire({
+        title: "You Are Not Job Seeker!",
+        icon: "error",
+        draggable: true
+      });
+    }
+    if (compareAsc(new Date(), new Date(deadline)) === 1) {
+      return Swal.fire({
+        title: "Deadline Over,Apply Forbidden!",
+        icon: "error",
+        draggable: true
+      });
+    }
+
+    const applyData = {
+      jobSeekerName, jobSeekerEmail, jobSeekerEducation, jovSeekerImage, jobSeekerExperience, jobSeekerResume, category, deadline, description, jobTime, skill, jobType, location, maxSalary, minSalary, experience, requirement, title, companyEmail: email, companyName: name, companyLogo: image, jobId: _id, applyCandidate, status: 'pending',
+    }
+
+    try {
+      const data = await axiosSecure.post(`/applyJob/${user?.email}?jobId=${_id}`, applyData)
+      const updateData = await axiosSecure.patch(`/updateApplyCount/${_id}`)
+      if (data.data.insertedId) {
+        Swal.fire({
+          title: "Job Apply Successful!",
+          icon: "success",
+          draggable: true
+        });
+        refetch()
+        close()
+      } else {
+        Swal.fire({
+          title: "You Are All Ready Apply To This Job!",
+          icon: "error",
+          draggable: true
+        });
+        refetch()
+        close()
+      }
       
-            <div className='file_upload px-5 py-3 relative border-2 border-dotted border-gray-300 rounded-lg'>
-                <div className='flex flex-col w-max mx-auto text-center'>
-                  <label>
-                    <input
-                  
-                     
-                      className='text-sm cursor-pointer w-36 hidden'
-                      type='file'
-                      name='resume'
-                      id='image'
-                     
-                    
-                    />
-                    <div className='flex gap-2 text-xl font-bold text-gray-500 items-center'>
-                    <GoUpload /> Upload File
-                    </div>
-                  </label>
-                </div>
-              </div>
+    } catch {
 
-             </div>
-             
-              </div>
-              <div className="mt-4">
-                <Button
-                  className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700"
-                  onClick={close}
-                >
-                 Submit Application
-                </Button>
-              </div>
-            </DialogPanel>
+    }
+  }
+  return (
+    <div>
+      <Dialog open={isOpen} as="div" className=" relative z-50 focus:outline-none" onClose={close}>
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex  min-h-full items-center justify-center p-4">
+            <form onSubmit={handleApply}>
+              <DialogPanel
+                transition
+                className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
+              >
+                <DialogTitle as="h3" className="text-2xl  font-medium ">
+                  Applying for {title}
+                </DialogTitle>
+                <p>{name}</p>
+                <div className="divider"></div>
+
+                <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Job Seeker Email</label>
+                <input disabled defaultValue={user?.email} type="text" name="email" className="input w-full" placeholder="" />
+
+                <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Job Seeker Name</label>
+                <input type="text" name="name" className="input w-full" placeholder="Name" />
+
+                <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Job Seeker Photo</label>
+                <input type="file" name="photo" className="file-input file-input-md w-full" />
+
+                <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Experience</label>
+                <select type="text" name="experience" className="input w-full" required placeholder="" >
+                  <option value="1 Year">No Experience</option>
+                  <option value="1 Year">6 Month</option>
+                  <option value="1 Year">1 Year</option>
+                  <option value="2 Years">2 Years</option>
+                  <option value="3 Years">3 Years</option>
+                  <option value="4 Years">4 Years</option>
+                  <option value="5 Years">5 Years</option>
+                  <option value="6 Years">6 Years</option>
+                  <option value="7 Years">7 Years</option>
+                </select>
+
+                <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Educational Level</label>
+                <select type="text" name="educationLevel" className="input w-full" required placeholder="">
+                  <option value="ssc">SSC</option>
+                  <option value="hsc">HSC</option>
+                  <option value="diploma(Complete)">Diploma(Complete)</option>
+                  <option value="diploma(Ongoing)">Diploma(Ongoing)</option>
+                  <option value="bachelor(Complete)">Bachelor(Complete)'s </option>
+                  <option value="bachelor(Ongoing)">Bachelor's(Ongoing)</option>
+                  <option value="master's(Complete)">Master's(Complete)</option>
+                  <option value="master's(Ongoing)">Master's(Ongoing)</option>
+                  <option value="phd">Ph.D</option>
+                </select>
+
+                <div className=''>
+                  {/* resume */}
+                  <div className='mt-2 space-y-3'>
+                    <p className='text-gray-500'>Employer can download and view this resume</p>
+                    <div className='file_upload px-5 py-3 relative  border-gray-300 rounded-lg'>
+                      <div className='flex flex-col w-max mx-auto text-center'>
+                        <label>
+                          <input type="file" name="resume" className="file-input file-input-lg w-full" />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex justify-between">
+                  <button className='btn'>
+                    submit
+                  </button>
+                  <Button
+                    className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700"
+                    onClick={close}
+                  >
+                    close
+                  </Button>
+
+                </div>
+              </DialogPanel>
+            </form>
           </div>
         </div>
       </Dialog>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default ApplyModal;

@@ -3,7 +3,7 @@
 const CategoryCard = ({item}) => {
     const{icon,img,number,title}=item || {}
     return (
-        <div className="group relative  overflow-hidden rounded-lg shadow-xl border-green-600 border  bg-white">
+        <div className="group relative  overflow-hidden rounded-lg shadow-xl border-blue-600 border  bg-white">
         {/* Image Section with Hover Effect */}
         <img 
             src={img} 
@@ -14,7 +14,7 @@ const CategoryCard = ({item}) => {
         {/* Content Section */}
         <div className="absolute bottom-0 left-0 w-full bg-white pt-10 h-52 transition-transform duration-500 group-hover:translate-x-[100%]">
             {/* Icon Box */}
-            <div className="bg-[#26AE61] z-50 w-20 h-20 flex justify-center items-center text-5xl text-white rounded-full shadow-md mx-auto">
+            <div className="bg-gradient-to-r from-blue-400 to-blue-950 z-50 w-20 h-20 flex justify-center items-center text-5xl text-white rounded-full shadow-md mx-auto">
                 {icon}
             </div>
 
