@@ -5,6 +5,11 @@ import { FaMinus } from "react-icons/fa";
 import { GiSmartphone } from "react-icons/gi";
 import { HiOutlineUser } from "react-icons/hi";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { GiDuration } from "react-icons/gi";
+import { VscGitStashApply } from "react-icons/vsc";
+import { IoSave } from "react-icons/io5";
 import { Link } from "react-router";
 import ApplyModal from "../Modal/ApplyModal";
 
