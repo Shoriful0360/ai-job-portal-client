@@ -2,7 +2,13 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Utility/AuthProvidor';
 import pic from '../../public/Photo/icons8-permanent-job-96.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../Redux/authSlice';
 const Navbar = () => {
+  const dispatch=useDispatch()
+  const{user}=useSelector((state)=>state.auth || {user:null})
+console.log(user)
+// const{user}=useContext(AuthContext)
   const link = <>
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/'>Home</NavLink>
@@ -17,8 +23,8 @@ const Navbar = () => {
       <NavLink to='/candidates'>Candidates</NavLink>
     </li>
   </>
-  const { user, logout } = useContext(AuthContext)
-
+  // const { user, logout } = useContext(AuthContext)
+ 
   return (
     <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50">
       <div className="navbar-start">
@@ -48,7 +54,7 @@ const Navbar = () => {
 
 
         {
-          user && user?.photoURL ?
+          user ?
             <span className='flex justify-center items-center'>
               <div className="dropdown dropdown-end justify-center items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -67,7 +73,7 @@ const Navbar = () => {
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </div>
-              <Link onClick={logout} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
+              <Link onClick={()=>dispatch(logout())} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
             </span>
             :
             <button className='btn '> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
@@ -75,6 +81,7 @@ const Navbar = () => {
 
 
       </div>
+    
     </div>
   );
 };

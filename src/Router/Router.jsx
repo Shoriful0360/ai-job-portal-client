@@ -22,10 +22,17 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
+import { useEffect } from "react";
+import { checkAuthState } from "../Redux/authSlice";
+import { useDispatch } from "react-redux";
 
 
 
 const Router = () => {
+const dispatch=useDispatch()
+useEffect(() => {
+    dispatch(checkAuthState());
+  }, [dispatch]);
     return (
         <div>
             <Routes>
