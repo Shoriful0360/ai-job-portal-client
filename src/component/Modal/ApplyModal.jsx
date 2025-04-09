@@ -7,7 +7,7 @@ import UseAxios from '../../Utility/UseAxios';
 import { GoUpload } from 'react-icons/go';
 
 
-const ApplyModal = ({ isOpen, close, detailsJob ,refetch,handlefileChange,fileInfo,user}) => {
+const ApplyModal = ({ isOpen, close, detailsJob ,refetch}) => {
   const axiosSecure = UseAxios()
 
   console.log(detailsJob)
@@ -45,8 +45,7 @@ const ApplyModal = ({ isOpen, close, detailsJob ,refetch,handlefileChange,fileIn
     const applyData = {
       jobSeekerName, jobSeekerEmail, jobSeekerEducation, jovSeekerImage, jobSeekerExperience, jobSeekerResume, category, deadline, description, jobTime, skill, jobType, location, maxSalary, minSalary, experience, requirement, title, companyEmail: email, companyName: name, companyLogo: image, jobId: _id, applyCandidate, status: 'pending',
     }
-  
-    return
+
     try {
       const data = await axiosSecure.post(`/applyJob/${user?.email}?jobId=${_id}`, applyData)
       const updateData = await axiosSecure.patch(`/updateApplyCount/${_id}`)

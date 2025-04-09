@@ -1,15 +1,16 @@
-import { useContext } from "react";
+
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router";
-import { AuthContext } from "../Utility/AuthProvidor";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import pic from '../../public/Photo/login page pic.webp'
+import { useDispatch } from "react-redux";
+import { googleLogin, login } from "../Redux/authSlice";
 const Login = () => {
-    const { login, googleLogin } = useContext(AuthContext)
+    const dispatch=useDispatch()
     const navigate = useNavigate()
     const gmailLogin =async () => {
-      const log = await googleLogin()
+      const log = await dispatch( googleLogin())
       navigate('/')
     }
     const handleSubmit = async e => {
@@ -18,16 +19,16 @@ const Login = () => {
         const password = e.target.password.value
 
         try {
-            await login(email, password)
-
-            Swal.fire({
-                title: "Login SuccessFully!",
-                icon: "success",
-                draggable: true
-            });
-            navigate('/')
-
-
+           const result= await dispatch(login({email,password}))
+            if(result.payload){
+                Swal.fire({
+                    title: "Login SuccessFully!",
+                    icon: "success",
+                    draggable: true
+                });
+                navigate('/')
+            }
+        
         } catch (error) {
             Swal.fire({
                 title: "Something Else . Please Try Again!",
