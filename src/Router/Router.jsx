@@ -27,6 +27,10 @@ import UpdatePage from "../page/UpdatePage";
 
 
 const Router = () => {
+const dispatch=useDispatch()
+useEffect(() => {
+    dispatch(checkAuthState());
+  }, [dispatch]);
     return (
         <div>
             <Routes>
