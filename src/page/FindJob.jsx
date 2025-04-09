@@ -3,6 +3,10 @@ import UseAxios from "../Utility/UseAxios";
 import JobCard from "../component/Homepage/JobCard";
 import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
+import LoadingPage from "./LoadingPage";
+
+
+
 
 
 
@@ -11,7 +15,7 @@ const FindJob = () => {
     const [jobType, setJobType] = useState('')
     const [search, setSearch] = useState('')
     const axiosSecure = UseAxios()
-    const { data: verifiedJobs = [], refetch } = useQuery({
+    const { data: verifiedJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['verifiedJobs', division, jobType, search],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/verifyJob?division=${division}&jobType=${jobType}&search=${search}`)
@@ -19,7 +23,7 @@ const FindJob = () => {
         }
     })
     const allVerifiedJob = verifiedJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-
+   if(isLoading) return <LoadingPage></LoadingPage>
     return (
         <div className="">
             <div className="flex items-center gap-2 justify-center  my-7">

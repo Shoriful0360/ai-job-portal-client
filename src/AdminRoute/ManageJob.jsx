@@ -3,10 +3,13 @@ import UseAxios from "../Utility/UseAxios";
 import { SiVerizon } from "react-icons/si";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import LoadingPage from "../page/LoadingPage";
+
+
 
 const ManageJob = () => {
     const axiosSecure = UseAxios()
-    const { data: pendingJobs = [], refetch } = useQuery({
+    const { data: pendingJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['pendingJobs'],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/pendingJob')
@@ -14,6 +17,7 @@ const ManageJob = () => {
         }
     })
     const allPendingJob = pendingJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
+    if(isLoading) return <LoadingPage></LoadingPage>
     // reject pending job
     const handleReject = async (id) => {
         try {
