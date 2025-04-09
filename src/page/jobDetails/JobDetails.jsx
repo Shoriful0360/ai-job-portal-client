@@ -3,6 +3,7 @@ import JobCard from "../../component/Homepage/JobCard";
 import JobBanner from "../../component/jobDetails/JobBanner";
 import LeftSide from "../../component/jobDetails/LeftSide";
 import RightSide from "../../component/jobDetails/RightSide";
+import ApplyModal from "../../component/Modal/ApplyModal";
 import UseAxios from "../../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
 

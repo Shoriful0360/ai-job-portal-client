@@ -20,8 +20,11 @@ const AddJob = () => {
         const category = e.target.category.value
         const requirement = e.target.requirement.value
         const location = e.target.location.value
-        const minSalary = e.target.minSalary.value
-        const maxSalary = e.target.maxSalary.value
+        const division = e.target.division.value
+        const minimumSalary = e.target.minSalary.value
+        const minSalary = parseInt(minimumSalary)
+        const maximumSalary = e.target.maxSalary.value
+        const maxSalary = parseInt(maximumSalary)
         const deadline = e.target.deadline.value
         const educationLevel = e.target.educationLevel.value
 
@@ -47,7 +50,7 @@ const AddJob = () => {
 
 
         const jobAllData =
-            { title, description, category, requirement, location, educationLevel, minSalary, maxSalary, deadline, skill, jobTime, jobType, image, experience, name, email, status, jobPostTime }
+            { title, description, category, requirement, location, division, educationLevel, minSalary, maxSalary, deadline, skill, jobTime, jobType, image, experience, name, email, status, jobPostTime }
 
         try {
             await axiosSecure.post('/pendingJob', jobAllData)
@@ -95,6 +98,18 @@ const AddJob = () => {
 
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Location</label>
                             <input type="text" name="location" className="input w-full" required placeholder="Location" />
+
+                            <label className=" fieldset-label text-sm font-bold text-gray-700">Division</label>
+                            <select type="text" name="division" className="input w-full" required placeholder="Division" >
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Barishal">Barishal</option>
+                                <option value="Mymonsingh">Mymonsingh</option>
+                                <option value="Sylhet">Sylhet</option>
+                            </select>
 
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Min Salary</label>
                             <input type="number" name="minSalary" className="input w-full" required placeholder="Min Salary" />
