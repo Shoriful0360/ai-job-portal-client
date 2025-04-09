@@ -23,6 +23,9 @@ import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
 import UpdatePage from "../page/UpdatePage";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { checkAuthState } from "../Redux/authSlice";
 
 
 
