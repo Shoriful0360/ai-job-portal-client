@@ -10,7 +10,7 @@ const Login = () => {
     const dispatch=useDispatch()
     const navigate = useNavigate()
     const gmailLogin =async () => {
-      const log = await googleLogin()
+      const log = await dispatch( googleLogin())
       navigate('/')
     }
     const handleSubmit = async e => {
