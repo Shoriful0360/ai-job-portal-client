@@ -23,6 +23,7 @@ import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
 import ApplyJob from "../page/ApplyJob";
+import ForgotPassword from "../page/ForgotPassword";
 
 
 const Router = () => {
@@ -45,6 +46,7 @@ const Router = () => {
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+                    <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                 </Route>
 
                 {/* dashboard route */}
