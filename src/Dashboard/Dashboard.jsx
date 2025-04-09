@@ -23,26 +23,26 @@ const Dashboard = () => {
                         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                             {/* Sidebar content here */}
                             {/* Admin Route */}
-                            <li><NavLink to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
-                            <li><NavLink to='/dashboard/manageJob'>Manage Job</NavLink></li>
-                            <li><NavLink to='/dashboard/manageUsers'>Manage Users</NavLink></li>
-                            <li><NavLink to='/dashboard/manageReview'>Manage Review</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/manageJob'>Manage Job</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/manageUsers'>Manage Users</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/manageReview'>Manage Review</NavLink></li>
                             {/* Employers Route */}
-                            <li><NavLink to='/dashboard/employerProfile'>Employer Profile</NavLink></li>
-                            <li><NavLink to='/dashboard/addJob'>Add Job</NavLink></li>
-                            <li><NavLink to='/dashboard/myAddJob'>My Add Job</NavLink></li>
-                            <li><NavLink to='/dashboard/CandidatesRequest'>Candidates Request</NavLink></li>
-                            <li><NavLink to='/dashboard/hiredCandidates'>Hired Candidates</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/employerProfile'>Employer Profile</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/addJob'>Add Job</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/myAddJob'>My Add Job</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/CandidatesRequest'>Candidates Request</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/hiredCandidates'>Hired Candidates</NavLink></li>
                             {/* Job Seeker Route */}
-                            <li><NavLink to='/dashboard/myProfile'>My Profile</NavLink></li>
-                            <li><NavLink to='/dashboard/myAppliedJob'>My Applied Job</NavLink></li>
-                            <li><NavLink to='/dashboard/myWishlist'>My WishList</NavLink></li>
-                            <li><NavLink to='/dashboard/myReview'>My Review</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/myProfile'>My Profile</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/myAppliedJob'>My Applied Job</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/myWishlist'>My WishList</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/myReview'>My Review</NavLink></li>
                             <hr className="my-4 h-1 bg-gray-600" />
-                            <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to='/findJobs'>FindJobs</NavLink></li>
-                            <li><NavLink to='/employers'>Employers</NavLink></li>
-                            <li><NavLink to='/candidates'>Candidates</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/'>Home</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/findJobs'>FindJobs</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/employers'>Employers</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/candidates'>Candidates</NavLink></li>
                         </ul>
                     </div>
                 </div>

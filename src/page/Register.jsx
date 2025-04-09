@@ -1,14 +1,19 @@
 
-import { useContext } from "react";
+
 import { imageUpload } from "../Utility/imageUpload";
-import { AuthContext } from "../Utility/AuthProvidor";
+
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import pic from '../../public/Photo/register page pic.webp'
+import { useDispatch, useSelector } from "react-redux";
+import { googleLogin, profileUpdate, signUp } from "../Redux/authSlice";
 const Register = () => {
-    const { googleLogin, createUser, profileUpdate, logout } = useContext(AuthContext)
-    const navigate = useNavigate()
+    const dispatch=useDispatch()
+
+    const navigate = useNavigate()  
+
+    // form submit
     const handleSubmit = async e => {
         e.preventDefault()
         const name = e.target.name.value
@@ -18,19 +23,23 @@ const Register = () => {
         const image = e.target.image.files[0]
         const photoUrl = await imageUpload(image)
 
+
         try {
-            await createUser(email, password)
-            await profileUpdate({ displayName: name, photoURL: photoUrl });
+     const result= await dispatch(signUp({email,password}))
+        if(result.payload){
+
+            await dispatch(profileUpdate({displayName:name,photoURL:photoUrl}))
+        }
             Swal.fire({
                 title: "Account Created SuccessFully!",
                 icon: "success",
                 draggable: true
             });
-            logout()
-            navigate('/login')
+           
+            navigate('/')
 
         } catch (error) {
-
+            console.log(error.message)
         }
 
     }
@@ -53,7 +62,7 @@ const Register = () => {
                             <button className="btn btn-neutral mt-4">Account Create</button>
                         </fieldset>
                     </form>
-                    <button onClick={googleLogin} className="btn  mt-4">Sign Up With <span className="text-2xl font-bold"><FcGoogle /></span></button>
+                    <button onClick={()=>dispatch(googleLogin())} className="btn  mt-4">Sign Up With <span className="text-2xl font-bold"><FcGoogle /></span></button>
                 </div>
             </div>
         </div>
