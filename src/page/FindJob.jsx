@@ -31,7 +31,7 @@ const FindJob = () => {
                 {/* Search ber */}
                 <div className="">
                     <label className="input input-bordered flex mx-auto my-2 items-center gap-2 text-black">
-                        <input onBlur={e => setSearch(e.target.value)} type="text" className="sm:w-96 " placeholder="Search By Job Title" />
+                        <input onChange={e => setSearch(e.target.value)} type="text" className="sm:w-96 " placeholder="Search By Job Title" />
                         <button>search</button>
                     </label>
                 </div>
