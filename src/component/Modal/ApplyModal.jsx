@@ -7,7 +7,7 @@ import UseAxios from '../../Utility/UseAxios';
 import { GoUpload } from 'react-icons/go';
 
 
-const ApplyModal = ({ isOpen, close, detailsJob ,refetch}) => {
+const ApplyModal = ({ isOpen, close, detailsJob ,refetch, user,handlefileChange,fileInfo}) => {
   const axiosSecure = UseAxios()
 
   console.log(detailsJob)
