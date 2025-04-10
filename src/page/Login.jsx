@@ -9,6 +9,10 @@ import pic from '../../public/Photo/login page pic.webp'
 const Login = () => {
     const { login } = useContext(AuthContext)
     const navigate = useNavigate()
+    const gmailLogin =async () => {
+      const log = await googleLogin()
+      navigate('/')
+    }
     const handleSubmit = async e => {
         e.preventDefault()
         const email = e.target.email.value
@@ -48,11 +52,13 @@ const Login = () => {
                             <input required type="password" name="password" className="input" placeholder="Password" />
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
+                        
+                    </form>
+                    <button onClick={gmailLogin} className="border  mb-12 block border-blue-400 mx-auto p-1 rounded-full bg-white"><span className="text-5xl font-extrabold "><FcGoogle /></span></button>
                         <div className="text-center">
                             <p className="text-sm font-bold">You have No Account</p>
                             <Link to='/register' className="text-lg font-bold text-white underline">Sign Up</Link>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>

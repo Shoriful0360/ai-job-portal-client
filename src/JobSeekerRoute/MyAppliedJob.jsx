@@ -41,7 +41,7 @@ const MyAppliedJob = () => {
                                     
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.companyName}</td>
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.title}</td>
-                                    <td className="text-sm font-bold text-gray-600">{myApplyJob.location}</td>
+                                    <td className="text-sm font-bold text-gray-600">{myApplyJob.location},{myApplyJob.division}</td>
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.minSalary}$ - {myApplyJob.maxSalary}$</td>
                                     <td>
                                         {

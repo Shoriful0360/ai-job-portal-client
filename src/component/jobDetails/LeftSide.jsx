@@ -177,7 +177,7 @@ const LeftSide = ({ detailsJob, refetch}) => {
         </div>
 
       </div>
-      <ApplyModal refetch={refetch} detailsJob={detailsJob} isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
+      <ApplyModal user={user} refetch={refetch} detailsJob={detailsJob} isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
     </div>
   );
 };

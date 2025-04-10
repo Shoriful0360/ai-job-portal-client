@@ -22,7 +22,9 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
-// import ApplyJob from "../page/ApplyJob";
+import ForgotPassword from "../page/ForgotPassword";
+import UpdatePage from "../page/UpdatePage";
+
 
 
 const Router = () => {
@@ -44,8 +46,8 @@ const Router = () => {
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
-                    <Route path="/forgot-password" element={<Candidates></Candidates>}></Route>
+                    <Route path="/candidates" element={<ForgotPassword></ForgotPassword>}></Route>
+                   
                 </Route>
 
                 {/* dashboard route */}
@@ -64,6 +66,7 @@ const Router = () => {
                     <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>
                     <Route path="/dashboard/CandidatesRequest" element={<RequestCandidates></RequestCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
+                    <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
 
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
                     <Route path="/dashboard/myProfile" element={<MyProfile></MyProfile>}></Route>

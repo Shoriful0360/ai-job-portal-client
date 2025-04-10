@@ -74,7 +74,7 @@ const ManageJob = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Title</th>
-                            <th>Location</th>
+                            <th>Division</th>
                             <th> Price/Value </th>
                             <th></th>
                         </tr>
@@ -87,7 +87,7 @@ const ManageJob = () => {
                                     <th className="text-sm font-bold text-gray-600">{pendingJob.name}</th>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.email}</td>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.title}</td>
-                                    <td className="text-sm font-bold text-gray-600">{pendingJob.location}</td>
+                                    <td className="text-sm font-bold text-gray-600">{pendingJob.division}</td>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.minSalary}$ - {pendingJob.maxSalary}$</td>
                                     <td>
                                         {
