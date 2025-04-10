@@ -3,6 +3,8 @@ import { IoPersonCircleSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Utility/AuthProvidor";
 import Swal from "sweetalert2";
+import React, { useContext } from "react";
+
 import pic from '../../public/Photo/login page pic.webp'
 const Login = () => {
     const { login } = useContext(AuthContext)

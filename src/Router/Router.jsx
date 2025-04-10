@@ -22,22 +22,10 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
-<<<<<<< HEAD
-import ApplyJob from "../page/ApplyJob";
-import ForgotPassword from "../page/ForgotPassword";
-=======
-import { useEffect } from "react";
-import { checkAuthState } from "../Redux/authSlice";
-import { useDispatch } from "react-redux";
-
->>>>>>> 1260cff8b467c3e36e9d56298dcbef45238ebb06
+// import ApplyJob from "../page/ApplyJob";
 
 
 const Router = () => {
-const dispatch=useDispatch()
-useEffect(() => {
-    dispatch(checkAuthState());
-  }, [dispatch]);
     return (
         <div>
             <Routes>
@@ -50,14 +38,14 @@ useEffect(() => {
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
-      
+                    {/* <Route path="/details/:id" element={<ApplyJob></ApplyJob>}></Route> */}
 
                     <Route path="/login" element={<Login></Login>}></Route>
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
-                    <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
+                    <Route path="/forgot-password" element={<Candidates></Candidates>}></Route>
                 </Route>
 
                 {/* dashboard route */}
