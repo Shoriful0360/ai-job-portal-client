@@ -3,7 +3,7 @@ import UseAxios from "../Utility/UseAxios";
 import JobCard from "../component/Homepage/JobCard";
 import { FaFilter } from "react-icons/fa";
 import { useState } from "react";
-import LoadingPage from "./LoadingPage";
+
 
 
 
@@ -23,7 +23,7 @@ const FindJob = () => {
         }
     })
     const allVerifiedJob = verifiedJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-   if(isLoading) return <LoadingPage></LoadingPage>
+  
     return (
         <div className="">
             <div className="flex items-center gap-2 justify-center  my-7">
