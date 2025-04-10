@@ -1,8 +1,10 @@
+import { Link } from "react-router";
 
 
 const CategoryCard = ({item}) => {
     const{icon,img,number,title}=item || {}
     return (
+        <Link to={`/category-job/${title}`}>
         <div className="group relative  overflow-hidden rounded-lg shadow-xl border-blue-600 border  bg-white">
         {/* Image Section with Hover Effect */}
         <img 
@@ -22,7 +24,7 @@ const CategoryCard = ({item}) => {
             <h1 className="text-2xl font-bold text-center mt-3">{title}</h1>
             <p className="text-center text-gray-600 mt-2">{number} Jobs Available</p>
         </div>
-    </div>
+    </div></Link>
     );
 };
 

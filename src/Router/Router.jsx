@@ -22,10 +22,18 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
+import { useEffect } from "react";
+import { checkAuthState } from "../Redux/authSlice";
+import { useDispatch } from "react-redux";
+import CategoryJob from "../page/categoryJob/CategoryJob";
 
 
 
 const Router = () => {
+const dispatch=useDispatch()
+useEffect(() => {
+    dispatch(checkAuthState());
+  }, [dispatch]);
     return (
         <div>
             <Routes>
@@ -38,6 +46,7 @@ const Router = () => {
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
+                    <Route path="/category-job/:title" element={<CategoryJob/>}></Route>
       
 
                     <Route path="/login" element={<Login></Login>}></Route>
