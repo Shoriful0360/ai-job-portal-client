@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Utility/AuthProvidor';
 import pic from '../../public/Photo/icons8-permanent-job-96.png'
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,9 +19,7 @@ console.log(user)
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
-    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
-      <NavLink to='/candidates'>Candidates</NavLink>
-    </li>
+    
   </>
   // const { user, logout } = useContext(AuthContext)
  

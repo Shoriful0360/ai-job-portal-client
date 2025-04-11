@@ -37,7 +37,7 @@ const Router = () => {
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+                    
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
                     {/* <Route path="/details/:id" element={<ApplyJob></ApplyJob>}></Route> */}
@@ -46,7 +46,8 @@ const Router = () => {
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<ForgotPassword></ForgotPassword>}></Route>
+                    
+                    <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                    
                 </Route>
 
