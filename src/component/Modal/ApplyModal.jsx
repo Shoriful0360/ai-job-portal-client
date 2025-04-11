@@ -8,7 +8,7 @@ import { GoUpload } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const ApplyModal = ({ isOpen, close, detailsJob ,refetch}) => {
+const ApplyModal = ({ isOpen, close, detailsJob ,refetch,handlefileChange,fileInfo}) => {
   const axiosSecure = UseAxios()
 const {user}=useSelector((state)=>state.auth)
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, title, _id, experience, requirement, applyCandidate } = detailsJob
