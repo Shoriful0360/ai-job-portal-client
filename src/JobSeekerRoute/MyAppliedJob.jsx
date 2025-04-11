@@ -3,7 +3,7 @@ import { AuthContext } from "../Utility/AuthProvidor";
 import { useQuery } from "@tanstack/react-query";
 import UseAxios from "../Utility/UseAxios";
 import { Link } from "react-router";
-import LoadingPage from "../page/LoadingPage";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 const MyAppliedJob = () => {
@@ -16,7 +16,7 @@ const MyAppliedJob = () => {
             return data
         }
     })
-    if(isLoading) return <LoadingPage></LoadingPage>
+    if(isLoading) return <LoadingSpinner/>
     return (
         <div>
 

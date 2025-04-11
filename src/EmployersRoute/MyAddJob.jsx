@@ -10,7 +10,7 @@ import { GiDuration } from "react-icons/gi";
 import { VscGitStashApply } from "react-icons/vsc";
 import { FaMoneyBillWave } from "react-icons/fa";
 import Swal from "sweetalert2";
-import LoadingPage from "../page/LoadingPage";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 const MyAddJob = () => {
@@ -24,7 +24,8 @@ const MyAddJob = () => {
         }
     })
     const myAddJobs = allMyAddJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-    if(isLoading) return <LoadingPage></LoadingPage>
+ 
+    if(isLoading) return <LoadingSpinner/>
 
     // job delete
     const handleDelete = async (id) => {

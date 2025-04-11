@@ -28,14 +28,20 @@ import { useEffect } from "react";
 import { checkAuthState } from "../Redux/authSlice";
 import SuggestedJob from "../Section/SuggestedJob";
 import Suggestion from "../page/Suggestion";
+import CategoryJob from "../page/categoryJob/CategoryJob";
+
+
 
 
 
 const Router = () => {
+  
 const dispatch=useDispatch()
-useEffect(() => {
-    dispatch(checkAuthState());
-  }, [dispatch]);
+
+useEffect(()=>{
+ dispatch(checkAuthState());
+},[dispatch])
+
     return (
         <div>
             <Routes>
@@ -48,6 +54,7 @@ useEffect(() => {
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
+                    <Route path="/category-job/:title" element={<CategoryJob/>}></Route>
       
 
                     <Route path="/login" element={<Login></Login>}></Route>

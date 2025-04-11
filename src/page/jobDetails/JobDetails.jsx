@@ -27,8 +27,9 @@ const JobDetails = () => {
             return data
         }
     })
-    console.log(categoryJob)
+  
     return (
+       <>
         <div >
             <JobBanner />
             <div className="grid md:px-10 px-4 mt-10 gap-4  lg:grid-cols-9">
@@ -49,6 +50,7 @@ const JobDetails = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

@@ -5,12 +5,12 @@ import Swal from 'sweetalert2';
 import { compareAsc } from "date-fns";
 import UseAxios from '../../Utility/UseAxios';
 import { GoUpload } from 'react-icons/go';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const ApplyModal = ({ isOpen, close, detailsJob ,refetch, user,handlefileChange,fileInfo}) => {
   const axiosSecure = UseAxios()
-
-  console.log(detailsJob)
+const {user}=useSelector((state)=>state.auth)
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, title, _id, experience, requirement, applyCandidate } = detailsJob
 
   // apply job post
