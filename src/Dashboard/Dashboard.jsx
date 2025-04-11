@@ -42,7 +42,9 @@ const Dashboard = () => {
                             <li><NavLink className='text-sm font-bold' to='/'>Home</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/findJobs'>FindJobs</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/employers'>Employers</NavLink></li>
-                            <li><NavLink className='text-sm font-bold' to='/candidates'>Candidates</NavLink></li>
+                          
+                            <li><NavLink className='text-sm font-bold' to="/suggestJob">Suggest Job</NavLink></li>
+                            
                         </ul>
                     </div>
                 </div>

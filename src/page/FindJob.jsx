@@ -23,16 +23,24 @@ const FindJob = () => {
         }
     })
     const allVerifiedJob = verifiedJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-  
+
     return (
-        <div className="">
+        <div className="sm:my-10">
+            <div className="sm:my-10">
+                <h3 className='text-3xl font-bold text-center my-3'>
+                Explore All Job Opportunities
+                </h3>
+                <p className='text-sm font-bold text-center my-3 text-gray-600 px-6'>
+                Explore all available job listings in one place! From tech to teaching, startups to enterprises — we’ve got something for everyone. <br className="hidden sm:inline" /> Start scrolling, find your fit, and apply with confidence.
+                </p>
+            </div>
             <div className="flex items-center gap-2 justify-center  my-7">
 
                 {/* Search ber */}
                 <div className="">
                     <label className="input input-bordered flex mx-auto my-2 items-center gap-2 text-black">
                         <input onChange={e => setSearch(e.target.value)} type="text" className="sm:w-96 " placeholder="Search By Job Title" />
-                        <button>search</button>
+                        <button className="text-sm font-bold bg-black text-white px-2 py-1 rounded-sm">search</button>
                     </label>
                 </div>
                 {/* Filter job */}

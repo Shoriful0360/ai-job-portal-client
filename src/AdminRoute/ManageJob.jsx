@@ -16,8 +16,10 @@ const ManageJob = () => {
             return data
         }
     })
+ 
+  
     const allPendingJob = pendingJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-    if(isLoading) return <LoadingPage></LoadingPage>
+    if (isLoading) return <LoadingPage></LoadingPage>
     // reject pending job
     const handleReject = async (id) => {
         try {
@@ -31,13 +33,18 @@ const ManageJob = () => {
                 confirmButtonText: "Yes, Reject it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    await axiosSecure.patch(`/rejectJob/${id}`)
-                    Swal.fire({
-                        title: "Rejected This Job!",
-                        icon: "success",
-                        draggable: true
-                    });
-                    refetch()
+                    const updateData = await axiosSecure.patch(`/rejectJob/${id}`)
+                    if (data.data.insertedId) {
+                        Swal.fire({
+                            title: "Rejected This Job!",
+                            icon: "success",
+                            draggable: true
+                        });
+                        refetch()
+                    }else{
+
+                    }
+
                 }
             });
 
@@ -54,8 +61,8 @@ const ManageJob = () => {
             const { data } = await axiosSecure.get(`/pendingJob/${id}`)
             const updateData = {
                 ...data,
-                jobPostTime : new Date(),
-                applyCandidate : 0
+                jobPostTime: new Date(),
+                applyCandidate: 0
             }
             await axiosSecure.post('/verifyJob', updateData)
             Swal.fire({

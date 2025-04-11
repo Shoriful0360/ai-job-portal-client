@@ -26,6 +26,8 @@ import UpdatePage from "../page/UpdatePage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkAuthState } from "../Redux/authSlice";
+import SuggestedJob from "../Section/SuggestedJob";
+import Suggestion from "../page/Suggestion";
 
 
 
@@ -52,7 +54,8 @@ useEffect(() => {
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+                    
+                    <Route path="/suggestJob" element={<Suggestion></Suggestion>}></Route>
                    
                 </Route>
 

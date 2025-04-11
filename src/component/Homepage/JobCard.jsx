@@ -17,7 +17,7 @@ const JobCard = ({job}) => {
         <p className='text-xl font-bold my-4'>{job?.title}</p>
         <div className='flex justify-between items-center mt-auto'>
           <div className='text-sm font-semibold flex items-center gap-2 text-gray-700 '><span><FaMoneyBillWave /></span> {job?.minSalary} - {job?.maxSalary}/Month</div>
-          <div className='text-sm font-semibold flex items-center gap-2 text-gray-700 '><span><FaLocationDot /></span> {job?.location}</div>
+          <div className='text-sm font-semibold flex items-center gap-2 text-gray-700 '><span><FaLocationDot /></span> {job?.location},{job?.division}</div>
         </div>
       </div>
     </Link>
