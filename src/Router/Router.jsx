@@ -24,16 +24,21 @@ import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
 import { useEffect } from "react";
 import { checkAuthState } from "../Redux/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CategoryJob from "../page/categoryJob/CategoryJob";
 
 
 
+
+
 const Router = () => {
+  
 const dispatch=useDispatch()
-useEffect(() => {
-    dispatch(checkAuthState());
-  }, [dispatch]);
+
+useEffect(()=>{
+ dispatch(checkAuthState());
+},[dispatch])
+
     return (
         <div>
             <Routes>

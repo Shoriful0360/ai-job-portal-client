@@ -27,7 +27,7 @@ const JobDetails = () => {
             return data
         }
     })
-    console.log(categoryJob)
+  
     return (
        <>
         <div >

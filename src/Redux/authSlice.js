@@ -121,15 +121,27 @@ const authSlice=createSlice({
     initialState:{
         user:null,
         loading:false,
-        error:null
+        error:null,
+        password:''
+     
+    },
+    reducers:{
+        setPassword:(state,action)=>{
+            state.password=action.payload
+        }
     },
     extraReducers:(builder)=>{
         builder
-  
+//   signup
+    
         .addCase(signUp.fulfilled,(state,action)=>{
             state.user=action.payload;
             state.loading=false;
             
+        })
+        .addCase(signUp.rejected,(state,action)=>{
+            state.error=action.payload
+            state.loading=false
         })
     
 
@@ -194,4 +206,5 @@ const authSlice=createSlice({
     }
 })
 
+export const{setPassword}=authSlice.actions
 export default authSlice.reducer;

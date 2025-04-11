@@ -22,11 +22,11 @@ const CategoryJob = () => {
     if(isPending){
        return <LoadingSpinner/>
     }
- console.log(category)
+ 
     return (
      <div>
         {
-            category?.length?    <div className="grid mt-10 mx-10 md:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+            category?.length?    <div className="grid my-10 md:mx-10 mx-4 md:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
             {
                 category?.map((job)=><JobCard job={job}></JobCard>)
             }

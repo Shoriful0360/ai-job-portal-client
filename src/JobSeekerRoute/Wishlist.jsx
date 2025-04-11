@@ -15,7 +15,7 @@ const Wishlist = () => {
             return data
         }
     })
-    console.log(JobSeekerSaveJobs)
+
 
     return (
         <div>

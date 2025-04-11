@@ -6,32 +6,58 @@ import { FcGoogle } from "react-icons/fc";
 import pic from '../../public/Photo/login page pic.webp'
 import { useDispatch } from "react-redux";
 import { googleLogin, login } from "../Redux/authSlice";
+import UseAxios from "../Utility/UseAxios";
 const Login = () => {
     const dispatch=useDispatch()
     const navigate = useNavigate()
-    const handleSubmit = async e => {
-        e.preventDefault()
-        const email = e.target.email.value
-        const password = e.target.password.value
+    const axiosPublic=UseAxios()
 
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+    
         try {
-           const result= await dispatch(login({email,password}))
-            if(result.payload){
+            // 1. First hit backend to check lock and password
+            const response = await axiosPublic.post('/wrong-password', { email, password });
+           
+    
+            // 2. If response is success, proceed to Firebase login
+            const result = await dispatch(login({ email, password }));
+            const isLoginSuccess = login.fulfilled.match(result);
+    
+            if (isLoginSuccess) {
                 Swal.fire({
-                    title: "Login SuccessFully!",
+                    title: "Login Successfully!",
                     icon: "success",
                     draggable: true
                 });
-                navigate('/')
+    
+                navigate('/');
+            } else {
+                Swal.fire({
+                    title: "Firebase login failed",
+                    icon: "error",
+                    draggable: true
+                });
             }
-        
+    
         } catch (error) {
+            const msg = error?.response?.data?.message || "Something went wrong!";
             Swal.fire({
-                title: "Something Else . Please Try Again!",
+                title: msg,
                 icon: "error",
                 draggable: true
             });
         }
+    };
+    
+    
+    
+    const handleGoogleLogin=async()=>{
+        await dispatch(googleLogin())
+        navigate('/')
     }
     return (
         <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
@@ -48,7 +74,7 @@ const Login = () => {
                             <input required type="password" name="password" className="input" placeholder="Password" />
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
-                        <button onClick={()=>dispatch(googleLogin())} className="border  mb-12 block border-blue-400 mx-auto p-1 rounded-full bg-white"><span className="text-5xl font-extrabold "><FcGoogle /></span></button>
+                        <button onClick={handleGoogleLogin} className="border  mb-12 block border-blue-400 mx-auto p-1 rounded-full bg-white"><span className="text-5xl font-extrabold "><FcGoogle /></span></button>
                         <div className="text-center">
                             <p className="text-sm font-bold">You have No Account</p>
                             <Link to='/register' className="text-lg font-bold text-white underline">Sign Up</Link>

@@ -26,7 +26,7 @@ const MyAddJob = () => {
     })
 
     const myAddJobs = allMyAddJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-    console.log(myAddJobs)
+ 
     return (
         <div className="lg:grid lg:grid-cols-2 gap-5">
             {
