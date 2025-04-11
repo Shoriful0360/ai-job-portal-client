@@ -7,7 +7,7 @@ import { logout } from '../Redux/authSlice';
 const Navbar = () => {
   const dispatch=useDispatch()
   const{user}=useSelector((state)=>state.auth || {user:null})
-console.log(user)
+
 // const{user}=useContext(AuthContext)
   const link = <>
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>

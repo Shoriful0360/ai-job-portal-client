@@ -10,12 +10,13 @@ import { GiDuration } from "react-icons/gi";
 import { VscGitStashApply } from "react-icons/vsc";
 import { FaMoneyBillWave } from "react-icons/fa";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 const MyAddJob = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = UseAxios()
-    const { data: allMyAddJobs = [], refetch } = useQuery({
+    const { data: allMyAddJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['allMyAddJobs', user],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/all/verifyJob/${user?.email}`)
@@ -23,7 +24,8 @@ const MyAddJob = () => {
         }
     })
     const myAddJobs = allMyAddJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-    console.log(myAddJobs)
+ 
+    if(isLoading) return <LoadingSpinner/>
 
     // job delete
     const handleDelete = async (id) => {

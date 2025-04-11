@@ -5,10 +5,19 @@
 .clr{
     color: #26AE61;
 }
+<<<<<<< HEAD
+.gray{
+    color: rgb(138, 138, 138);
+}
+=======
+>>>>>>> development
 .active{
     background-color: rgba(60, 60, 60, 0.856);
     color: azure;
 }
+<<<<<<< HEAD
+=======
 .image-container{
     clip-path: polygon(0% 1%, 100% 0%,  100% 87%, 0% 100%);
   }
+>>>>>>> development

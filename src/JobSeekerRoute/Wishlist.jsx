@@ -3,19 +3,20 @@ import { AuthContext } from "../Utility/AuthProvidor";
 import UseAxios from "../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 const Wishlist = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = UseAxios()
-    const { data: JobSeekerSaveJobs = [], refetch } = useQuery({
+    const { data: JobSeekerSaveJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['JobSeekerSaveJobs', user],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/saveJob/${user?.email}`)
             return data
         }
     })
-    console.log(JobSeekerSaveJobs)
+    if(isLoading) return <LoadingSpinner/>
 
     return (
         <div>

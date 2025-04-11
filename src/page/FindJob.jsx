@@ -6,12 +6,16 @@ import { useState } from "react";
 
 
 
+
+
+
+
 const FindJob = () => {
     const [division, setDivision] = useState('')
     const [jobType, setJobType] = useState('')
     const [search, setSearch] = useState('')
     const axiosSecure = UseAxios()
-    const { data: verifiedJobs = [], refetch } = useQuery({
+    const { data: verifiedJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['verifiedJobs', division, jobType, search],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/verifyJob?division=${division}&jobType=${jobType}&search=${search}`)
@@ -19,7 +23,7 @@ const FindJob = () => {
         }
     })
     const allVerifiedJob = verifiedJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-
+  
     return (
         <div className="">
             <div className="flex items-center gap-2 justify-center  my-7">
@@ -27,7 +31,7 @@ const FindJob = () => {
                 {/* Search ber */}
                 <div className="">
                     <label className="input input-bordered flex mx-auto my-2 items-center gap-2 text-black">
-                        <input onChange={e => setSearch(e.target.value)} type="text" className="sm:w-96 " placeholder="Search By Job Title" />
+                        <input onBlur={e => setSearch(e.target.value)} type="text" className="sm:w-96 " placeholder="Search By Job Title" />
                         <button>search</button>
                     </label>
                 </div>

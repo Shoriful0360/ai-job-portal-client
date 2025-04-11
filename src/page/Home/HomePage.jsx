@@ -12,7 +12,7 @@ import ContactUs from "../../Section/ContactUs";
 
 const HomePage = () => {
     const [visible, setVisible] = useState(true)
-    console.log(visible)
+  
     return (
         <div>
             <div><Banner></Banner></div>
