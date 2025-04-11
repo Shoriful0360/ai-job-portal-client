@@ -3,7 +3,7 @@ import { AuthContext } from "../Utility/AuthProvidor";
 import UseAxios from "../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
-import LoadingPage from "../page/LoadingPage";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 const Wishlist = () => {
@@ -16,7 +16,7 @@ const Wishlist = () => {
             return data
         }
     })
-    if(isLoading) return <LoadingPage></LoadingPage>
+    if(isLoading) return <LoadingSpinner/>
 
     return (
         <div>
