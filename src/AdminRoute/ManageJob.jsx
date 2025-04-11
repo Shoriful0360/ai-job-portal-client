@@ -3,7 +3,7 @@ import UseAxios from "../Utility/UseAxios";
 import { SiVerizon } from "react-icons/si";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
-import LoadingPage from "../page/LoadingPage";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 
 
@@ -17,7 +17,7 @@ const ManageJob = () => {
         }
     })
     const allPendingJob = pendingJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-    if(isLoading) return <LoadingPage></LoadingPage>
+    if(isLoading) return <LoadingSpinner/>
     // reject pending job
     const handleReject = async (id) => {
         try {
