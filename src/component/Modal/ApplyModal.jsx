@@ -1,7 +1,5 @@
 
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../Utility/AuthProvidor';
 import { imageUpload } from '../../Utility/imageUpload';
 import Swal from 'sweetalert2';
 import { compareAsc } from "date-fns";
@@ -10,7 +8,7 @@ import { GoUpload } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const ApplyModal = ({ isOpen, close, detailsJob ,refetch,handlefileChange,fileInfo}) => {
+const ApplyModal = ({ isOpen, close, detailsJob ,refetch}) => {
   const axiosSecure = UseAxios()
 const {user}=useSelector((state)=>state.auth)
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, title, _id, experience, requirement, applyCandidate } = detailsJob
@@ -48,7 +46,6 @@ const {user}=useSelector((state)=>state.auth)
       jobSeekerName, jobSeekerEmail, jobSeekerEducation, jovSeekerImage, jobSeekerExperience, jobSeekerResume, category, deadline, description, jobTime, skill, jobType, location, maxSalary, minSalary, experience, requirement, title, companyEmail: email, companyName: name, companyLogo: image, jobId: _id, applyCandidate, status: 'pending',
     }
 
-    return
     try {
       const data = await axiosSecure.post(`/applyJob/${user?.email}?jobId=${_id}`, applyData)
       const updateData = await axiosSecure.patch(`/updateApplyCount/${_id}`)

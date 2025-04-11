@@ -3,32 +3,59 @@ import { AuthContext } from "../Utility/AuthProvidor";
 import UseAxios from "../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
-import { BsCalendar3, BsCreditCard2Back } from "react-icons/bs";
-import { CiMail } from "react-icons/ci";
-import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { BsCreditCard2Back } from "react-icons/bs";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { GiDuration } from "react-icons/gi";
 import { VscGitStashApply } from "react-icons/vsc";
-import { IoSave } from "react-icons/io5";
 import { FaMoneyBillWave } from "react-icons/fa";
-import { AiFillExperiment } from "react-icons/ai";
+import Swal from "sweetalert2";
+import LoadingSpinner from "../shared/LoadingSpinner";
+
 
 const MyAddJob = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = UseAxios()
-    const { data: allMyAddJobs = [], refetch } = useQuery({
+    const { data: allMyAddJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['allMyAddJobs', user],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/all/verifyJob/${user?.email}`)
             return data
         }
     })
-
     const myAddJobs = allMyAddJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
  
+    if(isLoading) return <LoadingSpinner/>
+
+    // job delete
+    const handleDelete = async (id) => {
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Are You Sure? You delete This Job!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+              }).then(async(result) => {
+                if (result.isConfirmed) {
+                await axiosSecure.delete(`/deleteJob/${id}`)
+                  Swal.fire({
+                    title: "Deleted!",
+                    text: "Your job has been deleted.",
+                    icon: "success"
+                  });
+                  refetch()
+                }
+              });
+        } catch {
+
+        }
+    }
+
     return (
-        <div className="lg:grid lg:grid-cols-2 gap-5">
+        <div className="lg:grid lg:grid-cols-3 gap-5">
             {
                 myAddJobs.map(myAddJob =>
                     <div key={myAddJob._id} className=" border-2 border-gray-700 p-4 rounded-xl my-4  mt-auto">
@@ -45,10 +72,9 @@ const MyAddJob = () => {
 
                         <div className="sm:flex justify-between items-center mt-3 ">
                             <div>
-                                <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><FaLocationDot />{myAddJob.location}</p>
+                                <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><FaLocationDot />{myAddJob.location},{myAddJob.division}</p>
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><FaMoneyBillWave />{myAddJob.minSalary}k - {myAddJob.maxSalary}k / Month</p>
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><GiDuration />{myAddJob.jobTime}</p>
-                                <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><AiFillExperiment />{myAddJob.experience}</p>
                             </div>
                             <div className="sm:mr-7">
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold sm:mr-3" > <VscGitStashApply /> Candidates : {
@@ -56,13 +82,20 @@ const MyAddJob = () => {
                                 }</p>
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"> <BsCreditCard2Back />{myAddJob.jobType}</p>
                                 <p className="flex text-gray-600 items-center text-sm my-1 sm:my-3 gap-3 font-bold"><MdOutlineAccessTimeFilled />{myAddJob.deadline}</p>
-                                <p className="mr-40 sm:mr-0 text-sm my-1 sm:my-3 bg-blue-500 text-white rounded-xl p-2 font-bold"><Link className="ml-4">View Candidates</Link></p>
                             </div>
                         </div>
-
-
-                    </div>)
-            }
+                        <div className="flex justify-between">
+                            <p className="sm:px-8 px-5 mx-auto text-center text-sm my-1 sm:my-1 bg-red-200 text-white rounded-xl py-1 font-bold">
+                                <button onClick={() => handleDelete(myAddJob._id)} className="text-red-600">Delete</button>
+                            </p>
+                            <p className="sm:px-8 px-5 mx-auto text-center text-sm my-1 sm:my-1 bg-green-200 text-white rounded-xl py-1 font-bold">
+                                <Link to={`/dashboard/myAddJob/updatePage/${myAddJob._id}`} className="text-green-600">Update</Link>
+                            </p>
+                            <p className="sm:px-8 px-5 mx-auto text-center text-sm my-1 sm:my-1 bg-blue-200 text-white rounded-xl py-1 font-bold">
+                                <Link className="text-blue-600">View Candidates</Link>
+                            </p>
+                        </div>
+                    </div>)}
         </div>
     );
 };

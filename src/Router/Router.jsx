@@ -22,9 +22,10 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
+import UpdatePage from "../page/UpdatePage";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkAuthState } from "../Redux/authSlice";
-import { useDispatch, useSelector } from "react-redux";
 import CategoryJob from "../page/categoryJob/CategoryJob";
 
 
@@ -59,6 +60,7 @@ useEffect(()=>{
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+                   
                 </Route>
 
                 {/* dashboard route */}
@@ -77,6 +79,7 @@ useEffect(()=>{
                     <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>
                     <Route path="/dashboard/CandidatesRequest" element={<RequestCandidates></RequestCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
+                    <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
 
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
                     <Route path="/dashboard/myProfile" element={<MyProfile></MyProfile>}></Route>

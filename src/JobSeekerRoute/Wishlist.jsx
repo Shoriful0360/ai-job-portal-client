@@ -3,19 +3,20 @@ import { AuthContext } from "../Utility/AuthProvidor";
 import UseAxios from "../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router";
+import LoadingPage from "../page/LoadingPage";
 
 
 const Wishlist = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = UseAxios()
-    const { data: JobSeekerSaveJobs = [], refetch } = useQuery({
+    const { data: JobSeekerSaveJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['JobSeekerSaveJobs', user],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/saveJob/${user?.email}`)
             return data
         }
     })
-
+    if(isLoading) return <LoadingPage></LoadingPage>
 
     return (
         <div>
@@ -39,7 +40,7 @@ const Wishlist = () => {
                                 <tr className="bg-base-200" key={JobSeekerSaveJob._id}>
                                     <th><img title={JobSeekerSaveJob.companyName} className="w-12 h-12 object-cover" src={JobSeekerSaveJob.companyLogo } alt="" /></th>                                  
                                     <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.title}</td>
-                                    <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.location}</td>
+                                    <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.location},{JobSeekerSaveJob.division}</td>
                                     <td className="text-sm font-bold text-gray-600">{JobSeekerSaveJob.minSalary}$ - {JobSeekerSaveJob.maxSalary}$</td>
                                     <td><Link className="px-2 py-1 rounded-2xl text-sm font-bold text-gray-800 bg-blue-300" to={`/job-details/${JobSeekerSaveJob.jobId}`}>Details</Link></td>
                                 </tr>)
