@@ -4,7 +4,6 @@ import Login from "../page/Login";
 import Register from "../page/Register";
 import FindJob from "../page/FindJob";
 import Employers from "../page/Employers";
-import Candidates from "../page/Candidates";
 import HomePage from "../page/Home/HomePage";
 import JobDetails from "../page/jobDetails/JobDetails";
 import Dashboard from "../Dashboard/Dashboard";
@@ -49,7 +48,6 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
                     <Route path="/category-job/:title" element={<CategoryJob/>}></Route>
@@ -59,7 +57,7 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+                   
                    
                 </Route>
 
