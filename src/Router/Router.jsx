@@ -26,6 +26,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkAuthState } from "../Redux/authSlice";
 import CategoryJob from "../page/categoryJob/CategoryJob";
+import Profile from "../page/profile/Profile";
 
 
 
@@ -57,7 +58,8 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                   
+                   {/* profile */}
+                   <Route path="/profile" element={<Profile/>}></Route>
                    
                 </Route>
 
