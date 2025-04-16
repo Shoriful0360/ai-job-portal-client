@@ -26,7 +26,7 @@ const Sidebar = () => {
         </div>
         <ul className="menu mt-6  text-[#817691] space-y-6 ">
         
-              <NavLink to={'/my-profile'} className="text-2xl flex justify-between items-center gap-4">
+              <NavLink to={'my-profile'} className="text-2xl flex justify-between items-center gap-4">
                
                 <p className="flex items-center gap-3">  <span><FaRegUserCircle /></span> My Profile</p>
                 <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>

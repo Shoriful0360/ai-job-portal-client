@@ -32,6 +32,7 @@ import Profile from "../page/profile/Profile";
 
 
 
+
 const Router = () => {
   
 const dispatch=useDispatch()
@@ -59,8 +60,9 @@ useEffect(()=>{
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                    {/* profile */}
-                   <Route path="/profile" element={<Profile/>}></Route>
-                   
+                   <Route path="/profile" element={<Profile/>}>
+                   <Route path="/profile/my-profile" element={<MyProfile/>}></Route>
+                   </Route>
                 </Route>
 
                 {/* dashboard route */}
@@ -82,7 +84,7 @@ useEffect(()=>{
                     <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
 
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
-                    <Route path="/dashboard/myProfile" element={<MyProfile></MyProfile>}></Route>
+                    <Route path="/dashboard/myProfile" element={<MyProfile/>}></Route>
                     <Route path="/dashboard/myReview" element={<MyReview></MyReview>}></Route>
                     <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
                 </Route>
