@@ -60,7 +60,7 @@ console.log(role?.role)
                             {
                                 role?.role ==='Job Seeker' && 
                                 <div>
-                                     <li><NavLink className='text-sm font-bold' to='/profile'>My Profile</NavLink></li>
+                                     <li><NavLink className='text-sm font-bold' to='/candidate-profile'>My Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myAppliedJob'>My Applied Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myWishlist'>My WishList</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myReview'>My Review</NavLink></li>

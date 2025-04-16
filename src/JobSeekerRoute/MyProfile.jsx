@@ -2,7 +2,7 @@ import React from 'react';
 
 const MyProfile = () => {
     return (
-        <div className="w-full md:w-2/3 bg-[#1b132a] rounded-xl p-6 shadow-md">
+        <div className="w-full  bg-[#1b132a] rounded-xl p-6 shadow-md">
         <div className="flex justify-between items-center border-b border-dashed pb-2 mb-4">
           <h3 className="text-lg font-bold text-purple-400">My Profile</h3>
           <button className="text-purple-300 hover:text-purple-500">
