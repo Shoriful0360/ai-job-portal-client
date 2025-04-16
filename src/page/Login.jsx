@@ -58,8 +58,27 @@ const Login = () => {
     
     
     const handleGoogleLogin=async()=>{
-        await dispatch(googleLogin())
-        navigate('/')
+        const result=await dispatch(googleLogin())
+        
+        if(googleLogin.fulfilled.match(result)){
+         try{
+    const userInfo={
+            name:result?.payload?.displayName,
+            email:result?.payload?.email,
+            role:"Job Seeker",
+            phtotoUrl: result?.payload?.photoURL
+          }
+    
+          
+          await axiosPublic.post('/register',userInfo)
+          navigate('/')
+        }catch{
+
+          navigate('/')
+        }
+         }
+      
+
     }
     return (
         <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>

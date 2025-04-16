@@ -10,10 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { googleLogin, profileUpdate, setPassword, signUp } from "../Redux/authSlice";
 import UseAxios from "../Utility/UseAxios";
 import axios from "axios";
+import { useState } from "react";
 const Register = () => {
     const dispatch=useDispatch()
     const axiosPublic=UseAxios()
-
+    const [role, setRole] = useState("Job Seeker");
+    console.log(role)
     const navigate = useNavigate()  
 
     // form submit
@@ -24,14 +26,27 @@ const Register = () => {
         const password = e.target.password.value;
         const image = e.target.image.files[0];
         const photoUrl = await imageUpload(image);
-      
+        const companyName = e.target.companyName?.value;
+        const companyDetails = e.target.companyDetails?.value;
+        
+
+    
+      //   if (role === "Employer") {
+      //     userData.companyName = companyName;
+      //     userData.companyDetails = companyDetails;
+      // }
         try {
           const result = await dispatch(signUp({ email, password }));
       
           if (signUp.fulfilled.match(result)) {
             // ✅ Account created successfully
             dispatch(profileUpdate({ displayName: name, photoURL: photoUrl }));
-            await axios.post('http://localhost:5000/register',{email,password})
+            if(role ==="Employer"){
+              await axiosPublic.post('/register',{email,password,photoUrl,companyName,companyDetails,role})
+
+            }else{
+              await axiosPublic.post('/register',{email,password,photoUrl,role})
+            }
             Swal.fire({
               title: "Account Created Successfully!",
               icon: "success",
@@ -70,8 +85,27 @@ const Register = () => {
     // google login
 
     const handleGoogleLogin=async()=>{
-        await dispatch(googleLogin())
-        navigate('/')
+        const result=await dispatch(googleLogin())
+        
+        if(googleLogin.fulfilled.match(result)){
+         try{
+    const userInfo={
+            name:result?.payload?.displayName,
+            email:result?.payload?.email,
+            role:"Job Seeker",
+            phtotoUrl: result?.payload?.photoURL
+          }
+    
+          
+          await axiosPublic.post('/register',userInfo)
+          navigate('/')
+        }catch{
+
+          navigate('/')
+        }
+         }
+      
+
     }
     return (
         <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
@@ -81,6 +115,12 @@ const Register = () => {
                         <fieldset className="fieldset">
 
                             <p className="text-2xl font-bold text-white mx-auto">Sign Up</p>
+                            
+                            <label className="font-bold text-white">Select Role</label>
+                            <select name="role" className="select select-bordered w-full" onChange={e => setRole(e.target.value)} required>
+                                <option value="Job Seeker">Job Seeker</option>
+                                <option value="Employer">Employer</option>
+                            </select>
                             <label className="font-bold text-white fieldset-label">User Name</label>
                             <input required type="text" placeholder="User Name" name="name" className="input w-full" />
                             <label className="font-bold text-white fieldset-label">Email</label>
@@ -89,10 +129,22 @@ const Register = () => {
                             <input required type="password" onChange={(e)=>dispatch(setPassword(e.target.value))} name="password" className="input w-full" placeholder="Password" />
                             <label className="font-bold text-white fieldset-label">Photo</label>
                             <input type="file" name="image" className="file-input file-input-md" />
+
+                            
+                            {/* Only show these if role is Employer */}
+                            {role === "Employer" && (
+                                <>
+                                    <label className="font-bold text-white mt-2">Company Name</label>
+                                    <input required type="text" name="companyName" placeholder="Company Name" className="input w-full" />
+
+                                    <label className="font-bold text-white mt-2">Company Details</label>
+                                    <textarea required name="companyDetails" placeholder="Company Details" className="textarea textarea-bordered w-full" />
+                                </>
+                            )}
                             <button className="btn btn-neutral mt-4">Account Create</button>
                         </fieldset>
                     </form>
-                    <button onClick={handleGoogleLogin} className="btn  mt-4">Sign Up With <span className="text-2xl font-bold"><FcGoogle /></span></button>
+                    <button onClick={handleGoogleLogin} hidden={role==="Employer"} className={`btn  mt-4 `}>Sign Up With <span className="text-2xl font-bold"><FcGoogle /></span></button>
                 </div>
             </div>
         </div>
