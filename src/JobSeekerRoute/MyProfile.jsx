@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import MyProfileForm from '../Form/ProfileForm/MyProfileForm';
 
 const MyProfile = () => {
+  const [visible,setVisible]=useState(false)
     return (
         <div className="w-full  bg-[#1b132a] rounded-xl p-6 shadow-md">
         <div className="flex justify-between items-center border-b border-dashed pb-2 mb-4">
           <h3 className="text-lg font-bold text-purple-400">My Profile</h3>
-          <button className="text-purple-300 hover:text-purple-500">
+          <button onClick={()=>setVisible(!visible)} className="text-purple-300 hover:text-purple-500">
             ✏️ Edit
           </button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-6">
+        {
+          visible? <>
+          <MyProfileForm/>
+          </>
+          :
+          <>
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-6">
           <p><span className="font-semibold">Full Name:</span> MD Shoriful Islam</p>
           <p><span className="font-semibold">Email:</span> shorifulbba0360@gmail.com</p>
           <p><span className="font-semibold">Student ID:</span> WEB10-1221</p>
@@ -45,6 +53,9 @@ const MyProfile = () => {
             </tbody>
           </table>
         </div>
+        </>
+        }
+      
       </div>
     );
 };
