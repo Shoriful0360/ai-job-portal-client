@@ -4,7 +4,6 @@ import Login from "../page/Login";
 import Register from "../page/Register";
 import FindJob from "../page/FindJob";
 import Employers from "../page/Employers";
-import Candidates from "../page/Candidates";
 import HomePage from "../page/Home/HomePage";
 import JobDetails from "../page/jobDetails/JobDetails";
 import Dashboard from "../Dashboard/Dashboard";
@@ -33,6 +32,8 @@ import ForgotPassword from "../page/ForgetPassword";
 import AllCandidates from "../page/AllCandidates";
 import Resume from "../page/Resume";
 import ContactRequest from "../AdminRoute/ContactRequest";
+import Profile from "../page/profile/Profile";
+
 
 
 
@@ -55,7 +56,6 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
                     <Route path="/category-job/:title" element={<CategoryJob/>}></Route>
@@ -68,6 +68,10 @@ useEffect(()=>{
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                     <Route path="/suggestJob" element={<Suggestion></Suggestion>}></Route>
                    
+                   {/* profile */}
+                   <Route path="/profile" element={<Profile/>}>
+                   <Route path="/profile/my-profile" element={<MyProfile/>}></Route>
+                   </Route>
                 </Route>
 
                 {/* dashboard route */}
@@ -92,7 +96,7 @@ useEffect(()=>{
                     <Route path="/dashboard/myAddJob/candidate/resume/:id" element={<Resume></Resume>}></Route>
 
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
-                    <Route path="/dashboard/myProfile" element={<MyProfile></MyProfile>}></Route>
+                    <Route path="/dashboard/myProfile" element={<MyProfile/>}></Route>
                     <Route path="/dashboard/myReview" element={<MyReview></MyReview>}></Route>
                     <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
                 </Route>
