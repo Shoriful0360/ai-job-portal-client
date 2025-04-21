@@ -57,10 +57,29 @@ const Login = () => {
     
     
     
-    const handleGoogleLogin=async()=>{
-        await dispatch(googleLogin())
-        navigate('/')
-    }
+    const handleGoogleLogin = async () => {
+        try {
+          const result = await dispatch(googleLogin());
+          if (googleLogin.fulfilled.match(result)) {
+            const user = result.payload.user;
+      
+            const googleUser = {
+              name: user.displayName,
+              email: user.email,
+              photoUrl: user.photoURL,
+              role: "Job Seeker",
+            };
+      
+            await axios.post("http://localhost:5000/register", googleUser);
+            navigate('/');
+          } else {
+            throw new Error("Google login failed");
+          }
+        } catch (error) {
+          Swal.fire("Google Login Failed", error.message, "error");
+        }
+      };
+      
     return (
         <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
             <div className=" mx-auto card  w-full max-w-sm shrink-0 backdrop-blur-md backdrop-brightness-125 "

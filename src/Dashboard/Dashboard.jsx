@@ -5,6 +5,8 @@ import { AuthContext } from "../Utility/AuthProvidor";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
+      // Log user object to debug
+      console.log(user);
     return (
         <div className="">
 
@@ -23,21 +25,36 @@ const Dashboard = () => {
                         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                             {/* Sidebar content here */}
                             {/* Admin Route */}
-                            <li><NavLink className='text-sm font-bold' to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
+                            {user?.role === 'Admin' && (
+                                <>
+                                <li><NavLink className='text-sm font-bold' to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageJob'>Manage Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageUsers'>Manage Users</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageReview'>Manage Review</NavLink></li>
+                                </>
+                            )}
+                            
                             {/* Employers Route */}
-                            <li><NavLink className='text-sm font-bold' to='/dashboard/employerProfile'>Employer Profile</NavLink></li>
+                            {user?.role === 'Employer' && (
+                                <>
+                               <li><NavLink className='text-sm font-bold' to='/dashboard/employerProfile'>Employer Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/addJob'>Add Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myAddJob'>My Add Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/CandidatesRequest'>Candidates Request</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/hiredCandidates'>Hired Candidates</NavLink></li>
+                                </>
+                            )}
+                            
                             {/* Job Seeker Route */}
-                            <li><NavLink className='text-sm font-bold' to='/dashboard/myProfile'>My Profile</NavLink></li>
+                            {user?.role === 'Job Seeker' && (
+                                <>
+                               <li><NavLink className='text-sm font-bold' to='/dashboard/myProfile'>My Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myAppliedJob'>My Applied Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myWishlist'>My WishList</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myReview'>My Review</NavLink></li>
+                                </>
+                            )}
+                            
                             <hr className="my-4 h-1 bg-gray-600" />
                             <li><NavLink className='text-sm font-bold' to='/'>Home</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/findJobs'>FindJobs</NavLink></li>

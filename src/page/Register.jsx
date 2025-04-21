@@ -1,5 +1,5 @@
 import { imageUpload } from "../Utility/imageUpload";
-
+import { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import { googleLogin, profileUpdate, setPassword, signUp } from "../Redux/authSl
 import UseAxios from "../Utility/UseAxios";
 import axios from "axios";
 const Register = () => {
+    const [role, setRole] = useState("Job Seeker");
     const dispatch=useDispatch()
     const axiosPublic=UseAxios()
 
@@ -24,6 +25,14 @@ const Register = () => {
         const photoUrl = await imageUpload(image);
         const companyName = e.target.companyName?.value;
         const companyDetails = e.target.companyDetails?.value;
+
+        const userData = {
+            name,
+            email,
+            password,
+            role,
+            photoUrl
+          };
         if (role === "Employer") {
           userData.companyName = companyName;
           userData.companyDetails = companyDetails;
@@ -34,7 +43,7 @@ const Register = () => {
           if (signUp.fulfilled.match(result)) {
             // ✅ Account created successfully
             dispatch(profileUpdate({ displayName: name, photoURL: photoUrl }));
-            await axios.post('http://localhost:5000/register',{email,password,name,role,photoUrl})
+            await axios.post('http://localhost:5000/register',userData)
             Swal.fire({
               title: "Account Created Successfully!",
               icon: "success",
@@ -71,11 +80,32 @@ const Register = () => {
     
 
     // google login
-
-    const handleGoogleLogin=async()=>{
-        await dispatch(googleLogin())
-        navigate('/')
-    }
+    const handleGoogleLogin = async () => {
+        try {
+            const result = await dispatch(googleLogin());
+            const user = result.payload.user;
+    
+            const googleUser = {
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                role: "Job Seeker", // default role
+            };
+    
+            if (user.email.includes("employer.com")) {
+                googleUser.role = "Employer";
+            }
+    
+            // Save Google user to DB
+            await axios.post("http://localhost:5000/register", googleUser);
+    
+            navigate('/');
+        } catch (error) {
+            Swal.fire("Google Login Failed", error.message, "error");
+        }
+    };
+    
+    
     return (
         <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
             <div className="my-12 mx-auto card backdrop-blur-md backdrop-brightness-125 w-full max-w-sm shrink-0 shadow-2xl ">
@@ -84,6 +114,17 @@ const Register = () => {
                         <fieldset className="fieldset">
 
                             <p className="text-2xl font-bold text-white mx-auto">Sign Up</p>
+                            <label className="font-bold text-white mt-2">Select Role</label>
+                            <select
+                              name="role"
+                              value={role}
+                              onChange={(e) => setRole(e.target.value)}
+                              className="select w-full"
+                            >
+                              <option value="Job Seeker">Job Seeker</option>
+                              <option value="Employer">Employer</option>
+                            </select>
+                            
                             <label className="font-bold text-white fieldset-label">User Name</label>
                             <input required type="text" placeholder="User Name" name="name" className="input w-full" />
                             <label className="font-bold text-white fieldset-label">Email</label>
