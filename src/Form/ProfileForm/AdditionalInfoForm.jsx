@@ -1,11 +1,37 @@
 import React from 'react';
+import UseAxios from '../../Utility/UseAxios';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
-const AdditionalInfoForm = () => {
-    const handleSubmit = (e) => {
+const AdditionalInfoForm = ({setVisible,refetch}) => {
+  const{user}=useSelector((state)=>state.auth)
+  const axiosPublic=UseAxios()
+    const handleSubmit =async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        console.log(data);
+        try{
+          await axiosPublic.post(`/update-user/${user?.email}`,{additionalInfo:data})
+      Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your Information is Update",
+          showConfirmButton: false,
+          timer: 1200
+        });
+        refetch()
+        setVisible(false)
+        }catch(error){
+         const errorMessage=error.errorMessage
+         Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: {errorMessage},
+          showConfirmButton: false,
+          timer: 1200
+        });
+        }
+ 
       };
     return (
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-6 bg-gray-900 text-white rounded-xl shadow-lg">

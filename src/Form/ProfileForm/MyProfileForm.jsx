@@ -51,7 +51,14 @@ const{user}=useSelector((state)=>state.auth)
       });
    setVisible(false)
     }catch(error){
-console.log(error)
+      const errorMessage=error.message
+      Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: {errorMessage},
+        showConfirmButton: false,
+        timer: 1200
+      });
     }
    
   }

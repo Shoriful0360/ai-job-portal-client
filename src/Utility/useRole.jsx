@@ -6,7 +6,7 @@ import UseAxios from "./UseAxios";
 const useRole = () => {
     const { user, loading } = useSelector((state) => state.auth)
     const axiosPublic = UseAxios()
-    const { data: role, isLoading } = useQuery({
+    const { data: role, isLoading,refetch } = useQuery({
         queryKey: ['role', user?.email],
         enabled: !!user,
         queryFn: async () => {
@@ -14,7 +14,7 @@ const useRole = () => {
             return data
         }
     })
-    return { role, isLoading };
+    return { role, isLoading,refetch };
 };
 
 export default useRole;

@@ -1,9 +1,15 @@
 import { Pencil } from 'lucide-react';
 import React, { useState } from 'react';
 import EducationForm from '../../Form/ProfileForm/EducationForm';
+import useRole from '../../Utility/useRole';
+import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const EducationSeeker = () => {
   const [visible,setVisible]=useState(false)
+  const {role,isLoading,refetch}=useRole()
+  console.log(role)
+  if(isLoading) return <LoadingSpinner/>
+  const {cse,degree,Institution,studying,current_year,education_level,passing}= role?.Education || {}
     return (
         <div className="bg-[#1b152b]  text-white rounded-md p-6 w-full  shadow-md">
      <div className="flex justify-between items-center border-b border-dashed border-purple-500 pb-4 mb-6">
@@ -12,18 +18,18 @@ const EducationSeeker = () => {
         </div>
         {
           visible?
-          <EducationForm setVisible={setVisible}/>
+          <EducationForm setVisible={setVisible} refetch={refetch} />
           :
           <div className="grid grid-cols-2 gap-y-6 text-lg">
-          <InfoRow label="Your Education level" value="Higher Secondary" />
+          <InfoRow label="Your Education level" value={education_level?education_level:"none"} />
           <InfoRow label="" value="" />
-          <InfoRow label="Exam/Degree Title" value="HSC" />
+          <InfoRow label="Exam/Degree Title" value={degree?degree:"none"}/>
           <InfoRow label="" value="" />
-          <InfoRow label="Institution Name" value="Bonarpara Government College" />
+          <InfoRow label="Institution Name" value={Institution?Institution:"none"} />
           <InfoRow label="" value="" />
-          <InfoRow label="Approximate Passing Year" value="2019" />
-          <InfoRow label="Current Year" value="4th" />
-          <InfoRow label="Are you a CSE/CS student?" value="No" />
+          <InfoRow label="Approximate Passing Year" value={passing?passing:"none"}/>
+          <InfoRow label="Current Year" value={current_year?current_year:"none"} />
+          <InfoRow label="Are you a CSE/CS student?" value={cse?cse:"none"} />
         </div>
         }
 

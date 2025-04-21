@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { Pencil } from "lucide-react";
 import AddressForm from '../../Form/ProfileForm/AddressForm';
+import useRole from '../../Utility/useRole';
+import LoadingSpinner from '../../shared/LoadingSpinner';
 const AddressSeeker = () => {
   const[visible,setVisible]=useState(false)
+  const{role,isLoading,refetch}=useRole()
+  if(isLoading) return <LoadingSpinner/>
+  const{permanentAddress,presentAddress}= role || {}
+
     return (
         <div className="bg-[#1b152b] text-white rounded-md p-6 w-full shadow-md">
         <div className="flex justify-between items-center border-b border-dashed border-purple-500 pb-4 mb-6">
@@ -11,16 +17,16 @@ const AddressSeeker = () => {
         </div>
 
         {visible?
-        <AddressForm setVisible={setVisible}/>
+        <AddressForm setVisible={setVisible} refetch={refetch}/>
         :
         <>
        {/* Present Address */}
        <div className="mb-6">
           <h3 className="text-orange-400 font-semibold text-lg mb-4">Present Address</h3>
           <div className="grid grid-cols-2 gap-y-4 text-lg">
-            <InfoRow label="Your Country" value="Bangladesh" />
-            <InfoRow label="District" value="Gaibandha" />
-            <InfoRow label="Street Address" value="Bonarpara Railway Station" />
+            <InfoRow label="Your Country" value={presentAddress?presentAddress.country:"None"} />
+            <InfoRow label="District" value={presentAddress?presentAddress.district :"None"} />
+            <InfoRow label="Street Address" value={presentAddress?presentAddress.street: "None"} />
           </div>
         </div>
   
@@ -28,9 +34,9 @@ const AddressSeeker = () => {
         <div>
           <h3 className="text-orange-400 font-semibold text-lg mb-4">Permanent Address</h3>
           <div className="grid grid-cols-2 gap-y-4 text-lg">
-            <InfoRow label="Your Country" value="Bangladesh" />
-            <InfoRow label="District" value="Gaibandha" />
-            <InfoRow label="Street Address" value="Bonarpara Railway Station" />
+            <InfoRow label="Your Country" value={permanentAddress?permanentAddress.country:"None"} />
+            <InfoRow label="District"  value={permanentAddress?permanentAddress.district: "None"}/>
+            <InfoRow label="Street Address" value={permanentAddress?permanentAddress.street: "None"}  />
           </div>
         </div>
         </>

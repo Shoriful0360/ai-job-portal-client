@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import UseAxios from '../../Utility/UseAxios';
+import useRole from '../../Utility/useRole';
+import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const EducationForm = ({ setVisible }) => {
+  const {role,isLoading,refetch}=useRole()
+  console.log(role)
+  if(isLoading) return <LoadingSpinner/>
+  const {cse,degree,Institution,studying,current_year,education_level,passing}= role?.Education || {}
+const {user}=useSelector((state)=>state.auth)
+const axiosPublic=UseAxios()
   const [education, setEducation] = useState({
-    level: 'Higher Secondary',
-    degreeTitle: 'HSC',
-    institution: 'Bonarpara Government College',
+
     isStudying: true,
     passingYear: '',
     currentYear: '4th Year',
@@ -15,9 +24,39 @@ const EducationForm = ({ setVisible }) => {
     setEducation({ ...education, [field]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log('Education Data:', education);
+     const formData = new FormData(e.target);
+          const data = Object.fromEntries(formData.entries());
+         
+        
+        
+          try{
+           const res= await axiosPublic.post(`/update-user/${user?.email}`,{Education:data})
+           if (res.data.modifiedCount > 0){
+
+             Swal.fire({
+                 position: "top-center",
+                 icon: "success",
+                 title: "Your Information is Update",
+                 showConfirmButton: false,
+                 timer: 1200
+               });
+               refetch()
+               setVisible(false)
+           }
+          }catch(error){
+            console.log(error)
+           const errorMessage=error.errorMessage
+           Swal.fire({
+            position: "top-center",
+            icon: "error",
+            title: {errorMessage},
+            showConfirmButton: false,
+            timer: 1200
+          });
+          }
+   
   };
 
   return (
@@ -32,8 +71,9 @@ const EducationForm = ({ setVisible }) => {
         <label className="block mb-1">📚 Select your Education level</label>
         <select
           className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
-          value={education.level}
-          onChange={(e) => handleChange('level', e.target.value)}
+         defaultValue={education_level}
+          name='education_level'
+         
         >
             <option >SSC</option>
           <option>Higher Secondary</option>
@@ -46,10 +86,11 @@ const EducationForm = ({ setVisible }) => {
       <div>
         <label className="block mb-1">🎓 Exam/Degree Title</label>
         <input
+        name='degree'
           className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
           type="text"
-          value={education.degreeTitle}
-          onChange={(e) => handleChange('degreeTitle', e.target.value)}
+         defaultValue={degree}
+          
         />
       </div>
 
@@ -57,17 +98,20 @@ const EducationForm = ({ setVisible }) => {
       <div>
         <label className="block mb-1">🏫 Institution Name</label>
         <input
+        name='Institution'
           className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
           type="text"
-          value={education.institution}
-          onChange={(e) => handleChange('institution', e.target.value)}
+         defaultValue={Institution}
+          
         />
       </div>
 
       {/* Currently Studying */}
       <div className="flex items-center space-x-3">
         <input
+        name='studying'
           type="checkbox"
+          defaultValue={studying}
           checked={education.isStudying}
           onChange={() => handleChange('isStudying', !education.isStudying)}
           className="form-checkbox h-5 w-5 text-green-500 bg-[#2c293f] border-gray-600"
@@ -81,9 +125,10 @@ const EducationForm = ({ setVisible }) => {
           <div>
             <label className="block mb-1">📅 Approximate Passing Year</label>
             <input
+            name='passing'
               type="text"
               className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
-              value={education.passingYear}
+             defaultValue={passing}
               onChange={(e) => handleChange('passingYear', e.target.value)}
             />
           </div>
@@ -91,8 +136,9 @@ const EducationForm = ({ setVisible }) => {
           <div>
             <label className="block mb-1">📅 Current Year</label>
             <select
+            name='current_year'
               className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
-              value={education.currentYear}
+              defaultValue={current_year}
               onChange={(e) => handleChange('currentYear', e.target.value)}
             >
               <option>1st Year</option>
@@ -112,7 +158,7 @@ const EducationForm = ({ setVisible }) => {
             <input
               type="radio"
               name="cse"
-              value="yes"
+              defaultValue={cse}
               checked={education.isCSE === 'yes'}
               onChange={() => handleChange('isCSE', 'yes')}
               className="form-radio h-4 w-4 text-green-500 bg-[#2c293f] border-gray-600"
@@ -123,7 +169,7 @@ const EducationForm = ({ setVisible }) => {
             <input
               type="radio"
               name="cse"
-              value="no"
+             defaultValue={cse}
               checked={education.isCSE === 'no'}
               onChange={() => handleChange('isCSE', 'no')}
               className="form-radio h-4 w-4 text-green-500 bg-[#2c293f] border-gray-600"
