@@ -14,7 +14,7 @@ const ImportantLinkSeeker = () => {
           <InfoRow label="CV link (Google Drive)"  value="Open CV Link" />
           <InfoRow label="Github  Profile" value="Open Github Profile" />
           <InfoRow label="Portfolio link" value="Open Portfolio Link" />
-           <button className='btn mt-4 text-white font-bold bg-linear-to-l from-sky-500 to-fuchsia-500'>+ Add Project Link</button>
+           <button className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-md mt-6">+ Add Project Link</button>
         </div>
       </div>
     );

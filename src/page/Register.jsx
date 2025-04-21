@@ -127,6 +127,7 @@ const Register = () => {
                             <input required type="email" name="email" className="input w-full" placeholder="Email" />
                             <label className="font-bold text-white fieldset-label">Password</label>
                             <input required type="password" onChange={(e)=>dispatch(setPassword(e.target.value))} name="password" className="input w-full" placeholder="Password" />
+                            {/* photo */}
                             <label className="font-bold text-white fieldset-label">Photo</label>
                             <input type="file" name="image" className="file-input file-input-md" />
 
