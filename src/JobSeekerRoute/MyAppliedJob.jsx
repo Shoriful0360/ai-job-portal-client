@@ -47,7 +47,7 @@ const MyAppliedJob = () => {
                                     <td>
                                         {
                                             myApplyJob.status === 'pending' &&
-                                            <span className="text-xs font-bold text-blue-500">
+                                            <span className="text-xs font-bold text-gray-600">
                                                 pending
                                             </span>
 
@@ -55,7 +55,7 @@ const MyAppliedJob = () => {
                                         {
                                             myApplyJob.status === 'Accepted' &&
                                             <span className="text-xs font-bold text-blue-500">
-                                                Listing
+                                                Ready To Interview
                                             </span>
 
                                         }
@@ -67,7 +67,7 @@ const MyAppliedJob = () => {
                                         }
                                         {
                                             myApplyJob.status === 'Hired' &&
-                                            <span className="text-xs font-bold bg-gradient-to-r from-blue-500 to-blue-800 bg-clip-text text-transparent">
+                                            <span className="text-xs font-bold bg-gradient-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
                                                 Hired
                                             </span>
                                         }

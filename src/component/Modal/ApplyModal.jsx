@@ -8,9 +8,9 @@ import { GoUpload } from 'react-icons/go';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const ApplyModal = ({ isOpen, close, detailsJob ,refetch, user,handlefileChange,fileInfo}) => {
+const ApplyModal = ({ isOpen, close, detailsJob, refetch, handlefileChange, fileInfo }) => {
   const axiosSecure = UseAxios()
-const {user}=useSelector((state)=>state.auth)
+  const { user } = useSelector((state) => state.auth)
   const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, title, _id, experience, requirement, applyCandidate } = detailsJob
 
   // apply job post
@@ -18,14 +18,12 @@ const {user}=useSelector((state)=>state.auth)
     e.preventDefault()
     const jobSeekerName = e.target.name.value
     const jobSeekerEmail = e.target.email.value
-    const Photo = e.target.photo.files[0]
-    const jovSeekerImage = await imageUpload(Photo)
     const jobSeekerExperience = e.target.experience.value
     const jobSeekerEducation = e.target.educationLevel.value
     const resume = e.target.resume.files[0]
     const jobSeekerResume = await imageUpload(resume)
 
-  
+
 
     if (jobSeekerEmail === email) {
       return Swal.fire({
@@ -43,30 +41,29 @@ const {user}=useSelector((state)=>state.auth)
     }
 
     const applyData = {
-      jobSeekerName, jobSeekerEmail, jobSeekerEducation, jovSeekerImage, jobSeekerExperience, jobSeekerResume, category, deadline, description, jobTime, skill, jobType, location, maxSalary, minSalary, experience, requirement, title, companyEmail: email, companyName: name, companyLogo: image, jobId: _id, applyCandidate, status: 'pending',
+      jobSeekerName, jobSeekerEmail, jobSeekerEducation, jobSeekerExperience, jobSeekerResume, category, deadline, description, jobTime, skill, jobType, location, maxSalary, minSalary, experience, requirement, title, companyEmail: email, companyName: name, companyLogo: image, jobId: _id, applyCandidate, status: 'pending',
     }
 
     try {
       const data = await axiosSecure.post(`/applyJob/${user?.email}?jobId=${_id}`, applyData)
-      const updateData = await axiosSecure.patch(`/updateApplyCount/${_id}`)
-      if (data.data.insertedId) {
+      if (!data.data.insertedId) {
+        return Swal.fire({
+          title: "You Are All Ready Apply To This Job!",
+          icon: "error",
+          draggable: true
+        });
+        close()
+      } else {
+        await axiosSecure.patch(`/updateApplyCount/${_id}`)
         Swal.fire({
           title: "Job Apply Successful!",
           icon: "success",
           draggable: true
         });
         refetch()
-        close()
-      } else {
-        Swal.fire({
-          title: "You Are All Ready Apply To This Job!",
-          icon: "error",
-          draggable: true
-        });
-        refetch()
-        close()
+        close()   
       }
-      
+
     } catch {
 
     }
@@ -93,8 +90,6 @@ const {user}=useSelector((state)=>state.auth)
                 <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Job Seeker Name</label>
                 <input type="text" name="name" className="input w-full" placeholder="Name" />
 
-                <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Job Seeker Photo</label>
-                <input type="file" name="photo" className="file-input file-input-md w-full" />
 
                 <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Experience</label>
                 <select type="text" name="experience" className="input w-full" required placeholder="" >
@@ -125,45 +120,45 @@ const {user}=useSelector((state)=>state.auth)
                 <div className=''>
                   {/* resume */}
                   <div className='mt-2 space-y-3'>
-              <h3>Custom resume <span className='text-gray-500'>(Optional)</span></h3>
-              <p className='text-gray-500'>Employer can download and view this resume</p>
-      
-            <div className='file_upload px-5 py-3 relative border-2 border-dotted border-gray-300 rounded-lg'>
-                <div className='flex flex-col w-max mx-auto text-center'>
-                  <label>
-                    <input
-                  onChange={handlefileChange}
-                     
-                      className='text-sm cursor-pointer w-36 hidden'
-                      type='file'
-                      name='resume'
-                      id='image'
-                     
-                    
-                    />
-                    {
-                      fileInfo ?
-                      <div className="flex gap-2 items-center ">
-                      <p className='bg-red-600 py-2 rounded-md text-white uppercase text-xl px-2'> {fileInfo.type.split("/")[1]}</p> {/* Extracting the extension */}
-                     <div>
-                     <p> {fileInfo.name}</p>
-                     <p>{fileInfo.size}</p> {/* File size in KB or MB */}
-                     </div>
-                    </div>
-                      :
-                      <div className='flex gap-2 text-xl font-bold text-gray-500 items-center'>
-                      
-                      <GoUpload /> Upload File
+                    <h3>Custom resume <span className='text-gray-500'>(Optional)</span></h3>
+                    <p className='text-gray-500'>Employer can download and view this resume</p>
+
+                    <div className='file_upload px-5 py-3 relative border-2 border-dotted border-gray-300 rounded-lg'>
+                      <div className='flex flex-col w-max mx-auto text-center'>
+                        <label>
+                          <input
+                            onChange={handlefileChange}
+
+                            className='text-sm cursor-pointer w-36 hidden'
+                            type='file'
+                            name='resume'
+                            id='image'
+
+
+                          />
+                          {
+                            fileInfo ?
+                              <div className="flex gap-2 items-center ">
+                                <p className='bg-red-600 py-2 rounded-md text-white uppercase text-xl px-2'> {fileInfo.type.split("/")[1]}</p> {/* Extracting the extension */}
+                                <div>
+                                  <p> {fileInfo.name}</p>
+                                  <p>{fileInfo.size}</p> {/* File size in KB or MB */}
+                                </div>
+                              </div>
+                              :
+                              <div className='flex gap-2 text-xl font-bold text-gray-500 items-center'>
+
+                                <GoUpload /> Upload File
+                              </div>
+
+
+                          }
+
+                        </label>
                       </div>
-                      
+                    </div>
 
-                    }
-                 
-                  </label>
-                </div>
-              </div>
-
-             </div>
+                  </div>
                 </div>
                 <div className="mt-4 flex justify-between">
                   <button className='btn'>

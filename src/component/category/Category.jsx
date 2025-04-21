@@ -19,7 +19,7 @@ const Category = () => {
             {/* map category card */}
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-10">
                 {
-                    categoryJob?.map(item => <CategoryCard key={item.id} item={item} />)
+                    categoryJob?.map((item,index) => <CategoryCard index={index} key={item.id} item={item} />)
                 }
             </div>
         </div>

@@ -24,7 +24,7 @@ const MyAddJob = () => {
         }
     })
     const myAddJobs = allMyAddJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
- 
+  
     if(isLoading) return <LoadingSpinner/>
 
     // job delete
@@ -92,7 +92,7 @@ const MyAddJob = () => {
                                 <Link to={`/dashboard/myAddJob/updatePage/${myAddJob._id}`} className="text-green-600">Update</Link>
                             </p>
                             <p className="sm:px-8 px-5 mx-auto text-center text-sm my-1 sm:my-1 bg-blue-200 text-white rounded-xl py-1 font-bold">
-                                <Link className="text-blue-600">View Candidates</Link>
+                            <Link to={`/dashboard/myAddJob/candidate/${myAddJob._id}`} className="text-blue-600">View Candidates</Link>
                             </p>
                         </div>
                     </div>)}

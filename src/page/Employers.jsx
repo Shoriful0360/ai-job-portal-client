@@ -2,7 +2,7 @@
 
 const Employers = () => {
     return (
-        <div>
+        <div className="px-10">
             <h3>All Company</h3>
         </div>
     );

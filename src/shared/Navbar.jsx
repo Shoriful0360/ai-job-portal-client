@@ -1,14 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../Utility/AuthProvidor';
 import pic from '../../public/Photo/icons8-permanent-job-96.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../Redux/authSlice';
+import ReviewModal from '../component/Modal/ReviewModal';
 const Navbar = () => {
-  const dispatch=useDispatch()
-  const{user}=useSelector((state)=>state.auth || {user:null})
-
-// const{user}=useContext(AuthContext)
+  const dispatch = useDispatch()
+  const { user } = useSelector((state) => state.auth || { user: null })
+  const [isOpen, setIsOpen] = useState(false)
+  //  modal functionality
+  function open() {
+    setIsOpen(true)
+  }
+  function close() {
+    setIsOpen(false)
+  }
+  // const{user}=useContext(AuthContext)
   const link = <>
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/'>Home</NavLink>
@@ -19,18 +27,18 @@ const Navbar = () => {
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
-   
+
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to="/suggestJob">Suggest Job</NavLink>
     </li>
   </>
   // const { user, logout } = useContext(AuthContext)
- 
+
   return (
-    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50">
+    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50 px-4 sm:px-10">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="sm:btn sm:btn-ghost lg:hidden sm:bg-gray-300">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
           </div>
           <ul
@@ -72,17 +80,18 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] pt3 w-52 p-2 shadow">
                   <li className='text-sm  text-gray-700 font-bold'><Link>Profile</Link></li>
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
+                  <li onClick={open} className='text-sm  text-gray-700 font-bold'><Link>Review</Link></li>
                 </ul>
               </div>
-              <Link onClick={()=>dispatch(logout())} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
+              <Link onClick={() => dispatch(logout())} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
             </span>
             :
             <button className='btn '> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
         }
 
-
+        <ReviewModal user={user} isOpen={isOpen} close={close} ></ReviewModal>
       </div>
-    
+
     </div>
   );
 };

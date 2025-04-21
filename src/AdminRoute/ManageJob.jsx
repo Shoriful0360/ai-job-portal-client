@@ -16,10 +16,10 @@ const ManageJob = () => {
             return data
         }
     })
- 
-  
+
+
     const allPendingJob = pendingJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
-    if(isLoading) return <LoadingSpinner/>
+    if (isLoading) return <LoadingSpinner />
     // reject pending job
     const handleReject = async (id) => {
         try {
@@ -33,18 +33,13 @@ const ManageJob = () => {
                 confirmButtonText: "Yes, Reject it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const updateData = await axiosSecure.patch(`/rejectJob/${id}`)
-                    if (data.data.insertedId) {
-                        Swal.fire({
-                            title: "Rejected This Job!",
-                            icon: "success",
-                            draggable: true
-                        });
-                        refetch()
-                    }else{
-
-                    }
-
+                    await axiosSecure.patch(`/rejectJob/${id}`)
+                    Swal.fire({
+                        title: "Rejected This Job!",
+                        icon: "success",
+                        draggable: true
+                    });
+                    refetch()
                 }
             });
 
@@ -76,6 +71,15 @@ const ManageJob = () => {
     }
     return (
         <div>
+            <div className="sm:my-10">
+                <h3 className='text-3xl font-bold text-center my-3'>
+                    Manage Job Listings
+                </h3>
+                <p className='text-sm font-bold text-center my-3 text-gray-600 px-6'>
+                    Review, edit, or remove posted jobs to keep the platform up-to-date and ensure only verified
+                    <br className="hidden sm:inline" />and relevant job listings are visible to users.
+                </p>
+            </div>
 
             <div className="overflow-x-auto ">
                 <table className="table">
@@ -93,7 +97,7 @@ const ManageJob = () => {
                     <tbody>
                         {/* row 1 */}
                         {
-                            allPendingJob.map(pendingJob =>
+                            allPendingJob.slice(0,51).map(pendingJob =>
                                 <tr className="bg-base-200" key={pendingJob._id}>
                                     <th className="text-sm font-bold text-gray-600">{pendingJob.name}</th>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.email}</td>

@@ -27,6 +27,7 @@ const Dashboard = () => {
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageJob'>Manage Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageUsers'>Manage Users</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageReview'>Manage Review</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to="/dashboard/contactUs">Contact Request</NavLink></li>
                             {/* Employers Route */}
                             <li><NavLink className='text-sm font-bold' to='/dashboard/employerProfile'>Employer Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/addJob'>Add Job</NavLink></li>

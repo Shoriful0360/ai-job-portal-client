@@ -29,6 +29,10 @@ import { checkAuthState } from "../Redux/authSlice";
 import SuggestedJob from "../Section/SuggestedJob";
 import Suggestion from "../page/Suggestion";
 import CategoryJob from "../page/categoryJob/CategoryJob";
+import ForgotPassword from "../page/ForgetPassword";
+import AllCandidates from "../page/AllCandidates";
+import Resume from "../page/Resume";
+import ContactRequest from "../AdminRoute/ContactRequest";
 
 
 
@@ -61,7 +65,7 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    
+                    <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                     <Route path="/suggestJob" element={<Suggestion></Suggestion>}></Route>
                    
                 </Route>
@@ -76,6 +80,7 @@ useEffect(()=>{
                     <Route path="/dashboard/manageJob" element={<ManageJob></ManageJob>}></Route>
                     <Route path="/dashboard/manageUsers" element={<ManageUser></ManageUser>}></Route>
                     <Route path="/dashboard/manageReview" element={<ManageReview></ManageReview>}></Route>
+                    <Route path="/dashboard/contactUs" element={<ContactRequest></ContactRequest>}></Route>
 
                     <Route path="/dashboard/employerProfile" element={<EmployerProfile></EmployerProfile>}></Route>
                     <Route path="/dashboard/addJob" element={<AddJob></AddJob>}></Route>
@@ -83,6 +88,8 @@ useEffect(()=>{
                     <Route path="/dashboard/CandidatesRequest" element={<RequestCandidates></RequestCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
                     <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
+                    <Route path="/dashboard/myAddJob/candidate/:id" element={<AllCandidates></AllCandidates>}></Route>
+                    <Route path="/dashboard/myAddJob/candidate/resume/:id" element={<Resume></Resume>}></Route>
 
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
                     <Route path="/dashboard/myProfile" element={<MyProfile></MyProfile>}></Route>

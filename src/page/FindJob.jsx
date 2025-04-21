@@ -25,7 +25,7 @@ const FindJob = () => {
     const allVerifiedJob = verifiedJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
 
     return (
-        <div className="sm:my-10">
+        <div className="sm:my-10 mx-10">
             <div className="sm:my-10">
                 <h3 className='text-3xl font-bold text-center my-3'>
                 Explore All Job Opportunities
@@ -86,7 +86,7 @@ const FindJob = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 mb-10">
                 {
-                    allVerifiedJob.map(job => <JobCard key={job._id} job={job}></JobCard>)
+                    allVerifiedJob.map((job,index) => <JobCard index={index} key={job._id} job={job}></JobCard>)
                 }
             </div>
         </div>

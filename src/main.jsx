@@ -14,14 +14,14 @@ import store from './Redux/store'
 const queryClient = new QueryClient()
 createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-  <Provider store={store}>
-  <AuthProvider>
-      <StrictMode>
-        <BrowserRouter>
-          <Router></Router>
-        </BrowserRouter>
-      </StrictMode>,
-    </AuthProvider>
-  </Provider>
+    <Provider store={store}>
+      <AuthProvider>
+        <StrictMode>
+          <BrowserRouter>
+            <Router></Router>
+          </BrowserRouter>
+        </StrictMode>,
+      </AuthProvider>
+    </Provider>
   </QueryClientProvider>
 )

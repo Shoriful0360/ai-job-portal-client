@@ -20,7 +20,7 @@ const LatestJobs = () => {
     <>
       <div className="md:mx-10 mx-4 grid md:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4 mt-10">
         {
-          allLatestJob.slice(0, 8).map(job => <JobCard key={job._id} job={job}></JobCard>)
+          allLatestJob.slice(0, 8).map((job,index) => <JobCard index={index} key={job._id} job={job}></JobCard>)
         }
       </div>
       <div className="flex justify-center mt-10 ">

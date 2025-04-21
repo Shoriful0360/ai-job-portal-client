@@ -1,22 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxios from "../Utility/UseAxios";
 import JobCard from "../component/Homepage/JobCard";
+import React from "react";
+import LoadingSpinner from "../shared/LoadingSpinner";
 
 const Suggestion = () => {
-    const skills = ['React.js']
+    const skills = [ 'Javascrift']
     const skill = JSON.stringify(skills)
     const axiosSecure = UseAxios()
-    const { data: AIJobs = [] } = useQuery({
+    const { data: AIJobs = [], isLoading } = useQuery({
         queryKey: ['AIJobs'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/Ai/JobData?skill=${skill}`)
             return data
         }
     })
-    
+    if(isLoading) return <LoadingSpinner/>
     return (
-        <div>
-            <div className="sm:my-10">
+        <div className="px-10">
+            <div className="sm:my-10 ">
                 <h3 className='text-3xl font-bold text-center my-3'> 
                     Jobs Curated Just for You
                 </h3>

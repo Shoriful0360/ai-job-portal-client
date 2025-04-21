@@ -8,13 +8,14 @@ import RecentJobs from "../../component/Homepage/RecentJobs";
 import Category from "../../component/category/Category";
 import OurWork from "../../Section/OurWork";
 import ContactUs from "../../Section/ContactUs";
+import Review from "../../Section/Review";
 
 
 const HomePage = () => {
     const [visible, setVisible] = useState(true)
   
     return (
-        <div>
+        <div className="">
             <div><Banner></Banner></div>
             {/* latest and recent job */}
             <div className="flex   justify-center mt-10">
@@ -37,6 +38,7 @@ const HomePage = () => {
             <div><SuggestedJob></SuggestedJob></div>
             <div><OurWork></OurWork></div>
             <div><ContactUs></ContactUs></div>
+            <div><Review></Review></div>
         </div>
     );
 };
