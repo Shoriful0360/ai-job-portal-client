@@ -31,6 +31,7 @@ import AdditionalInfoSeeker from "../JobSeekerRoute/profile/AdditionalInfoSeeker
 import AddressSeeker from "../JobSeekerRoute/profile/AddressSeeker";
 import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
 import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
+import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
 
 
 
@@ -72,6 +73,7 @@ useEffect(()=>{
                    <Route path="/candidate-profile/address" element={<AddressSeeker/>}></Route>
                    <Route path="/candidate-profile/education" element={<EducationSeeker/>}/>
                    <Route path="/candidate-profile/important-link" element={<ImportantLinkSeeker/>}/>
+                   <Route path="/candidate-profile/skill-set" element={<SkillSeeker/>}/>
                    </Route>
                 </Route>
 

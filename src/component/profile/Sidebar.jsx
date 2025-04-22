@@ -7,6 +7,7 @@ import { FiEdit } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
 import { MdErrorOutline } from "react-icons/md";
 import useRole from "../../Utility/useRole";
+import { HiLightBulb } from "react-icons/hi";
 const Sidebar = () => {
   const{role,isLoading}=useRole()
   const{name,email,number,_id,photoUrl}=role || {}
@@ -53,6 +54,11 @@ const Sidebar = () => {
               <NavLink to={'important-link'} className="text-2xl p-2 flex justify-between items-center gap-4">
                
                 <p className="flex items-center gap-3"> <span><FiEdit /></span>Important Link</p>
+                <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
+              </NavLink>
+              <NavLink to={'skill-set'} className="text-2xl p-2 flex justify-between items-center gap-4">
+               
+                <p className="flex items-center gap-3"> <span><HiLightBulb /></span>Skill Set</p>
                 <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
               </NavLink>
             
