@@ -256,17 +256,17 @@ const AddressForm = ({ setVisible }) => {
    
 
       {/* Buttons */}
-      <div className="flex justify-end gap-4">
+      <div className="flex justify-end gap-4 pt-2">
         <button
-          onClick={() => setVisible(false)}
           type="button"
-          className="px-4 py-2 bg-gray-700 rounded-md text-white"
+          onClick={() => setVisible(false)}
+          className="px-4 py-2 border border-white rounded-md hover:bg-white hover:text-black transition"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-md"
+          className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-blue-500 text-white"
         >
           Save changes
         </button>

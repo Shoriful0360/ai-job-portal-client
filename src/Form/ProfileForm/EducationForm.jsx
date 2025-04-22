@@ -62,7 +62,7 @@ const axiosPublic=UseAxios()
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 bg-[#1e1b2e] p-6 rounded-xl shadow-xl max-w-4xl mx-auto text-white"
+      className="space-y-6  p-6 rounded-xl shadow-xl   mx-auto text-white"
     >
       <div className="text-lg font-semibold mb-4">Education</div>
 
@@ -70,7 +70,7 @@ const axiosPublic=UseAxios()
       <div>
         <label className="block mb-1">📚 Select your Education level</label>
         <select
-          className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
+          className="w-full bg-gray-800  p-3 rounded-md focus:outline-none"
          defaultValue={education_level}
           name='education_level'
          
@@ -87,7 +87,7 @@ const axiosPublic=UseAxios()
         <label className="block mb-1">🎓 Exam/Degree Title</label>
         <input
         name='degree'
-          className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
+          className="w-full bg-gray-800  p-3 rounded-md focus:outline-none"
           type="text"
          defaultValue={degree}
           
@@ -99,7 +99,7 @@ const axiosPublic=UseAxios()
         <label className="block mb-1">🏫 Institution Name</label>
         <input
         name='Institution'
-          className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
+          className="w-full bg-gray-800  p-3 rounded-md focus:outline-none"
           type="text"
          defaultValue={Institution}
           
@@ -137,7 +137,7 @@ const axiosPublic=UseAxios()
             <label className="block mb-1">📅 Current Year</label>
             <select
             name='current_year'
-              className="w-full bg-[#2c293f] p-3 rounded-md focus:outline-none"
+              className="w-full bg-gray-800  p-3 rounded-md focus:outline-none"
               defaultValue={current_year}
               onChange={(e) => handleChange('currentYear', e.target.value)}
             >
@@ -161,7 +161,7 @@ const axiosPublic=UseAxios()
               defaultValue={cse}
               checked={education.isCSE === 'yes'}
               onChange={() => handleChange('isCSE', 'yes')}
-              className="form-radio h-4 w-4 text-green-500 bg-[#2c293f] border-gray-600"
+              className="form-radio h-4 w-4 text-green-500 bg-gray-800  border-gray-600"
             />
             <span className="ml-2">Yes</span>
           </label>

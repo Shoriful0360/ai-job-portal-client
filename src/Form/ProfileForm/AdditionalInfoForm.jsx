@@ -123,14 +123,21 @@ const AdditionalInfoForm = ({setVisible,refetch}) => {
         </div>
   
         {/* Buttons */}
-        <div className="mt-8 flex justify-end gap-4">
-          <button type="button" className="px-4 py-2 bg-gray-700 text-white rounded-md">
-            Cancel
-          </button>
-          <button type="submit" className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-md">
-            Save changes
-          </button>
-        </div>
+        <div className="flex justify-end gap-4 pt-2">
+        <button
+          type="button"
+          onClick={() => setVisible(false)}
+          className="px-4 py-2 border border-white rounded-md hover:bg-white hover:text-black transition"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-blue-500 text-white"
+        >
+          Save changes
+        </button>
+      </div>
       </form>
     );
 };

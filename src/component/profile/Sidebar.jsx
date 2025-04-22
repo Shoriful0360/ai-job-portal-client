@@ -19,7 +19,7 @@ const Sidebar = () => {
             </div>
           </div>
           <h2 className="mt-4 text-xl font-bold">{name}</h2>
-          <p className="text-sm opacity-80">{`JVI-${_id.slice(-5)}`}</p>
+          <p className="text-sm opacity-80">{`JVI-${_id?.slice(-5)}`}</p>
           <p className="text-sm">{email}</p>
           <p className="text-sm text-green-400">+88{number}</p>
         </div>
