@@ -53,7 +53,7 @@ const SkillForm = ({setVisible,refetch}) => {
         };
 
   return (
-    <form onSubmit={handleSubmit} className=" mx-auto p-6  text-white rounded-xl shadow-lg">
+    <form onSubmit={handleSubmit} className=" mx-auto p-6 bg-[#1f152a]  text-white rounded-xl shadow-lg">
     <h2 className="text-lg font-semibold mb-6">Add an Skill</h2>
 
     <div className="grid grid-cols-2 gap-6">

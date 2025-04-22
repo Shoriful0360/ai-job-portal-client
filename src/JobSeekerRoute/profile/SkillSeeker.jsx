@@ -89,6 +89,9 @@ const{user}=useSelector((state)=>state.auth)
         <SkillForm setVisible={setVisible} refetch={refetch} />
       ) : (
         <>
+        {
+          skills?.length?
+          <>
           {skills?.map((skill, index) => (
             <div
               key={skill?.id}
@@ -171,6 +174,11 @@ const{user}=useSelector((state)=>state.auth)
               </div>
             </div>
           ))}
+          </>
+          :
+          <p className='text-center font-bold'>No data Found ,Plese add data</p>
+        }
+          
         </>
       )}
 

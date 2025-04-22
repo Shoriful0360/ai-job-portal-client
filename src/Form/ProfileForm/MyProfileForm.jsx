@@ -10,17 +10,20 @@ import UseAxios from '../../Utility/UseAxios';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import useRole from '../../Utility/useRole';
+import LoadingSpinner from '../../shared/LoadingSpinner';
 
 
 const MyProfileForm = ({setVisible}) => {
 const axiosPublic=UseAxios()
-const{role}=useRole()
-const{email,name,number,photoUrl,_id,}=role || {}
+const{role,isLoading,refetch}=useRole()
+
 const{user}=useSelector((state)=>state.auth)
-  const [previewImage, setPreviewImage] = useState(photoUrl);
+
   
   const fileInputRef = useRef(null);
-
+  if(isLoading)return <LoadingSpinner/>
+  const{email,name,number,photoUrl,_id,companyName}=role || {}
+  const [previewImage, setPreviewImage] = useState(photoUrl);
   const handleImageClick = () => {
     fileInputRef.current.click();
   };
@@ -50,6 +53,7 @@ const{user}=useSelector((state)=>state.auth)
         timer: 1200
       });
    setVisible(false)
+   refetch()
     }catch(error){
       const errorMessage=error.message
       Swal.fire({
@@ -63,7 +67,7 @@ const{user}=useSelector((state)=>state.auth)
    
   }
   return (
-    <div className="card w-full shrink-0 shadow-2xl">
+    <div className="card w-full bg-[#1f152a]  shrink-0 shadow-2xl">
       <div className="card-body">
         <form onSubmit={handleInfoSubmit} className="fieldset space-y-10">
           {/* 1st line field */}
@@ -73,9 +77,9 @@ const{user}=useSelector((state)=>state.auth)
                 <span><CiUser /></span>
                 <span className="label-text ">Full Name</span>
               </label>
-              <input type="text" name='name'
-              
-                placeholder={name?name:"Enter Your Name"}
+              <input type="text" name={role?.role==="Employer"?"companyName":"name"}
+              defaultValue={role?.role==="Employer"?companyName:name}
+                placeholder="Enter your name"
                 className="input w-full rounded-md bg-[#20172d] focus:bg-white focus:text-black font-bold input-bordered" required />
 
 
@@ -113,7 +117,8 @@ const{user}=useSelector((state)=>state.auth)
                 <span className="label-text ">Mobile Number</span>
               </label>
               <input type="number" name='number'
-                  placeholder={number?number:"Enter Your Name"}
+              defaultValue={number}
+                  placeholder="Enter your number"
                 className="input w-full rounded-md bg-[#20172d] focus:bg-white focus:text-black font-bold input-bordered" required />
 
 

@@ -8,7 +8,7 @@ const AdditionalInfoSeeker = () => {
   const{role,isLoading,refetch}=useRole()
 
   if(isLoading) return <LoadingSpinner/>
-  const{ageRange,areaType,deviceType,experience,gender,internetType,employmentRole}=role?.additionalInfo || {}
+  const{ageRange,areaType,deviceType,experience,gender,internetType,employmentRole,about_company,achievement,company_type,founder_year,headquarter,size}=role?.additionalInfo || {}
     return (
         <div className="bg-[#1b152b] text-white rounded-md p-6 w-full mshadow-md">
      <div className="flex justify-between items-center border-b border-dashed pb-2 mb-4">
@@ -25,13 +25,31 @@ const AdditionalInfoSeeker = () => {
           :
           <>
               <div className="grid grid-cols-2 gap-y-6 text-lg">
-          <InfoRow label="Your Gender" value={gender} />
-          <InfoRow label="Age Range" value={ageRange}/>
-          <InfoRow label="Primary Device Type" value={deviceType} />
-          <InfoRow label="Internet Type" value={internetType} />
-          <InfoRow label="Years Of Experience" value={experience} />
-          <InfoRow label="Employment Role" value={employmentRole} />
-          <InfoRow label="Area Type" value={areaType} />
+                {/* employer Info */}
+                {role?.role==="Employer" &&
+                <>
+                <InfoRow label="Industry" value={company_type?company_type:"None"} />
+                <InfoRow label="Company Size" value={size?size:"None"} />
+                <InfoRow label="Founder Year" value={founder_year?founder_year:"None"} />
+                <InfoRow label="About Company" value={about_company?about_company:"None"} />
+                <InfoRow label="Headquarters Location" value={headquarter?headquarter:"None"} />
+                <InfoRow label="Achievements" value={achievement?achievement:"None"} />
+                </>
+                }
+                
+                {/* jobseeker Info */}
+                {role?.role==="Job Seeker" &&
+                <>
+                 <InfoRow label="Your Gender" value={gender?gender:"None"} />
+          <InfoRow label="Age Range" value={ageRange?ageRange:"None"}/>
+          <InfoRow label="Primary Device Type" value={deviceType?deviceType:"None"} />
+          <InfoRow label="Internet Type" value={internetType?internetType:"None"} />
+          <InfoRow label="Years Of Experience" value={experience?experience:"None"} />
+          <InfoRow label="Employment Role" value={employmentRole?employmentRole:"None"} />
+          <InfoRow label="Area Type" value={areaType?areaType:"None"} />
+                </>
+                }
+         
         </div>
           </>
         }

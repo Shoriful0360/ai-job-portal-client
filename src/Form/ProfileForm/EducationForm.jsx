@@ -62,7 +62,7 @@ const axiosPublic=UseAxios()
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6  p-6 rounded-xl shadow-xl   mx-auto text-white"
+      className="space-y-6  p-6 bg-[#1f152a]  rounded-xl shadow-xl   mx-auto text-white"
     >
       <div className="text-lg font-semibold mb-4">Education</div>
 

@@ -5,7 +5,8 @@ import useRole from '../Utility/useRole';
 const MyProfile = () => {
   const [visible,setVisible]=useState(false)
   const{role}=useRole()
-  const{email,name,number,photoUrl,_id,}=role || {}
+  console.log(role)
+  const{email,name,number,photoUrl,_id,companyName}=role || {}
     return (
         <div className="w-full  bg-[#1b132a] rounded-xl p-6 shadow-md">
         <div className="flex justify-between items-center border-b border-dashed pb-2 mb-4">
@@ -21,16 +22,16 @@ const MyProfile = () => {
           :
           <>
        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-6">
-          <p><span className="font-semibold text-lg text-[#eee0ff66]">Full Name </span><br />
-           {name}
+          <p><span className="font-semibold text-lg text-[#eee0ff66]">{role?.role==="Employer"?"Company Name":"Full Name"} </span><br />
+           {role?.role==="Employer"?companyName?companyName:"None":name ||"None"}
            </p>
           <p>
             <span className="font-semibold text-lg text-[#eee0ff66]">Email </span> <br />
             {email}</p>
-          <p><span className="font-semibold text-lg text-[#eee0ff66]">Job-Seeker ID</span> <br />
+          <p><span className="font-semibold text-lg text-[#eee0ff66]">    {role?.role==="Employer"?"Employer ID" :"Job-Seeker-ID"}</span> <br />
            JVI-{_id?.slice(-5)}</p>
           <p><span className="font-semibold text-lg text-[#eee0ff66]">Mobile Number</span> <br />
-           +88{number}
+           {number?`+88${number}`:"none"}
            </p>
         </div>
 

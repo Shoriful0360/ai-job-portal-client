@@ -66,7 +66,7 @@ const{cvLink,github,linkedin,portfolio,profileImage}= role?.SocialLink || {}
   return (
     <form
       onSubmit={handleSubmit}
-      className=" p-6 rounded-2xl shadow-xl mx-auto space-y-6"
+      className=" p-6 rounded-2xl shadow-xl bg-[#1f152a]  mx-auto space-y-6"
     >
       <h2 className="text-2xl font-bold text-white">Important Links</h2>
 

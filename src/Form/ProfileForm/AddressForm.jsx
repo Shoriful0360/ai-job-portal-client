@@ -145,7 +145,7 @@ const AddressForm = ({ setVisible }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 max-w-4xl mx-auto p-6 bg-gray-900 text-white rounded-xl shadow-lg"
+      className="space-y-6  mx-auto p-6 bg-[#1f152a]  text-white rounded-xl shadow-lg"
       encType="multipart/form-data"
     >
       {/* Present Address */}
@@ -163,7 +163,7 @@ const AddressForm = ({ setVisible }) => {
               }
             >
               <option value="">{presentAddress?presentAddress?.country:"-- Select Country --"}</option>
-              {countries.map((c) => (
+              {countries?.map((c) => (
                 <option key={c} value={c}>{c}</option>
               ))}
             </select>
@@ -172,12 +172,12 @@ const AddressForm = ({ setVisible }) => {
             <label className="block mb-2">📌 Select District</label>
             <select
               className="w-full bg-gray-800 p-2 rounded-md"
-              defaultValue={presentAddress?presentAddress.district :"None"}
+              defaultValue={presentAddress?presentAddress?.district :"None"}
               value={present.district}
               onChange={(e) => setPresent({ ...present, district: e.target.value })}
             >
-              <option value="">{presentAddress?presentAddress.district :"-- Select District --"}</option>
-              {presentDistricts.map((d) => (
+              <option value="">{presentAddress?presentAddress?.district :"-- Select District --"}</option>
+              {presentDistricts?.map((d) => (
                 <option key={d} value={d}>{d}</option>
               ))}
             </select>
@@ -187,7 +187,7 @@ const AddressForm = ({ setVisible }) => {
           <label className="block mb-2">🏠 Street Address</label>
           <input
             className="w-full bg-gray-800 p-2 rounded-md"
-            defaultValue={presentAddress?presentAddress.street: "None"}
+            defaultValue={presentAddress?presentAddress?.street: "None"}
          
             onChange={(e) => setPresent({ ...present, street: e.target.value })}
           />
@@ -212,15 +212,15 @@ const AddressForm = ({ setVisible }) => {
             <label className="block mb-2">🌐 Select Country</label>
             <select
               className="w-full bg-gray-800 p-2 rounded-md"
-              defaultValue={permanentAddress?permanentAddress.country:"None"}
-              value={permanent.country}
+              defaultValue={permanentAddress?permanentAddress?.country:"None"}
+              value={permanent?.country}
               onChange={(e) =>
                 setPermanent({ ...permanent, country: e.target.value, district: '' })
               }
               disabled={sameAsPresent}
             >
-              <option value="">{permanentAddress.country?permanentAddress.country:"-- Select Country --"}</option>
-              {countries.map((c) => (
+              <option value="">{permanentAddress?.country?permanentAddress?.country:"-- Select Country --"}</option>
+              {countries?.map((c) => (
                 <option key={c} value={c}>{c}</option>
               ))}
             </select>
@@ -229,12 +229,12 @@ const AddressForm = ({ setVisible }) => {
             <label className="block mb-2">📌 Select District</label>
             <select
               className="w-full bg-gray-800 p-2 rounded-md"
-              defaultValue={permanentAddress.district?permanentAddress.district :"None"}
+              defaultValue={permanentAddress?.district?permanentAddress?.district :"None"}
               value={permanent.district}
               onChange={(e) => setPermanent({ ...permanent, district: e.target.value })}
               disabled={sameAsPresent}
             >
-              <option value="">{permanentAddress.district?permanentAddress.district :"-- Select District --"}</option>
+              <option value="">{permanentAddress?.district?permanentAddress?.district :"-- Select District --"}</option>
               {permanentDistricts.map((d) => (
                 <option key={d} value={d}>{d}</option>
               ))}
@@ -245,7 +245,7 @@ const AddressForm = ({ setVisible }) => {
           <label className="block mb-2">🏠 Street Address</label>
           <input
             className="w-full bg-gray-800 p-2 rounded-md"
-          defaultValue={permanentAddress?permanentAddress.street: "None"}
+          defaultValue={permanentAddress?permanentAddress?.street: "None"}
           value={permanent.street}
             onChange={(e) => setPermanent({ ...permanent, street: e.target.value })}
             disabled={sameAsPresent}

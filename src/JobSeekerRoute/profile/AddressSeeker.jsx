@@ -24,9 +24,9 @@ const AddressSeeker = () => {
        <div className="mb-6">
           <h3 className="text-orange-400 font-semibold text-lg mb-4">Present Address</h3>
           <div className="grid grid-cols-2 gap-y-4 text-lg">
-            <InfoRow label="Your Country" value={presentAddress?presentAddress.country:"None"} />
-            <InfoRow label="District" value={presentAddress?presentAddress.district :"None"} />
-            <InfoRow label="Street Address" value={presentAddress?presentAddress.street: "None"} />
+            <InfoRow label="Country" value={presentAddress?presentAddress?.country:"None"} />
+            <InfoRow label="District" value={presentAddress?presentAddress?.district :"None"} />
+            <InfoRow label="Street Address" value={presentAddress?presentAddress?.street: "None"} />
           </div>
         </div>
   
@@ -34,9 +34,9 @@ const AddressSeeker = () => {
         <div>
           <h3 className="text-orange-400 font-semibold text-lg mb-4">Permanent Address</h3>
           <div className="grid grid-cols-2 gap-y-4 text-lg">
-            <InfoRow label="Your Country" value={permanentAddress?permanentAddress.country:"None"} />
-            <InfoRow label="District"  value={permanentAddress?permanentAddress.district: "None"}/>
-            <InfoRow label="Street Address" value={permanentAddress?permanentAddress.street: "None"}  />
+            <InfoRow label="Country" value={permanentAddress?permanentAddress?.country:"None"} />
+            <InfoRow label="District"  value={permanentAddress?permanentAddress?.district: "None"}/>
+            <InfoRow label="Street Address" value={permanentAddress?permanentAddress?.street: "None"}  />
           </div>
         </div>
         </>
