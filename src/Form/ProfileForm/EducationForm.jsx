@@ -7,7 +7,6 @@ import LoadingSpinner from '../../shared/LoadingSpinner';
 
 const EducationForm = ({ setVisible }) => {
   const {role,isLoading,refetch}=useRole()
-  console.log(role)
   if(isLoading) return <LoadingSpinner/>
   const {cse,degree,Institution,studying,current_year,education_level,passing}= role?.Education || {}
 const {user}=useSelector((state)=>state.auth)
@@ -28,8 +27,8 @@ const axiosPublic=UseAxios()
     e.preventDefault();
      const formData = new FormData(e.target);
           const data = Object.fromEntries(formData.entries());
-         
-        
+         data.cse=education?.isCSE
+     
         
           try{
            const res= await axiosPublic.post(`/update-user/${user?.email}`,{Education:data})
@@ -159,7 +158,7 @@ const axiosPublic=UseAxios()
               type="radio"
               name="cse"
               defaultValue={cse}
-              checked={education.isCSE === 'yes'}
+              defaultChecked={cse === 'yes'}
               onChange={() => handleChange('isCSE', 'yes')}
               className="form-radio h-4 w-4 text-green-500 bg-gray-800  border-gray-600"
             />
@@ -170,7 +169,7 @@ const axiosPublic=UseAxios()
               type="radio"
               name="cse"
              defaultValue={cse}
-              checked={education.isCSE === 'no'}
+              defaultChecked={cse==="no"}
               onChange={() => handleChange('isCSE', 'no')}
               className="form-radio h-4 w-4 text-green-500 bg-[#2c293f] border-gray-600"
             />

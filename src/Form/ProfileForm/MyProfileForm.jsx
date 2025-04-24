@@ -4,21 +4,22 @@ import { MdOutlineMailLock } from "react-icons/md";
 import { CiSliderVertical } from "react-icons/ci";
 import { CiMobile4 } from "react-icons/ci";
 import { HiOutlineUpload } from "react-icons/hi";
-import { FaLock } from "react-icons/fa";
+import { FaLock, FaRegEyeSlash } from "react-icons/fa";
 import { imageUpload } from '../../Utility/imageUpload';
 import UseAxios from '../../Utility/UseAxios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import useRole from '../../Utility/useRole';
 import LoadingSpinner from '../../shared/LoadingSpinner';
-
+import { changePassword } from '../../Redux/authSlice';
+import { FiEye } from "react-icons/fi";
 
 const MyProfileForm = ({setVisible}) => {
 const axiosPublic=UseAxios()
 const{role,isLoading,refetch}=useRole()
-
-const{user}=useSelector((state)=>state.auth)
-
+const[isVisible,setIsVisiblle]=useState(false)
+const dispatch=useDispatch()
+const{user,successMessage}=useSelector((state)=>state.auth)
   
   const fileInputRef = useRef(null);
   if(isLoading)return <LoadingSpinner/>
@@ -37,6 +38,57 @@ const{user}=useSelector((state)=>state.auth)
     }
 
   };
+
+  // handleUpdate password
+
+  const handleUpdatePassword=async(e)=>{
+    e.preventDefault()
+    const currentPassword=e.target.current_password.value;
+    const newPassword=e.target.new_password.value;
+    const confirmPassword=e.target.confirm_password.value;
+
+    if(newPassword !==confirmPassword){
+      return Swal.fire({
+        icon: "error",
+        title: "New passwords do not match",
+        timer: 1500,
+      });
+    }
+
+     try{
+      const response = await axiosPublic.put(`/change-password/${user?.email}`, {
+        currentPassword,
+        newPassword,
+      });
+     
+     
+     const result= await dispatch(changePassword({currentPassword,newPassword}))
+     console.log(result)
+      if(changePassword.fulfilled.match(result)){
+        Swal.fire({
+          icon: "success",
+          title:response?.data?.message ,
+          timer: 1500,
+        })
+        e.target.reset()
+      }else if (changePassword.rejected.match(result)) {
+        Swal.fire({
+          icon: "error",
+          title: result.error.message || "Password update failed",
+          timer: 1500,
+        });
+      }
+
+     }catch(error){
+const errorMessage=error?.response?.data?.error
+console.log(errorMessage)
+Swal.fire({
+  icon: "error",
+  title: errorMessage,
+  timer: 1500,
+});
+     }
+  }
 
   const handleInfoSubmit=async(e)=>{
     e.preventDefault();
@@ -106,7 +158,7 @@ const{user}=useSelector((state)=>state.auth)
               </label>
               <input type="text" name='userId'
             disabled
-               value={`JVI-${_id.slice(-5)}`}
+               value={`JVI-${_id?.slice(-5)}`}
                 className="input  w-full rounded-md border-none  !bg-[#20172d]  font-bold !text-white"  />
 
 
@@ -169,40 +221,58 @@ const{user}=useSelector((state)=>state.auth)
           </button>
         </form>
         {/* password */}
-        <form className='mt-6' action="">
-        <div className="w-full">
+        <form onSubmit={handleUpdatePassword} className='mt-6' action="">
+        <div className="w-full relative">
               <label className="label text-white text-xl ">
                 <span><FaLock /></span>
                 <span className="label-text ">Current Password</span>
               </label>
-              <input type="password" name='name'
-                placeholder='shoriful Islam'
+              <input type={isVisible?'text':'password'} name='current_password'
+                placeholder='Enter current password'
                 className="input w-full rounded-md bg-[#20172d] focus:bg-white focus:text-black font-bold input-bordered" required />
-
+              <div className='absolute right-5 text-xl  bottom-2'>
+                {
+                  isVisible? <FiEye onClick={()=>setIsVisiblle(false)} />: <FaRegEyeSlash  onClick={()=>setIsVisiblle(true)}/>
+                }
+             
+             
+              </div>
 
             </div>
         <div className='flex gap-4 mt-4'>
-            <div className="w-full">
-              <label className="label text-white text-xl ">
-                <span><FaLock /></span>
-                <span className="label-text ">Current Password</span>
-              </label>
-              <input type="password" name='name'
-                placeholder='shoriful Islam'
-                className="input w-full rounded-md bg-[#20172d] focus:bg-white focus:text-black font-bold input-bordered" required />
-
-
-            </div>
-            <div className="w-full">
+            <div className="w-full relative">
               <label className="label text-white text-xl ">
                 <span><FaLock /></span>
                 <span className="label-text ">New Password</span>
               </label>
-              <input type="password" name='name'
-                placeholder='shoriful Islam'
+              <input type={isVisible?'text':'password'} name='new_password'
+                placeholder='Enter new password'
+                className="input w-full rounded-md bg-[#20172d] focus:bg-white focus:text-black font-bold input-bordered" required />
+                    <div className='absolute right-5 text-xl  bottom-2'>
+                {
+                  isVisible? <FiEye onClick={()=>setIsVisiblle(false)} />: <FaRegEyeSlash  onClick={()=>setIsVisiblle(true)}/>
+                }
+             
+             
+              </div>
+
+            </div>
+            <div className="w-full relative">
+              <label className="label text-white text-xl ">
+                <span><FaLock /></span>
+                <span className="label-text ">Confirm  Password</span>
+              </label>
+              <input type={isVisible?'text':'password'} name='confirm_password'
+                placeholder='confirm password'
                 className="input w-full rounded-md bg-[#20172d] focus:bg-white focus:text-black font-bold input-bordered" required />
 
-
+<div className='absolute right-5 text-xl  bottom-2'>
+                {
+                  isVisible? <FiEye onClick={()=>setIsVisiblle(false)} />: <FaRegEyeSlash  onClick={()=>setIsVisiblle(true)}/>
+                }
+             
+             
+              </div>
             </div>
 
           </div>
