@@ -16,7 +16,7 @@ const AllCandidates = () => {
             return data
         }
     })
-
+    console.log(allCandidates)
     const listedCandidates = allCandidates.filter(allCandidate => allCandidate.status === 'listed')
     const hiredCandidates = allCandidates.filter(allCandidate => allCandidate.status === 'hired')
     return (

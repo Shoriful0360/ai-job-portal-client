@@ -15,7 +15,6 @@ const Register = () => {
     const dispatch=useDispatch()
     const axiosPublic=UseAxios()
     const [role, setRole] = useState("Job Seeker");
-    console.log(role)
     const navigate = useNavigate()  
 
     // form submit

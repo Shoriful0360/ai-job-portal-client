@@ -17,7 +17,7 @@ const Suggestion = () => {
     })
     if(isLoading) return <LoadingSpinner/>
     return (
-        <div className="px-10">
+        <div className="px-4 sm:px-10">
             <div className="sm:my-10 ">
                 <h3 className='text-3xl font-bold text-center my-3'> 
                     Jobs Curated Just for You

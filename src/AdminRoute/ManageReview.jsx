@@ -37,7 +37,7 @@ const ManageReview = () => {
                     await axiosSecure.post('/verifiedReview', reviewData)
                     await axiosSecure.patch(`/verified/review/status/${id}`,)
                     await axiosSecure.delete(`/review/delete/${email}`,)
-                    await axiosSecure.delete(`/single/review/delete/${id}`,)
+                    await axiosSecure.delete(`/single/review/delete/${id}`)
                     Swal.fire({
                         title: "Review Verified Successfully!",
                         icon: "success",
@@ -90,9 +90,9 @@ const ManageReview = () => {
             <div className=" sm:grid lg:grid-cols-4 md:grid-cols-2 gap-6  my-10">
                 {
                     reviews.map(review =>
-                        <div key={review._id} className="relative py-16 " >
-                            <img className=" absolute rounded-full border-4 border-white top-4 left-32 " src={review.image} alt="" />
-                            <div className="bg-gray-300 rounded-xl py-12 text-gray-700 px-6">
+                        <div key={review._id} className="relative py-16 h-full" >
+                            <img className=" absolute rounded-full border-4 w-28 h-28 bg-white object-cover  border-white top-4 left-32 " src={review.image} alt="" />
+                            <div className="bg-gray-300 rounded-xl py-12 text-gray-700 px-6 h-full">
                                 <p className="text-5xl "><RiDoubleQuotesL /></p>
                                 <p className="text-sm font-bold text-center">{review.review}</p>
                                 <p className="text-5xl ml-64"><RiDoubleQuotesR /></p>
