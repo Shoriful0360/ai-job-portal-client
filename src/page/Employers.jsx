@@ -1,15 +1,15 @@
-import { useState } from "react";
+
 import UseAxios from "../Utility/UseAxios";
 import { useQuery } from "@tanstack/react-query";
 import EmployerCard from "../Section/EmployerCard";
 
 
 const Employers = () => {
-    const [employ, setEmploy] = useState('Employer')
+   
     const axiosSecure = UseAxios()
 
     const { data: allEmployers = [], refetch } = useQuery({
-        queryKey: ['allEmployers', employ],
+        queryKey: ['allEmployers'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/employers`)
             return data
