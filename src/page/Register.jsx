@@ -8,11 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { googleLogin, profileUpdate, setPassword, signUp } from "../Redux/authSlice";
 import UseAxios from "../Utility/UseAxios";
 import axios from "axios";
+import { useState } from "react";
 const Register = () => {
     const [role, setRole] = useState("Job Seeker");
     const dispatch=useDispatch()
     const axiosPublic=UseAxios()
-
+    console.log(role)
     const navigate = useNavigate()  
 
     // form submit
@@ -43,7 +44,12 @@ const Register = () => {
           if (signUp.fulfilled.match(result)) {
             // ✅ Account created successfully
             dispatch(profileUpdate({ displayName: name, photoURL: photoUrl }));
-            await axios.post('http://localhost:5000/register',userData)
+            if(role ==="Employer"){
+              await axiosPublic.post('/register',{email,password,photoUrl,companyName,companyDetails,role})
+
+            }else{
+              await axiosPublic.post('/register',{email,password,photoUrl,role})
+            }
             Swal.fire({
               title: "Account Created Successfully!",
               icon: "success",
@@ -80,32 +86,30 @@ const Register = () => {
     
 
     // google login
-    const handleGoogleLogin = async () => {
-        try {
-            const result = await dispatch(googleLogin());
-            const user = result.payload.user;
+
+    const handleGoogleLogin=async()=>{
+        const result=await dispatch(googleLogin())
+        
+        if(googleLogin.fulfilled.match(result)){
+         try{
+    const userInfo={
+            name:result?.payload?.displayName,
+            email:result?.payload?.email,
+            role:"Job Seeker",
+            phtotoUrl: result?.payload?.photoURL
+          }
     
-            const googleUser = {
-                name: user.displayName,
-                email: user.email,
-                photoUrl: user.photoURL,
-                role: "Job Seeker", // default role
-            };
-    
-            if (user.email.includes("employer.com")) {
-                googleUser.role = "Employer";
-            }
-    
-            // Save Google user to DB
-            await axios.post("http://localhost:5000/register", googleUser);
-    
-            navigate('/');
-        } catch (error) {
-            Swal.fire("Google Login Failed", error.message, "error");
+          
+          await axiosPublic.post('/register',userInfo)
+          navigate('/')
+        }catch{
+
+          navigate('/')
         }
-    };
-    
-    
+         }
+      
+
+    }
     return (
         <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
             <div className="my-12 mx-auto card backdrop-blur-md backdrop-brightness-125 w-full max-w-sm shrink-0 shadow-2xl ">
@@ -114,17 +118,12 @@ const Register = () => {
                         <fieldset className="fieldset">
 
                             <p className="text-2xl font-bold text-white mx-auto">Sign Up</p>
-                            <label className="font-bold text-white mt-2">Select Role</label>
-                            <select
-                              name="role"
-                              value={role}
-                              onChange={(e) => setRole(e.target.value)}
-                              className="select w-full"
-                            >
-                              <option value="Job Seeker">Job Seeker</option>
-                              <option value="Employer">Employer</option>
-                            </select>
                             
+                            <label className="font-bold text-white">Select Role</label>
+                            <select name="role" className="select select-bordered w-full" onChange={e => setRole(e.target.value)} required>
+                                <option value="Job Seeker">Job Seeker</option>
+                                <option value="Employer">Employer</option>
+                            </select>
                             <label className="font-bold text-white fieldset-label">User Name</label>
                             <input required type="text" placeholder="User Name" name="name" className="input w-full" />
                             <label className="font-bold text-white fieldset-label">Email</label>
@@ -148,7 +147,7 @@ const Register = () => {
                             <button className="btn btn-neutral mt-4">Account Create</button>
                         </fieldset>
                     </form>
-                    <button onClick={handleGoogleLogin} className="btn  mt-4">Sign Up With <span className="text-2xl font-bold"><FcGoogle /></span></button>
+                    <button onClick={handleGoogleLogin} hidden={role==="Employer"} className={`btn  mt-4 `}>Sign Up With <span className="text-2xl font-bold"><FcGoogle /></span></button>
                 </div>
             </div>
         </div>

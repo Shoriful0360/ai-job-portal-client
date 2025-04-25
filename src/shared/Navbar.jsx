@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
         <button className='flex items-center sm:gap-2'>
           <img className='w-8 sm:w-10' src={pic} alt="" />
-          <Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">
+          <Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 hidden sm:block to-blue-900 bg-clip-text ">
             <i>JobVision AI</i>
           </Link>
         </button>
@@ -67,7 +67,7 @@ const Navbar = () => {
                 <ul
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] pt3 w-52 p-2 shadow">
-                  <li className='text-sm  text-gray-700 font-bold'><Link>Profile</Link></li>
+                  <li className='text-sm  text-gray-700 font-bold'><Link to={'/profile'}>Profile</Link></li>
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </div>

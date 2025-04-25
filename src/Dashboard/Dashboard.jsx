@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 
 
 const Dashboard = () => {
-    const { user } = useSelector((state) => state.auth)
-    const { role, isLoading } = useRole()
-    if (isLoading) return <LoadingSpinner />
-    console.log(role?.role)
-
+    const{user}=useSelector((state)=>state.auth)
+const{role,isLoading}=useRole()
+if(isLoading) return <LoadingSpinner/>
+console.log(role?.role)
+    
 
 
     return (
