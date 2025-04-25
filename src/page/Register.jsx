@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { googleLogin, profileUpdate, setPassword, signUp } from "../Redux/authSlice";
 import UseAxios from "../Utility/UseAxios";
 import axios from "axios";
-import { useState } from "react";
+
 const Register = () => {
     const [role, setRole] = useState("Job Seeker");
     const dispatch=useDispatch()
