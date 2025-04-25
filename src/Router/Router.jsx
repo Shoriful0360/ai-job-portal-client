@@ -21,6 +21,7 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
+import ForgotPassword from "../page/ForgotPassword";
 import UpdatePage from "../page/UpdatePage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -28,7 +29,6 @@ import { checkAuthState } from "../Redux/authSlice";
 import SuggestedJob from "../Section/SuggestedJob";
 import Suggestion from "../page/Suggestion";
 import CategoryJob from "../page/categoryJob/CategoryJob";
-import ForgotPassword from "../page/ForgetPassword";
 import AllCandidates from "../page/AllCandidates";
 import Resume from "../page/Resume";
 import ContactRequest from "../AdminRoute/ContactRequest";
@@ -67,6 +67,8 @@ useEffect(()=>{
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                     <Route path="/suggestJob" element={<Suggestion></Suggestion>}></Route>
+                    
+                  
                    
                    {/* profile */}
                    <Route path="/profile" element={<Profile/>}>

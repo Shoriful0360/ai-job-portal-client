@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Utility/AuthProvidor';
 import pic from '../../public/Photo/icons8-permanent-job-96.png'
 import { useDispatch, useSelector } from 'react-redux';

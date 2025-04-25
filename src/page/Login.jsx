@@ -1,5 +1,5 @@
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { Link, useNavigate } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import pic from '../../public/Photo/login page pic.webp'
@@ -92,6 +92,14 @@ const Login = () => {
                             <input required type="email" name="email" className="input" placeholder="Email" />
                             <label className="fieldset-label  text-white font-bold">Password</label>
                             <input required type="password" name="password" className="input" placeholder="Password" />
+                            <label className="label">
+                <NavLink
+                  to="/forgot-password"
+                  className="label-text-alt link link-hover"
+                >
+                  Forgot password?
+                </NavLink>
+              </label>
                             <button className="btn btn-neutral mt-4">Login</button>
                         </fieldset>
                         
