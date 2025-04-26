@@ -1,4 +1,4 @@
-import { BsCalendar3, BsCreditCard2Back } from "react-icons/bs";
+import { BsCreditCard2Back } from "react-icons/bs";
 import { CiMail } from "react-icons/ci";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { FaLocationDot } from "react-icons/fa6";
@@ -8,17 +8,53 @@ import { VscGitStashApply } from "react-icons/vsc";
 import { IoSave } from "react-icons/io5";
 import { Link } from "react-router";
 import UseAxios from "../../Utility/UseAxios";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Utility/AuthProvidor";
 import Swal from "sweetalert2";
-const LeftSide = ({ detailsJob }) => {
+import ApplyModal from "../Modal/ApplyModal";
+import { FaMoneyBillWave } from "react-icons/fa";
+
+const LeftSide = ({ detailsJob, refetch}) => {
+  const [file, setFile] = useState(null)
+  const [fileInfo, setFileInfo] = useState(null);
+  const [isOpen, setIsOpen] = useState(false)
   const { user } = useContext(AuthContext)
-  const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, status, title, _id, experience, requirement } = detailsJob
+ 
+  const { category, deadline, description, email, image, jobTime, skill, jobType, location, maxSalary, minSalary, name, status, title, _id, experience, requirement ,educationLevel} = detailsJob
   const axiosSecure = UseAxios()
+
+  //  modal functionality
+  function open() {
+    setIsOpen(true)
+  }
+  function close() {
+    setIsOpen(false)
+  }
+  // file upload
+  const handlefileChange = (event) => {
+    const selectedFile = event.target.files[0]
+    if (selectedFile) {
+      setFile(selectedFile)
+      setFileInfo({
+        name: selectedFile.name,
+        type: selectedFile.type,
+        size: formatFilesizes(selectedFile.size)
+      })
+    }
+  }
+  // file format
+  const formatFilesizes = (bytes) => {
+    const kilobytes = bytes / 1024;
+    if (kilobytes < 1024) {
+      return `${kilobytes.toFixed(2)}KB`
+    }
+    const megabytes = kilobytes / 1024;
+    return `${megabytes.toFixed(2)}MB`
+  }
 
   //  Job Save in WishList Route
   const handleSave = async () => {
-    const saveData = { category, deadline, description, companyEmail: email, companyLogo: image, jobTime, skill, jobType, location, maxSalary, minSalary, companyName: name, status, title, jobId: _id, experience, requirement, jobSeekerEmail: user?.email }
+    const saveData = { category, deadline, description, companyEmail: email, companyLogo: image, jobTime, skill, jobType, location, maxSalary, minSalary, companyName: name, status, title, jobId: _id, experience, requirement, jobSeekerEmail: user?.email,educationLevel }
     try {
       Swal.fire({
         title: "Are you sure?",
@@ -30,7 +66,7 @@ const LeftSide = ({ detailsJob }) => {
         confirmButtonText: "Yes, Save it!"
       }).then(async (result) => {
         if (result.isConfirmed) {
-          const data  = await axiosSecure.post(`/saveJob/${user?.email}?jobId=${_id}`, saveData)
+          const data = await axiosSecure.post(`/saveJob/${user?.email}?jobId=${_id}`, saveData)
           if (data.data.insertedId) {
             Swal.fire({
               title: "Save SuccessFully!",
@@ -67,8 +103,8 @@ const LeftSide = ({ detailsJob }) => {
               <p>{category}</p>
               <div className="card-actions mt-4">
 
-                <button>
-                  <Link to={`/details/${_id}`} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW</Link>
+                <button onClick={open} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]">
+                  <span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW
                 </button>
                 <button onClick={handleSave}>
                   <Link className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>SAVE JOB</Link>
@@ -80,7 +116,7 @@ const LeftSide = ({ detailsJob }) => {
         <div className="divider lg:divider-horizontal"></div>
         <div className="card  grow rounded-box grid  pl-4  space-y-6 md:block ">
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
-            <BsCalendar3 />
+            <FaMoneyBillWave />
             {minSalary}k - {maxSalary}k / Month
           </p>
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
@@ -141,6 +177,7 @@ const LeftSide = ({ detailsJob }) => {
         </div>
 
       </div>
+      <ApplyModal user={user} refetch={refetch} detailsJob={detailsJob} isOpen={isOpen} close={close} fileInfo={fileInfo} handlefileChange={handlefileChange} />
     </div>
   );
 };

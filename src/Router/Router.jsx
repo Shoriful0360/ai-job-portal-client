@@ -4,7 +4,6 @@ import Login from "../page/Login";
 import Register from "../page/Register";
 import FindJob from "../page/FindJob";
 import Employers from "../page/Employers";
-import Candidates from "../page/Candidates";
 import HomePage from "../page/Home/HomePage";
 import JobDetails from "../page/jobDetails/JobDetails";
 import Dashboard from "../Dashboard/Dashboard";
@@ -22,11 +21,27 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
-import ApplyJob from "../page/ApplyJob";
 import ForgotPassword from "../page/ForgotPassword";
+import UpdatePage from "../page/UpdatePage";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { checkAuthState } from "../Redux/authSlice";
+import CategoryJob from "../page/categoryJob/CategoryJob";
+import Profile from "../page/profile/Profile";
+
+
+
+
 
 
 const Router = () => {
+  
+const dispatch=useDispatch()
+
+useEffect(()=>{
+ dispatch(checkAuthState());
+},[dispatch])
+
     return (
         <div>
             <Routes>
@@ -36,17 +51,22 @@ const Router = () => {
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
                     <Route path="/" element={<HomePage></HomePage>}></Route>
                     <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
-                    <Route path="/details/:id" element={<ApplyJob></ApplyJob>}></Route>
+                    <Route path="/category-job/:title" element={<CategoryJob/>}></Route>
+      
 
                     <Route path="/login" element={<Login></Login>}></Route>
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/candidates" element={<Candidates></Candidates>}></Route>
+                    
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
+                   
+                   {/* profile */}
+                   <Route path="/profile" element={<Profile/>}>
+                   <Route path="/profile/my-profile" element={<MyProfile/>}></Route>
+                   </Route>
                 </Route>
 
                 {/* dashboard route */}
@@ -65,9 +85,10 @@ const Router = () => {
                     <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>
                     <Route path="/dashboard/CandidatesRequest" element={<RequestCandidates></RequestCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
+                    <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
 
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
-                    <Route path="/dashboard/myProfile" element={<MyProfile></MyProfile>}></Route>
+                    <Route path="/dashboard/myProfile" element={<MyProfile/>}></Route>
                     <Route path="/dashboard/myReview" element={<MyReview></MyReview>}></Route>
                     <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
                 </Route>

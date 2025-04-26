@@ -20,9 +20,13 @@ const AddJob = () => {
         const category = e.target.category.value
         const requirement = e.target.requirement.value
         const location = e.target.location.value
-        const minSalary = e.target.minSalary.value
-        const maxSalary = e.target.maxSalary.value
+        const division = e.target.division.value
+        const minimumSalary = e.target.minSalary.value
+        const minSalary = parseInt(minimumSalary)
+        const maximumSalary = e.target.maxSalary.value
+        const maxSalary = parseInt(maximumSalary)
         const deadline = e.target.deadline.value
+        const educationLevel = e.target.educationLevel.value
 
         const keySkill = e.target.skill.value
         const array = keySkill.split(',')
@@ -46,7 +50,7 @@ const AddJob = () => {
 
 
         const jobAllData =
-            { title, description, category, requirement, location, minSalary, maxSalary, deadline, skill, jobTime, jobType, image, experience, name, email, status, jobPostTime }
+            { title, description, category, requirement, location, division, educationLevel, minSalary, maxSalary, deadline, skill, jobTime, jobType, image, experience, name, email, status, jobPostTime }
 
         try {
             await axiosSecure.post('/pendingJob', jobAllData)
@@ -67,7 +71,7 @@ const AddJob = () => {
     return (
         <div>
             <h3 className="text-center mt-20 text-3xl font-bold my-8">Added New Job</h3>
-            <div className="w-10/12 mx-auto p-12 bg-blue-300 rounded-tl-full rounded-br-full sm:rounded-br-none">
+            <div className="sm:w-10/12 mx-auto sm:p-12 bg-blue-300 rounded-tl-full rounded-br-full ">
                 <div className="card bg-base-100 lg:w-8/12 mx-auto my-4  ">
                     <form onSubmit={handleSubmit}>
                         <fieldset className="fieldset p-6 bg-gray-300">
@@ -95,6 +99,18 @@ const AddJob = () => {
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Location</label>
                             <input type="text" name="location" className="input w-full" required placeholder="Location" />
 
+                            <label className=" fieldset-label text-sm font-bold text-gray-700">Division</label>
+                            <select type="text" name="division" className="input w-full" required placeholder="Division" >
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Khulna">Khulna</option>
+                                <option value="Rajshahi">Rajshahi</option>
+                                <option value="Rangpur">Rangpur</option>
+                                <option value="Barishal">Barishal</option>
+                                <option value="Mymonsingh">Mymonsingh</option>
+                                <option value="Sylhet">Sylhet</option>
+                            </select>
+
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Min Salary</label>
                             <input type="number" name="minSalary" className="input w-full" required placeholder="Min Salary" />
 
@@ -111,6 +127,8 @@ const AddJob = () => {
                             <select type="text" name="jobType" className="input w-full" required placeholder="Job Type" >
                                 <option value="Part Time">Part Time</option>
                                 <option value="Full Time">Full Time</option>
+                                <option value="Remote">Remote</option>
+                                <option value="Internship">Internship</option>
                             </select>
 
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Job Time</label>
@@ -131,6 +149,20 @@ const AddJob = () => {
                                 <option value="5 Years">5 Years</option>
                                 <option value="6 Years">6 Years</option>
                                 <option value="7 Years">7 Years</option>
+                            </select>
+
+
+                            <label className="my-1 fieldset-label text-sm font-bold text-gray-700">Educational Level</label>
+                            <select type="text" name="educationLevel" className="input w-full" required placeholder="">
+                                <option value="ssc">SSC</option>
+                                <option value="hsc">HSC</option>
+                                <option value="diploma(Complete)">Diploma(Complete)</option>
+                                <option value="diploma(Ongoing)">Diploma(Ongoing)</option>
+                                <option value="bachelor(Complete)">Bachelor(Complete)'s </option>
+                                <option value="bachelor(Ongoing)">Bachelor's(Ongoing)</option>
+                                <option value="master's(Complete)">Master's(Complete)</option>
+                                <option value="master's(Ongoing)">Master's(Ongoing)</option>
+                                <option value="phd">Ph.D</option>
                             </select>
 
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Employer Logo</label>

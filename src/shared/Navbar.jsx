@@ -1,8 +1,14 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../Utility/AuthProvidor';
-
+import pic from '../../public/Photo/icons8-permanent-job-96.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../Redux/authSlice';
 const Navbar = () => {
+  const dispatch=useDispatch()
+  const{user}=useSelector((state)=>state.auth || {user:null})
+
+// const{user}=useContext(AuthContext)
   const link = <>
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/'>Home</NavLink>
@@ -13,12 +19,10 @@ const Navbar = () => {
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
-    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
-      <NavLink to='/candidates'>Candidates</NavLink>
-    </li>
+    
   </>
-  const { user, logout } = useContext(AuthContext)
-
+  // const { user, logout } = useContext(AuthContext)
+ 
   return (
     <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50">
       <div className="navbar-start">
@@ -32,7 +36,12 @@ const Navbar = () => {
             {link}
           </ul>
         </div>
-        <button className=''><Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent"><i>JobVision AI</i></Link></button>
+        <button className='flex items-center sm:gap-2'>
+          <img className='w-8 sm:w-10' src={pic} alt="" />
+          <Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 hidden sm:block to-blue-900 bg-clip-text ">
+            <i>JobVision AI</i>
+          </Link>
+        </button>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal ">
@@ -43,7 +52,7 @@ const Navbar = () => {
 
 
         {
-          user && user?.photoURL ?
+          user ?
             <span className='flex justify-center items-center'>
               <div className="dropdown dropdown-end justify-center items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -58,18 +67,19 @@ const Navbar = () => {
                 <ul
                   tabIndex={0}
                   className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] pt3 w-52 p-2 shadow">
-                  <li className='text-sm  text-gray-700 font-bold'><Link>Profile</Link></li>
+                  <li className='text-sm  text-gray-700 font-bold'><Link to={'/profile'}>Profile</Link></li>
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                 </ul>
               </div>
-              <Link onClick={logout} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
+              <Link onClick={()=>dispatch(logout())} className="btn  text-sm font-bold text-gray-600 ml-2">log Out</Link>
             </span>
             :
-            <button className='btn btn-ghost'> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
+            <button className='btn '> <Link className='className="text-sm font-bold text-gray-600"' to="/login">SignIn</Link></button>
         }
 
 
       </div>
+    
     </div>
   );
 };

@@ -3,10 +3,13 @@ import UseAxios from "../Utility/UseAxios";
 import { SiVerizon } from "react-icons/si";
 import { FaDeleteLeft } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../shared/LoadingSpinner";
+
+
 
 const ManageJob = () => {
     const axiosSecure = UseAxios()
-    const { data: pendingJobs = [], refetch } = useQuery({
+    const { data: pendingJobs = [], refetch, isLoading } = useQuery({
         queryKey: ['pendingJobs'],
         queryFn: async () => {
             const { data } = await axiosSecure.get('/pendingJob')
@@ -14,6 +17,7 @@ const ManageJob = () => {
         }
     })
     const allPendingJob = pendingJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
+    if(isLoading) return <LoadingSpinner/>
     // reject pending job
     const handleReject = async (id) => {
         try {
@@ -74,7 +78,7 @@ const ManageJob = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Title</th>
-                            <th>Location</th>
+                            <th>Division</th>
                             <th> Price/Value </th>
                             <th></th>
                         </tr>
@@ -87,7 +91,7 @@ const ManageJob = () => {
                                     <th className="text-sm font-bold text-gray-600">{pendingJob.name}</th>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.email}</td>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.title}</td>
-                                    <td className="text-sm font-bold text-gray-600">{pendingJob.location}</td>
+                                    <td className="text-sm font-bold text-gray-600">{pendingJob.division}</td>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.minSalary}$ - {pendingJob.maxSalary}$</td>
                                     <td>
                                         {
