@@ -56,31 +56,29 @@ const{user,successMessage}=useSelector((state)=>state.auth)
     }
 
      try{
-      const response = await axiosPublic.put(`/change-password/${user?.email}`, {
-        currentPassword,
-        newPassword,
-      });
      
      
      const result= await dispatch(changePassword({currentPassword,newPassword}))
-     console.log(result)
-      if(changePassword.fulfilled.match(result)){
-        Swal.fire({
-          icon: "success",
-          title:response?.data?.message ,
-          timer: 1500,
-        })
-        e.target.reset()
-      }else if (changePassword.rejected.match(result)) {
-        Swal.fire({
-          icon: "error",
-          title: result.error.message || "Password update failed",
-          timer: 1500,
-        });
-      }
+     // ✅ Check if success
+     if (changePassword.fulfilled.match(result)) {
+      Swal.fire({
+        icon: "success",
+        title: result?.payload?.message || "Password updated successfully!",
+        timer: 1500,
+      });
+      e.target.reset();
+    }
+    // ❌ Check if failed
+    else if (changePassword.rejected.match(result)) {
+      Swal.fire({
+        icon: "error",
+        title: "Your current password is wrong !",
+        timer: 1500,
+      });
+    }
 
      }catch(error){
-const errorMessage=error?.response?.data?.error
+const errorMessage=error?.response?.data?.error || 'something went wrong!'
 console.log(errorMessage)
 Swal.fire({
   icon: "error",

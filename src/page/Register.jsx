@@ -1,7 +1,5 @@
-
-
 import { imageUpload } from "../Utility/imageUpload";
-
+import { useState } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
@@ -10,11 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { googleLogin, profileUpdate, setPassword, signUp } from "../Redux/authSlice";
 import UseAxios from "../Utility/UseAxios";
 import axios from "axios";
-import { useState } from "react";
+
 const Register = () => {
+    const [role, setRole] = useState("Job Seeker");
     const dispatch=useDispatch()
     const axiosPublic=UseAxios()
-    const [role, setRole] = useState("Job Seeker");
     console.log(role)
     const navigate = useNavigate()  
 
@@ -28,13 +26,18 @@ const Register = () => {
         const photoUrl = await imageUpload(image);
         const companyName = e.target.companyName?.value;
         const companyDetails = e.target.companyDetails?.value;
-        
 
-    
-      //   if (role === "Employer") {
-      //     userData.companyName = companyName;
-      //     userData.companyDetails = companyDetails;
-      // }
+        const userData = {
+            name,
+            email,
+            password,
+            role,
+            photoUrl
+          };
+        if (role === "Employer") {
+          userData.companyName = companyName;
+          userData.companyDetails = companyDetails;
+      }
         try {
           const result = await dispatch(signUp({ email, password }));
       
@@ -42,10 +45,10 @@ const Register = () => {
             // ✅ Account created successfully
             dispatch(profileUpdate({ displayName: name, photoURL: photoUrl }));
             if(role ==="Employer"){
-              await axiosPublic.post('/register',{email,password,photoUrl,companyName,companyDetails,role})
+              await axiosPublic.post('/register',{email,photoUrl,companyName,companyDetails,role})
 
             }else{
-              await axiosPublic.post('/register',{email,password,photoUrl,role})
+              await axiosPublic.post('/register',{email,photoUrl,role})
             }
             Swal.fire({
               title: "Account Created Successfully!",

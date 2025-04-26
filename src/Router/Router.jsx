@@ -21,6 +21,7 @@ import MyProfile from "../JobSeekerRoute/MyProfile";
 import MyReview from "../JobSeekerRoute/MyReview";
 import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
+import ForgotPassword from "../page/ForgotPassword";
 import UpdatePage from "../page/UpdatePage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -32,6 +33,7 @@ import AddressSeeker from "../JobSeekerRoute/profile/AddressSeeker";
 import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
 import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
 import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -64,9 +66,12 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
+                    
+                    <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
+                   
                    {/* profile */}
-                   {/* jobseeker profile */}
-                   <Route path="/candidate-profile" element={<Profile/>}>
+                
+                   <Route path="/candidate-profile" element={<PrivateRoute><Profile/></PrivateRoute>}>
                    <Route path="/candidate-profile" element={<MyProfile/>}></Route>
                    <Route path="/candidate-profile/my-profile" element={<MyProfile/>} />
                    <Route path="/candidate-profile/additional-info" element={<AdditionalInfoSeeker/>}></Route>
