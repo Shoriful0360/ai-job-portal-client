@@ -31,7 +31,7 @@ const{cvLink,github,linkedin,portfolio,profileImage,companyWebsite,facebook,yout
   return (
     <div className="bg-[#1b152b] text-white rounded-md p-6 w-full shadow-md">
     <div className="flex justify-between items-center border-b border-dashed border-purple-500 pb-4 mb-6">
-          <h2 className="text-lg font-semibold text-purple-400">Education</h2>
+          <h2 className="text-lg font-semibold text-purple-400">Social Link</h2>
           <Pencil onClick={()=>setVisible(true)} size={20} className="cursor-pointer text-purple-400 hover:text-white" />
         </div>
 
@@ -44,8 +44,8 @@ const{cvLink,github,linkedin,portfolio,profileImage,companyWebsite,facebook,yout
           {
             role?.role==="Employer" &&
             <>
-              <InfoRow label="Company Website" url={linkData.cvLink} />
-          <InfoRow label="Youtube channel" url={linkData.cvLink} />
+              <InfoRow label="Company Website" url={linkData.companyWebsite} />
+          <InfoRow label="Youtube channel" url={linkData.youtube} />
     
             </>
           }

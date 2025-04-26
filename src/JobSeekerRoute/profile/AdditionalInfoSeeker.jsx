@@ -12,7 +12,7 @@ const AdditionalInfoSeeker = () => {
     return (
         <div className="bg-[#1b152b] text-white rounded-md p-6 w-full mshadow-md">
      <div className="flex justify-between items-center border-b border-dashed pb-2 mb-4">
-          <h3 className="text-lg font-bold text-purple-400">My Profile</h3>
+          <h3 className="text-lg font-bold text-purple-400">Additional Info</h3>
           <button onClick={()=>setVisible(!visible)} className="text-purple-300 hover:text-purple-500">
             ✏️ Edit
           </button>
