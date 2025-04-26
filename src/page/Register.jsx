@@ -45,10 +45,10 @@ const Register = () => {
             // ✅ Account created successfully
             dispatch(profileUpdate({ displayName: name, photoURL: photoUrl }));
             if(role ==="Employer"){
-              await axiosPublic.post('/register',{email,password,photoUrl,companyName,companyDetails,role})
+              await axiosPublic.post('/register',{email,photoUrl,companyName,companyDetails,role})
 
             }else{
-              await axiosPublic.post('/register',{email,password,photoUrl,role})
+              await axiosPublic.post('/register',{email,photoUrl,role})
             }
             Swal.fire({
               title: "Account Created Successfully!",
@@ -130,6 +130,7 @@ const Register = () => {
                             <input required type="email" name="email" className="input w-full" placeholder="Email" />
                             <label className="font-bold text-white fieldset-label">Password</label>
                             <input required type="password" onChange={(e)=>dispatch(setPassword(e.target.value))} name="password" className="input w-full" placeholder="Password" />
+                            {/* photo */}
                             <label className="font-bold text-white fieldset-label">Photo</label>
                             <input type="file" name="image" className="file-input file-input-md" />
 

@@ -28,6 +28,12 @@ import { useEffect } from "react";
 import { checkAuthState } from "../Redux/authSlice";
 import CategoryJob from "../page/categoryJob/CategoryJob";
 import Profile from "../page/profile/Profile";
+import AdditionalInfoSeeker from "../JobSeekerRoute/profile/AdditionalInfoSeeker";
+import AddressSeeker from "../JobSeekerRoute/profile/AddressSeeker";
+import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
+import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
+import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -64,8 +70,15 @@ useEffect(()=>{
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                    
                    {/* profile */}
-                   <Route path="/profile" element={<Profile/>}>
-                   <Route path="/profile/my-profile" element={<MyProfile/>}></Route>
+                
+                   <Route path="/candidate-profile" element={<PrivateRoute><Profile/></PrivateRoute>}>
+                   <Route path="/candidate-profile" element={<MyProfile/>}></Route>
+                   <Route path="/candidate-profile/my-profile" element={<MyProfile/>} />
+                   <Route path="/candidate-profile/additional-info" element={<AdditionalInfoSeeker/>}></Route>
+                   <Route path="/candidate-profile/address" element={<AddressSeeker/>}></Route>
+                   <Route path="/candidate-profile/education" element={<EducationSeeker/>}/>
+                   <Route path="/candidate-profile/important-link" element={<ImportantLinkSeeker/>}/>
+                   <Route path="/candidate-profile/skill-set" element={<SkillSeeker/>}/>
                    </Route>
                 </Route>
 

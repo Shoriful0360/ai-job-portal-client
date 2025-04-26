@@ -8,11 +8,13 @@ import RecentJobs from "../../component/Homepage/RecentJobs";
 import Category from "../../component/category/Category";
 import OurWork from "../../Section/OurWork";
 import ContactUs from "../../Section/ContactUs";
+import useRole from "../../Utility/useRole";
 
 
 const HomePage = () => {
     const [visible, setVisible] = useState(true)
-  
+    const{role}=useRole()
+    console.log(role)
     return (
         <div>
             <div><Banner></Banner></div>
