@@ -5,11 +5,14 @@ import { CiLocationOn } from "react-icons/ci";
 import { IoBookOutline } from "react-icons/io5";
 import { FiEdit } from "react-icons/fi";
 import { Link, NavLink } from "react-router";
-import { MdErrorOutline } from "react-icons/md";
+import { MdDashboard, MdErrorOutline } from "react-icons/md";
 import useRole from "../../Utility/useRole";
 import { HiLightBulb } from "react-icons/hi";
 import LoadingSpinner from "../../shared/LoadingSpinner";
+import { useSelector } from "react-redux";
 const Sidebar = () => {
+  const{user}=useSelector((state)=>state.auth)
+  console.log('user',user?.photoURL)
   const{role,isLoading}=useRole()
   if(isLoading) return <LoadingSpinner/>
   const{name,email,number,_id,photoUrl}=role || {}
@@ -18,63 +21,82 @@ const Sidebar = () => {
         <div className="flex flex-col items-center">
           <div className="avatar">
             <div className="w-24 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
-              <img src={photoUrl} alt="profile" />
+              <img src={photoUrl || user?.photoURL} alt="profile" />
             </div>
           </div>
           <h2 className="mt-4 text-xl font-bold">{name}</h2>
           <p className="text-sm opacity-80">{`JVI-${_id?.slice(-5)}`}</p>
           <p className="text-sm">{email}</p>
           <p className="text-sm text-green-400">+88{number}</p>
+          <h2 className="text-xl font-bold">{role?.role}</h2>
         </div>
         <div className="mt-6">
           <p className="text-sm flex justify-between">Complete your profile <span>100%</span></p>
           <progress className="progress progress-success w-full mt-1" value="100" max="100"></progress>
         </div>
         <ul className="menu mt-6  text-[#817691] space-y-6 ">
+
+          {/* dashboard */}
+          
+          <NavLink className="text-2xl flex justify-between items-center p-2 gap-4" to="/dashboard">
+               
+               <p className="flex items-center gap-3">  <span><MdDashboard /></span>Dashboard</p>
+               <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
+             </NavLink>
           {/* MY profile */}
               <NavLink to={'my-profile'} className="text-2xl flex justify-between items-center p-2 gap-4">
                
                 <p className="flex items-center gap-3">  <span><FaRegUserCircle /></span> My Profile</p>
                 <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
               </NavLink>
-              {/* Additional Info */}
+                {/* Address */}
+                <NavLink to={'address'} className="text-2xl p-2 flex justify-between items-center gap-4">
+               
+               <p className="flex items-center gap-3">  <span><CiLocationOn /></span>Address</p>
+               <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
+             </NavLink>
+            
+
+              {/* employer and  job seeker route */}
+              {
+               (role?.role === "Employer" || role?.role === "Job Seeker") &&
+                <>
+                 {/* Additional Info */}
               <NavLink to={'additional-info'} className="text-2xl p-2 flex justify-between items-center gap-4">
               
-                <p className="flex items-center gap-3"> 
-                  <span><MdErrorOutline /></span>Additional Info</p>
-                <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
-              </NavLink>
-              {/* Address */}
-              <NavLink to={'address'} className="text-2xl p-2 flex justify-between items-center gap-4">
-               
-                <p className="flex items-center gap-3">  <span><CiLocationOn /></span>Address</p>
-                <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
-              </NavLink>
-            
-              {/* Important LInk */}
-              <NavLink to={'important-link'} className="text-2xl p-2 flex justify-between items-center gap-4">
-               
-                <p className="flex items-center gap-3"> <span><FiEdit /></span>Important Link</p>
-                <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
-              </NavLink>
-              {role?.role==="Job Seeker" &&
-              <>
-                 {/* Skill  set */}
-                  {/* Education */}
-              <NavLink to={'education'} className="text-2xl p-2 flex justify-between items-center gap-4">
-              
-              <p className="flex items-center gap-3">   <span><IoBookOutline /></span>Education</p>
+              <p className="flex items-center gap-3"> 
+                <span><MdErrorOutline /></span>Additional Info</p>
+              <span className="bg-green-400 w-6 ml-4 text-white   h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
+            </NavLink>
+          
+            {/* Important LInk */}
+            <NavLink to={'important-link'} className="text-2xl p-2 flex justify-between items-center gap-4">
+             
+              <p className="flex items-center gap-3"> <span><FiEdit /></span>Important Link</p>
               <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
             </NavLink>
-
-                 <NavLink to={'skill-set'} className="text-2xl p-2 flex justify-between items-center gap-4">
+          {/* only job seeker route */}
+            {role?.role==="Job Seeker" &&
+            <>
                
-               <p className="flex items-center gap-3"> <span><HiLightBulb /></span>Skill Set</p>
-               <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
-             </NavLink>
-              </>
+                {/* Education */}
+            <NavLink to={'education'} className="text-2xl p-2 flex justify-between items-center gap-4">
+            
+            <p className="flex items-center gap-3">   <span><IoBookOutline /></span>Education</p>
+            <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
+          </NavLink>
+              {/* Skill  set */}
+               <NavLink to={'skill-set'} className="text-2xl p-2 flex justify-between items-center gap-4">
+             
+             <p className="flex items-center gap-3"> <span><HiLightBulb /></span>Skill Set</p>
+             <span className="bg-green-400 w-6 ml-4 text-white  h-6 rounded-full flex justify-center"><BsCheckCircle /></span>
+           </NavLink>
+            </>
+            }
+         
+                </>
               }
-           
+             
             
         </ul>
       </div>
