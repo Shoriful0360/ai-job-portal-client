@@ -5,7 +5,7 @@ import React from "react";
 import LoadingSpinner from "../shared/LoadingSpinner";
 
 const Suggestion = () => {
-    const skills = [ 'Javascrift']
+    const skills = [ 'Html']
     const skill = JSON.stringify(skills)
     const axiosSecure = UseAxios()
     const { data: AIJobs = [], isLoading } = useQuery({
