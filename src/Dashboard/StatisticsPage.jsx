@@ -31,19 +31,19 @@ const StatisticsPage = () => {
   const [jobLocations, setJobLocations] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://ai-job-portal-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
 
-    fetch("http://localhost:5000/verifyJob")
+    fetch("https://ai-job-portal-server.vercel.app/verifyJob")
       .then((res) => res.json())
       .then((data) => setJobs(data));
 
-    fetch("http://localhost:5000/jobApplications")
+    fetch("https://ai-job-portal-server.vercel.app/jobApplications")
       .then((res) => res.json())
       .then((data) => setApplications(data));
 
-    fetch("http://localhost:5000/jobLocations")
+    fetch("https://ai-job-portal-server.vercel.app/jobLocations")
       .then((res) => res.json())
       .then((data) => setJobLocations(data));
   }, []);
