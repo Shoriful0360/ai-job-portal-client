@@ -1,5 +1,5 @@
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { Link, NavLink, useNavigate } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FcGoogle } from "react-icons/fc";
 import pic from '../../public/Photo/login page pic.webp'
@@ -10,50 +10,43 @@ const Login = () => {
     const dispatch=useDispatch()
     const navigate = useNavigate()
     const axiosPublic=UseAxios()
-  
+  const location=useLocation()
+  const from=location?.state?.from?.pathname || '/'
 
-
-
+    
     const handleSubmit = async e => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
     
         try {
-            // 1. First hit backend to check lock and password
-            const response = await axiosPublic.post('/wrong-password', { email, password });
-           
+            // Step 1: Check if user is locked
+            await axiosPublic.post('/check-user-status', { email });
     
-            // 2. If response is success, proceed to Firebase login
+            // Step 2: Try Firebase login
             const result = await dispatch(login({ email, password }));
             const isLoginSuccess = login.fulfilled.match(result);
     
             if (isLoginSuccess) {
-                Swal.fire({
-                    title: "Login Successfully!",
-                    icon: "success",
-                    draggable: true
-                });
+                await axiosPublic.post('/reset-login-attempts', { email });
     
-                navigate('/');
+                Swal.fire({ title: 'Login Success', icon: 'success' });
+                navigate(from || '/');
             } else {
-                Swal.fire({
-                    title: "Firebase login failed",
-                    icon: "error",
-                    draggable: true
-                });
+                throw new Error('Firebase login failed');
+            }
+        } catch (error) {
+            // Step 3: On any error, track failed attempt
+            if (error.response?.status !== 403) {
+                await axiosPublic.post('/track-login-attempts', { email });
             }
     
-        } catch (error) {
-            const msg = error?.response?.data?.message || "Something went wrong!";
             Swal.fire({
-                title: msg,
-                icon: "error",
-                draggable: true
+                title: error.response?.data?.message || "Wrong Password",
+                icon: "error"
             });
         }
     };
-    
     
     
     const handleGoogleLogin=async()=>{

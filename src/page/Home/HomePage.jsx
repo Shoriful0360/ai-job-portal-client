@@ -9,11 +9,13 @@ import Category from "../../component/category/Category";
 import OurWork from "../../Section/OurWork";
 import ContactUs from "../../Section/ContactUs";
 import Review from "../../Section/Review";
+import useRole from "../../Utility/useRole";
 
 
 const HomePage = () => {
     const [visible, setVisible] = useState(true)
-  
+    const{role}=useRole()
+    console.log(role)
     return (
         <div className="">
             <div><Banner></Banner></div>

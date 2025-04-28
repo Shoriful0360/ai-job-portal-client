@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, EmailAuthProvider, onAuthStateChanged, reauthenticateWithCredential, signInWithEmailAndPassword, signInWithPopup, signOut, updatePassword, updateProfile } from "firebase/auth";
 import { auth, googleProvider } from "../../firebase config";
 
 
@@ -96,7 +96,22 @@ export const profileUpdate = createAsyncThunk(
     }
   );
   
-  
+//   udata password
+export const changePassword=createAsyncThunk(
+    'auth/changePassword',
+    async({currentPassword,newPassword},{rejectWithValue})=>{
+        try{
+            const user=auth.currentUser;
+            const credential=EmailAuthProvider.credential(user.email,currentPassword);
+            // reauthentication user
+            await reauthenticateWithCredential(user,credential)
+          await updatePassword(user,newPassword)  
+          return{success:true}
+        }catch(error){
+            return rejectWithValue(error.message)
+        }
+    }
+)
 
 // check auth state
 
@@ -120,14 +135,19 @@ const authSlice=createSlice({
     name:'auth',
     initialState:{
         user:null,
-        loading:false,
+        loading:true,
         error:null,
-        password:''
+        password:'',
+        successMessage:null,
      
     },
     reducers:{
         setPassword:(state,action)=>{
             state.password=action.payload
+        },
+        clearMessage:(state)=>{
+            (state.error)=null;
+            state.successMessage=null;
         }
     },
     extraReducers:(builder)=>{
@@ -186,6 +206,12 @@ const authSlice=createSlice({
             }
           })
           
+
+        //   update password
+        .addCase(changePassword.fulfilled,(state)=>{
+            state.loading=false;
+            state.successMessage="Password update successfully"
+        })
         // logout
         .addCase(logout.fulfilled,(state)=>{
             state.user=null;
@@ -206,5 +232,5 @@ const authSlice=createSlice({
     }
 })
 
-export const{setPassword}=authSlice.actions
+export const{setPassword,clearMessage}=authSlice.actions
 export default authSlice.reducer;

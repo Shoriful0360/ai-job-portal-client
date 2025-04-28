@@ -3,16 +3,18 @@ import Sidebar from "../../component/profile/Sidebar";
 
 const Profile = () => {
     return (
-      <div className="min-h-screen bg-[#0f0c29] text-white grid md:grid-cols-12 p-4 md:p-10 gap-6">
-        <div className="col-span-2">
+     <div className=" bg-[#010313] min-h-[calc(100vh-200px)]">
+       <div className=" text-white md:flex flex-wrap p-4 max-w-[1600px]  md:p-10 mx-auto gap-6">
+        <div className="  bg-[#170f21] ">
             <Sidebar/>
         </div>
         
-        <div className="col-span-10">
+        <div className="flex-1">
             <Outlet/>
         </div>
     
       </div>
+     </div>
     );
   };
   
