@@ -36,6 +36,9 @@ import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../page/Error/ErrorPage";
 
+import MessageLayout from "../page/Message/MessageLayout";
+import Message from "../page/Message/component/Message";
+
 
 
 
@@ -81,6 +84,11 @@ useEffect(()=>{
                    <Route path="/candidate-profile/important-link" element={<ImportantLinkSeeker/>}/>
                    <Route path="/candidate-profile/skill-set" element={<SkillSeeker/>}/>
                    </Route>
+
+                   {/* message */}
+                   <Route path="/message" element={<MessageLayout/>}>
+                   <Route path="/message/content" element={<Message/> }/>
+                   </Route>
                 
                 </Route>
                 
@@ -90,19 +98,20 @@ useEffect(()=>{
                 <Route path="/dashboard" element={<Dashboard></Dashboard>}>
 
                     <Route path="/dashboard" element={<DashBoardHome></DashBoardHome>}></Route>
-
+            {/* admin route */}
                     <Route path="/dashboard/adminProfile" element={<AdminProfile></AdminProfile>}></Route>
                     <Route path="/dashboard/manageJob" element={<ManageJob></ManageJob>}></Route>
                     <Route path="/dashboard/manageUsers" element={<ManageUser></ManageUser>}></Route>
                     <Route path="/dashboard/manageReview" element={<ManageReview></ManageReview>}></Route>
-
+                    {/* employer route */}
                     <Route path="/dashboard/employerProfile" element={<EmployerProfile></EmployerProfile>}></Route>
                     <Route path="/dashboard/addJob" element={<AddJob></AddJob>}></Route>
                     <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>
                     <Route path="/dashboard/CandidatesRequest" element={<RequestCandidates></RequestCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
                     <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
-
+                    <Route path="/dashboard/message" element={<MessageLayout/>}></Route>
+                    {/* job seeker route */}
                     <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
                     <Route path="/dashboard/myProfile" element={<MyProfile/>}></Route>
                     <Route path="/dashboard/myReview" element={<MyReview></MyReview>}></Route>

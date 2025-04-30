@@ -56,6 +56,7 @@ console.log(role?.role)
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myAddJob'>My Add Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/CandidatesRequest'>Candidates Request</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/hiredCandidates'>Hired Candidates</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/message'>Message</NavLink></li>
                                 </div>
                             }
                             {/* Job Seeker Route */}

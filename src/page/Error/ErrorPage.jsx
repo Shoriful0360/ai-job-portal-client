@@ -37,7 +37,7 @@ export default function ErrorPage() {
       </motion.div>
 
       <motion.div
-        className="mt-10 w-64 h-64"
+        className="mt-10 w-80 h-80"
         initial={{ rotate: 0 }}
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 10, ease: "linear" }}

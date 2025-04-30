@@ -109,6 +109,9 @@ const LeftSide = ({ detailsJob, refetch}) => {
                 <button onClick={handleSave}>
                   <Link className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>SAVE JOB</Link>
                 </button>
+                <button>
+                  <Link to={`/message/content?email=${encodeURIComponent(email)}`} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>MESSAGE</Link>
+                </button>
               </div>
             </div>
           </div>
