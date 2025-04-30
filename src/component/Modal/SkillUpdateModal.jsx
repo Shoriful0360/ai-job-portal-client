@@ -9,6 +9,8 @@ import Swal from 'sweetalert2';
 
 const SkillUpdateModal = ({ setIsOpen, formData, setFormData, refetch, isOpen, id }) => {
   const [skillList, setSkillList] = useState([]);
+  const   value=Array.isArray(formData.skill_name) ? formData.skill_name.join(', ') : ''
+  console.log(value)
   const { user } = useSelector((state) => state.auth)
   const axiosPublic = UseAxios()
   useEffect(() => {
@@ -29,10 +31,34 @@ const SkillUpdateModal = ({ setIsOpen, formData, setFormData, refetch, isOpen, i
     setFormData({ ...formData, [name]: value })
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === ' ') {
+        e.preventDefault()
+    }
+}
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    let skill = [];
 
+    if (typeof formData.skill_name === 'string') {
+      // If it's a string, split it into an array
+      skill = formData.skill_name
+        .split(',')
+        .map(word => word.trim())
+        .filter(word => word !== '')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+        formData.skill_name=skill
+    } else if (Array.isArray(formData.skill_name)) {
+      // If it's already an array, just clean it
+      skill = formData.skill_name
+        .map(word => word.trim())
+        .filter(word => word !== '')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+        formData.skill_name=skill
+
+    };
 
     try {
       const res = await axiosPublic.put(`/update-skill/${user?.email}/${id}`, formData)
@@ -86,18 +112,13 @@ const SkillUpdateModal = ({ setIsOpen, formData, setFormData, refetch, isOpen, i
                 <form onSubmit={handleSubmit} className="mt-4 space-y-4">
                   <div>
                     <label className="block text-sm font-medium">Skill Name</label>
-                    <select
-                      name="skill_name"
-                      value={formData?.skill_name}
-                      onChange={handleChange}
-                      className="w-full mt-1 px-3 py-2 border rounded-md"
-                    >
-                      {skillList.map((skill, id) => (
-                        <option key={id} value={skill}>
-                          {skill}
-                        </option>
-                      ))}
-                    </select>
+                    <input onKeyDown={handleKeyDown} type="text"
+                    onChange={handleChange}
+                   defaultValue={Array.isArray(formData.skill_name) ? formData.skill_name.join(', ') : ''}
+                    name="skill_name" id="" 
+         placeholder="Enter your skill(use comma)"
+         className="w-full mt-1 px-3 py-2 border rounded-md"/>
+              
                   </div>
 
                   <div>
