@@ -22,7 +22,7 @@
     "firebase": "^11.4.0",
     "flowbit": "^0.1.0",
     "flowbite": "^3.1.2",
-    "framer-motion": "^12.5.0",
+    "framer-motion": "^12.9.2",
     "lucide-react": "^0.488.0",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",

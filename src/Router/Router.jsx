@@ -34,6 +34,7 @@ import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
 import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
 import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
 import PrivateRoute from "./PrivateRoute";
+import ErrorPage from "../page/Error/ErrorPage";
 
 
 
@@ -80,7 +81,9 @@ useEffect(()=>{
                    <Route path="/candidate-profile/important-link" element={<ImportantLinkSeeker/>}/>
                    <Route path="/candidate-profile/skill-set" element={<SkillSeeker/>}/>
                    </Route>
+                
                 </Route>
+                
 
                 {/* dashboard route */}
 
@@ -105,6 +108,8 @@ useEffect(()=>{
                     <Route path="/dashboard/myReview" element={<MyReview></MyReview>}></Route>
                     <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
                 </Route>
+                      {/* 🚨 Add the 404 Page Route (Catch-all) */}
+        <Route path="*" element={<ErrorPage />} />
             </Routes>
         </div>
     );

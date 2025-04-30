@@ -77,13 +77,7 @@ const SkillForm = ({setVisible,refetch}) => {
         <input onKeyDown={handleKeyDown} type="text" name="skill_name" id="" 
          placeholder="Enter your skill(use comma)"
         className="w-full bg-gray-800 rounded-md p-2"/>
-        {/* <select name="skill_name" className="w-full bg-gray-800   rounded-md p-2">
-        {skillList.map((skill,id) => (
-            <option  key={id} value={skill}>
-              {skill}
-            </option>
-          ))}
-        </select> */}
+     
       </div>
       {/* experience */}
       <div>
