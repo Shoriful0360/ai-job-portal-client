@@ -23,11 +23,22 @@ const SkillForm = ({setVisible,refetch}) => {
         fetchSkills();
       }, [axiosPublic]);
     
+      const handleKeyDown = (e) => {
+        if (e.key === ' ') {
+            e.preventDefault()
+        }
+    }
 
+    // const array = keySkill.split(',')
+    // const skill = array.map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      
       const handleSubmit =async (e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
           const data = Object.fromEntries(formData.entries());
+        const skill= data?.skill_name.split(',').map(word=>word.trim()).filter(word=>word !=="").map(word=>word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        data.skill_name=skill
+
           try{
             await axiosPublic.post(`/add-skill/${user?.email}`,data)
         Swal.fire({
@@ -63,13 +74,16 @@ const SkillForm = ({setVisible,refetch}) => {
       {/* skill name*/}
       <div>
         <label className="block mb-2 font-medium">Skill Name</label>
-        <select name="skill_name" className="w-full bg-gray-800   rounded-md p-2">
+        <input onKeyDown={handleKeyDown} type="text" name="skill_name" id="" 
+         placeholder="Enter your skill(use comma)"
+        className="w-full bg-gray-800 rounded-md p-2"/>
+        {/* <select name="skill_name" className="w-full bg-gray-800   rounded-md p-2">
         {skillList.map((skill,id) => (
             <option  key={id} value={skill}>
               {skill}
             </option>
           ))}
-        </select>
+        </select> */}
       </div>
       {/* experience */}
       <div>
