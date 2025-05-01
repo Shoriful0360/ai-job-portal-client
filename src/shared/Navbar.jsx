@@ -5,7 +5,9 @@ import pic from '../../public/Photo/icons8-permanent-job-96.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../Redux/authSlice';
 import ReviewModal from '../component/Modal/ReviewModal';
+import useRole from '../Utility/useRole';
 const Navbar = () => {
+  const { role, isLoading } = useRole()
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth || { user: null })
   const [isOpen, setIsOpen] = useState(false)
@@ -27,10 +29,13 @@ const Navbar = () => {
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
+    {
+      role?.role === 'Job Seeker' &&
+      <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
+        <NavLink to="/suggestJob">Suggest Job</NavLink>
+      </li>
+    }
 
-    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
-      <NavLink to="/suggestJob">Suggest Job</NavLink>
-    </li>
   </>
   // const { user, logout } = useContext(AuthContext)
 
@@ -49,7 +54,7 @@ const Navbar = () => {
         </div>
         <button className='flex items-center sm:gap-2'>
           <img className='w-8 sm:w-10' src={pic} alt="" />
-          <Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600 hidden sm:block to-blue-900 bg-clip-text ">
+          <Link className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-4xl sm:font-extrabold bg-gradient-to-r from-blue-600  to-blue-900 bg-clip-text ">
             <i>JobVision AI</i>
           </Link>
         </button>
@@ -65,6 +70,13 @@ const Navbar = () => {
         {
           user ?
             <span className='flex justify-center items-center'>
+              {
+                role?.role === 'Employer' &&
+                <p className='p-2 hidden sm:inline py-1 rounded-xl mr-2 bg-gradient-to-r text-sm font-bold from-blue-400 to-blue-950 text-white'>
+                  <Link to='/dashboard/addJob'>Add Job</Link>
+                </p>
+              }
+             
               <div className="dropdown dropdown-end justify-center items-center">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 hidden sm:block rounded-full ">

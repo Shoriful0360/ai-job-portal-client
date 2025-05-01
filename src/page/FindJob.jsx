@@ -25,13 +25,13 @@ const FindJob = () => {
     const allVerifiedJob = verifiedJobs.sort((first, second) => new Date(second.jobPostTime) - new Date(first.jobPostTime))
 
     return (
-        <div className="sm:my-10 mx-10">
+        <div className={allVerifiedJob.length < 12?"min-h-screen sm:px-10 px-4":"sm:px-10 px-4" } >
             <div className="sm:my-10">
                 <h3 className='text-3xl font-bold text-center my-3'>
-                Explore All Job Opportunities
+                    Explore All Job Opportunities
                 </h3>
                 <p className='text-sm font-bold text-center my-3 text-gray-600 px-6'>
-                Explore all available job listings in one place! From tech to teaching, startups to enterprises — we’ve got something for everyone. <br className="hidden sm:inline" /> Start scrolling, find your fit, and apply with confidence.
+                    Explore all available job listings in one place! From tech to teaching, startups to enterprises — we’ve got something for everyone. <br className="hidden sm:inline" /> Start scrolling, find your fit, and apply with confidence.
                 </p>
             </div>
             <div className="flex items-center gap-2 justify-center  my-7">
@@ -86,7 +86,7 @@ const FindJob = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 mb-10">
                 {
-                    allVerifiedJob.map((job,index) => <JobCard index={index} key={job._id} job={job}></JobCard>)
+                    allVerifiedJob.map((job, index) => <JobCard index={index} key={job._id} job={job}></JobCard>)
                 }
             </div>
         </div>

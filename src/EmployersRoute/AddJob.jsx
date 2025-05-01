@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 const AddJob = () => {
     const { user } = useContext(AuthContext)
-    console.log(user)
     const axiosSecure = UseAxios()
 
     const handleKeyDown = (e) => {

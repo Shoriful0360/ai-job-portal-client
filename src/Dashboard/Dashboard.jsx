@@ -37,7 +37,6 @@ const Dashboard = () => {
                             {
 
                                 role?.role === "Admin" && <div>
-                                     <li><NavLink className='text-sm font-bold' to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageJob'>Manage Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageUsers'>Manage Users</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/manageReview'>Manage Review</NavLink></li>
@@ -50,11 +49,8 @@ const Dashboard = () => {
                             {
                                 role?.role === 'Employer' &&
                                 <div>
-
-                                    <li><NavLink className='text-sm font-bold' to='/dashboard/employerProfile'>Employer Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/addJob'>Add Job</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myAddJob'>My Add Job</NavLink></li>
-                            <li><NavLink className='text-sm font-bold' to='/dashboard/CandidatesRequest'>Candidates Request</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/hiredCandidates'>Hired Candidates</NavLink></li>
                                 </div>
                             }
@@ -62,10 +58,8 @@ const Dashboard = () => {
                             {
                                 role?.role === 'Job Seeker' &&
                                 <div>
-                                    <li><NavLink className='text-sm font-bold' to='/dashboard/myProfile'>My Profile</NavLink></li>
                             <li><NavLink className='text-sm font-bold' to='/dashboard/myAppliedJob'>My Applied Job</NavLink></li>
-                            <li><NavLink className='text-sm font-bold' to='/dashboard/myWishlist'>My WishList</NavLink></li>
-                            <li><NavLink className='text-sm font-bold' to='/dashboard/myReview'>My Review</NavLink></li>
+                            <li><NavLink className='text-sm font-bold' to='/dashboard/myWishlist'>My WishList</NavLink></li>                          
                                 </div>
                             }
 

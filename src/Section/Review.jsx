@@ -24,7 +24,7 @@ const Review = () => {
             }
         })
     const allVerifiedReview = verifiedReview.sort((first, second) => new Date(second.reviewTime) - new Date(first.reviewTime))
-    console.log(allVerifiedReview)
+    console.log(verifiedReview)
     if (isLoading) return <LoadingSpinner />
 
     return (

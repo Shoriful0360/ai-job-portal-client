@@ -38,7 +38,7 @@ const HiredCandidates = () => {
                                 <td className="text-sm font-bold text-gray-600">{myAllHiredCandidate.jobSeekerName}</td>
                                 <td className="text-sm font-bold text-gray-600">{myAllHiredCandidate.jobSeekerEmail}</td>
                                 <td className="text-sm font-bold text-green-600">{myAllHiredCandidate.status}</td>
-                                <td><Link  className="px-2 py-1 rounded-2xl text-sm font-bold text-gray-800 bg-blue-300">Profile</Link></td>
+                                <td><Link to='/dashboard/hiredCandidates/hiredCandidateDetails' className="px-2 py-1 rounded-2xl text-sm font-bold text-gray-800 bg-blue-300">Profile</Link></td>
 
                             </tr>)
                     }

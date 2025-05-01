@@ -15,9 +15,13 @@ const EmployerCard = ({ employer, index }) => {
                 <div className="">
                     <p className="text-sm sm:text-2xl font-bold text-gray-700 ">{employer.companyName}</p>
                     <div className="sm:flex items-center gap-9 my-2 justify-between sm:mt-8">
-                        {employer?.presentAddress?.country &&
-                            <p className="text-xs sm:text-lg font-semibold text-gray-700 flex gap-2 items-center"><span><FaLocationDot /></span>{employer?.presentAddress?.country}</p>}
-                        <p className="text-xs sm:text-lg font-semibold text-gray-700 flex gap-2 items-center"><span><MdCategory /></span>company_type</p>
+                        {employer?.presentAddress?.country && employer?.presentAddress?.district &&
+                            <p className="text-xs sm:text-lg font-semibold text-gray-700 flex gap-2 items-center"><span><FaLocationDot /></span>{employer?.presentAddress?.district},{employer?.presentAddress?.country}</p>}
+                            {
+                                employer?.additionalInfo?.company_type &&
+                                <p className="text-xs sm:text-lg font-semibold text-gray-700 flex gap-2 items-center"><span><MdCategory /></span>{employer?.additionalInfo?.company_type}</p>
+                            }
+                       
                     </div>
                 </div>
             </div>

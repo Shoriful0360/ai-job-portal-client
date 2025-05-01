@@ -90,8 +90,8 @@ const ContactUs = () => {
                 </div>
                 <div className="collapse collapse-plus my-4 bg-base-100 border border-base-300">
                     <input type="radio" name="my-accordion-3" />
-                    <div className="collapse-title text-lg font-extrabold">📄 Resume & Job Posting Builder</div>
-                    <div className="collapse-content text-sm font-bold text-gray-600">Use our smart resume generator to create professional CVs and craft engaging job postings for recruiters.</div>
+                    <div className="collapse-title text-lg font-extrabold">📄 Job Posting Builder</div>
+                    <div className="collapse-content text-sm font-bold text-gray-600">craft engaging job postings for recruiters.</div>
                 </div>
                 <div className="collapse collapse-plus my-4 bg-base-100 border border-base-300">
                     <input type="radio" name="my-accordion-3" />

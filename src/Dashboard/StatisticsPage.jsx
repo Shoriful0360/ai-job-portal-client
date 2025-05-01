@@ -126,19 +126,19 @@ const StatisticsPage = () => {
   return (
     <div className="p-6 space-y-10">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center">
-        <Card><CardContent><h4>👀 Profile Viewed</h4><p className="text-2xl font-bold">125+</p></CardContent></Card>
-        <Card><CardContent><h4>📤 Applications Sent</h4><p className="text-2xl font-bold">500+</p></CardContent></Card>
-        <Card><CardContent><h4>📬 Applications Answered</h4><p className="text-2xl font-bold">234+</p></CardContent></Card>
-        <Card><CardContent><h4>🤝 Interviewed</h4><p className="text-2xl font-bold">329+</p></CardContent></Card>
-        <Card><CardContent><h4>✅ Hired</h4><p className="text-2xl font-bold">200+</p></CardContent></Card>
-        <Card><CardContent><h4>📋 Total Jobs</h4><p className="text-2xl font-bold">2500+</p></CardContent></Card>
-        <Card><CardContent><h4>🏢 Total Companies</h4><p className="text-2xl font-bold">1500+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">👀 Profile Viewed</h4><p className="text-2xl font-bold">125+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">📤 Applications Sent</h4><p className="text-2xl font-bold">500+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">📬 Applications Answered</h4><p className="text-2xl font-bold">234+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">🤝 Interviewed</h4><p className="text-2xl font-bold">329+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">✅ Hired</h4><p className="text-2xl font-bold">200+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">📋 Total Jobs</h4><p className="text-2xl font-bold">2500+</p></CardContent></Card>
+        <Card><CardContent  className='bg-white'><h4 className="font-bold text-gray-600">🏢 Total Companies</h4><p className="text-2xl font-bold">1500+</p></CardContent></Card>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
-          <CardContent>
-            <h4 className="text-center text-lg font-semibold mb-4">Users</h4>
+          <CardContent  className='bg-white'>
+            <h4  className="font-bold text-gray-600 text-center text-lg mb-4">Users</h4>
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie dataKey="value" data={userRoleData} cx="50%" cy="50%" outerRadius={80} label>
@@ -153,8 +153,8 @@ const StatisticsPage = () => {
         </Card>
 
         <Card>
-          <CardContent>
-            <h4 className="text-center text-lg font-semibold mb-4">Job Categories</h4>
+          <CardContent  className='bg-white'>
+            <h4  className="font-bold text-gray-600 text-center text-lg mb-4">Job Categories</h4>
             <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie dataKey="value" data={jobCategoryData} cx="50%" cy="50%" outerRadius={80} label>
@@ -171,8 +171,8 @@ const StatisticsPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
-          <CardContent>
-            <h4 className="text-center text-lg font-semibold mb-4">Network Summary</h4>
+          <CardContent  className='bg-white'>
+            <h4  className="font-bold text-gray-600 text-center text-lg mb-4">Network Summary</h4>
             <ResponsiveContainer width="100%" height={250}>
               <BarChart data={networkSummary}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -186,8 +186,8 @@ const StatisticsPage = () => {
         </Card>
 
         <Card>
-          <CardContent>
-            <h4 className="text-center text-lg font-semibold mb-4">Vacancy Status</h4>
+          <CardContent  className='bg-white'>
+            <h4  className="font-bold text-gray-600 text-center text-lg mb-4">Vacancy Status</h4>
             <ResponsiveContainer width="100%" height={250}>
               <LineChart data={vacancyStatusData}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -203,8 +203,8 @@ const StatisticsPage = () => {
       </div>
 
       <Card>
-        <CardContent>
-          <h4 className="text-center text-lg font-semibold mb-4">User Signups Over Time</h4>
+        <CardContent  className='bg-white'>
+          <h4  className="font-bold text-gray-600 text-center text-lg mb-4">User Signups Over Time</h4>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={monthlyUserSignupData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -218,8 +218,8 @@ const StatisticsPage = () => {
       </Card>
 
       <Card>
-        <CardContent>
-          <h4 className="text-center text-lg font-semibold mb-4">Job Post Growth</h4>
+        <CardContent  className='bg-white'>
+          <h4  className="font-bold text-gray-600 text-center text-lg mb-4">Job Post Growth</h4>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={jobPostGrowthData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -235,7 +235,7 @@ const StatisticsPage = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {jobTrends.map((trend, index) => (
           <Card key={index}>
-            <CardContent className="text-center">
+            <CardContent  className='bg-white text-center' >
               <h5 className="font-semibold mb-2">{trend.role}</h5>
               <ResponsiveContainer width="100%" height={150}>
                 <PieChart>
