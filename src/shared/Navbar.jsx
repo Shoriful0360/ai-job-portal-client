@@ -25,7 +25,9 @@ const Navbar = () => {
   </svg>
   ChatBot
 </NavLink> */}
- 
+ <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
+      <NavLink to='/resume'>Resume</NavLink>
+  </li>
 
 
     
