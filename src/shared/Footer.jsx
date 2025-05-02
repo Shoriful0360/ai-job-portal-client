@@ -2,7 +2,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer  sm:footer-horizontal bg-[#e6dbd2]  px-7 sm:px-24 py-16">
+        <footer className="footer sm:footer-horizontal bg-[#e6dbd2]  px-7 sm:px-24 py-16">
             <aside>
                 <img src={pic} alt="" />
                 <p className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-3xl sm:font-extrabold bg-[#68584c] bg-clip-text text-transparent">
