@@ -24,7 +24,7 @@ const LatestJobs = () => {
         }
       </div>
       <div className="flex justify-center mt-10 ">
-        <Link to='/findJobs' className="uppercase btn bg-gradient-to-r from-blue-400 to-blue-950 text-white">Browse All Job</Link >
+        <Link to='/findJobs' className="uppercase btn bg-gradient-to-r from-[#A59488] to-[#BFB6A8] text-gray-900 font-bold  hover:text-gray-600">Browse All Job</Link >
       </div>
     </>
   );

@@ -99,15 +99,15 @@ const LeftSide = ({ detailsJob, refetch}) => {
                 className="w-28 h-28 group-hover:scale-105 transition-all group-hover:duration-700 rounded-full" />
             </figure>
             <div className="card-body items-center text-center">
-              <h2 className="card-title">{title}</h2>
-              <p>{category}</p>
+              <h2 className="card-title font-extrabold">{title}</h2>
+              <p className="font-bold">{category}</p>
               <div className="card-actions mt-4">
 
-                <button onClick={open} className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]">
+                <button onClick={open} className="btn flex justify-between items-center border-gray-200 text-gray-800 font-bold hover:bg-[#8a7a6e] bg-[#cfc8bd] hover:text-white border-2 text-[#26AE61 ]">
                   <span className="text-lg font-bold"><VscGitStashApply /></span>APPLY NOW
                 </button>
                 <button onClick={handleSave}>
-                  <Link className="btn flex justify-between items-center border-blue-500 text-blue-600 font-bold hover:bg-blue-700 bg-blue-100 hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>SAVE JOB</Link>
+                  <Link className="btn flex justify-between items-center  border-gray-200 text-gray-800 font-bold hover:bg-[#8a7a6e] bg-[#cfc8bd] hover:text-white border-2 text-[#26AE61 ]"><span className="text-lg font-bold"><IoSave /></span>SAVE JOB</Link>
                 </button>
               </div>
             </div>
@@ -129,15 +129,15 @@ const LeftSide = ({ detailsJob, refetch}) => {
           </p>
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
             <BsCreditCard2Back />
-            <span className="text-[#26AE61] bg-[#E4F6EA] py-0.5 px-1 rounded-md">{jobType}</span>
+            <span className=" text-[#707f8c]  py-0.5 px-1 rounded-md">{jobType}</span>
           </p>
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
             <GiDuration />
-            <span className="text-[#26AE61] bg-[#E4F6EA] py-0.5 px-1 rounded-md">{jobTime}</span>
+            <span className=" text-[#707f8c]  py-0.5 px-1 rounded-md">{jobTime}</span>
           </p>
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
             <MdOutlineAccessTimeFilled />
-            <span className="text-red-600"> {deadline}</span>
+            <span className=" text-[#707f8c]"> {deadline}</span>
           </p>
           <p className="font-bold flex items-center gap-2 text-[#707f8c]">
             <IoShieldCheckmarkOutline />

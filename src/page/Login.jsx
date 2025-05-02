@@ -73,8 +73,8 @@ const Login = () => {
 
     }
     return (
-        <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
-            <div className=" mx-auto card  w-full max-w-sm shrink-0 backdrop-blur-md backdrop-brightness-125 "
+        <div className="py-9 mx-4 sm:mx-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
+            <div className=" mx-auto card w-72 sm:w-full max-w-sm shrink-0 backdrop-blur-md backdrop-brightness-125 "
             >
                 <div className="card-body ">
                     <form onSubmit={handleSubmit}>

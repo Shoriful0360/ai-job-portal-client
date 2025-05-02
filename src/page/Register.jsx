@@ -111,8 +111,8 @@ const Register = () => {
 
     }
     return (
-        <div className="py-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
-            <div className="my-12 mx-auto card backdrop-blur-md backdrop-brightness-125 w-full max-w-sm shrink-0 shadow-2xl ">
+        <div className="py-9 mx-4 sm:mx-9 bg-cover" style={{ backgroundImage: `url(${pic})` }}>
+            <div className="my-12 mx-auto card backdrop-blur-md backdrop-brightness-125 w-72 sm:w-full max-w-sm shrink-0 shadow-2xl ">
                 <div className="card-body ">
                     <form onSubmit={handleSubmit}>
                         <fieldset className="fieldset">

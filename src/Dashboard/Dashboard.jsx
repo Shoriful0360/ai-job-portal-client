@@ -16,21 +16,21 @@ const Dashboard = () => {
 
 
     return (
-        <div className="">
+        <div className="bg-orange-50">
 
-            <div className="flex justify-between px-8 py-5 ">
+            <div className="flex justify-between px-4 md:px-10 lg:px-20 py-5 ">
                 <div className="drawer drawer-end z-50">
                     <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                     <div className="flex items-center gap-5">
                         <div className="drawer-content">
                             {/* Page content here */}
-                            <label htmlFor="my-drawer-4" className="btn font-bold text-2xl"><TiThMenuOutline /></label>
+                            <label htmlFor="my-drawer-4" className="btn font-bold bg-[#EDE8E0] text-2xl"><TiThMenuOutline /></label>
                         </div>
                         <div><Link to='/' className="text-lg font-bold p-0 m-0 md:text-2xl lg:text-4xl sm:font-extrabold">JobVision AI</Link></div>
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-                        <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                        <ul className="menu bg-[#EDE8E0] text-base-content min-h-full w-80 p-4 ">
                             {/* Sidebar content here */}
                             {/* Admin Route */}
 
@@ -97,7 +97,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="mx-8">
+            <div className="md:mx-10 lg:mx-20">
                 <Outlet></Outlet>
             </div>
         </div>

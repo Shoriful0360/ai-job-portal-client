@@ -20,18 +20,18 @@ const Navbar = () => {
   }
   // const{user}=useContext(AuthContext)
   const link = <>
-    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
+    <li className='text-sm bg-gray-900 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/'>Home</NavLink>
     </li>
-    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
+    <li className='text-sm bg-gray-900 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/findJobs'>FindJobs</NavLink>
     </li>
-    <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
+    <li className='text-sm bg-gray-900 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
     {
       role?.role === 'Job Seeker' &&
-      <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
+      <li className='text-sm bg-gray-900 bg-clip-text text-transparent font-bold  px-4 py-2'>
         <NavLink to="/suggestJob">Suggest Job</NavLink>
       </li>
     }
@@ -40,7 +40,7 @@ const Navbar = () => {
   // const { user, logout } = useContext(AuthContext)
 
   return (
-    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50 px-4 sm:px-10">
+    <div className="navbar fixed backdrop-brightness-100 backdrop-blur-3xl z-50 px-4 sm:px-24">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="sm:btn sm:btn-ghost lg:hidden sm:bg-gray-300">
@@ -72,7 +72,7 @@ const Navbar = () => {
             <span className='flex justify-center items-center'>
               {
                 role?.role === 'Employer' &&
-                <p className='p-2 hidden sm:inline py-1 rounded-xl mr-2 bg-gradient-to-r text-sm font-bold from-blue-400 to-blue-950 text-white'>
+                <p className='p-2 hidden sm:inline py-1 rounded-xl mr-2 bg-gradient-to-r text-sm font-bold from-[#A59488] to-[#BFB6A8] text-gray-900 hover:text-white'>
                   <Link to='/dashboard/addJob'>Add Job</Link>
                 </p>
               }
@@ -89,7 +89,7 @@ const Navbar = () => {
                 </div>
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] pt3 w-52 p-2 shadow">
+                  className="menu menu-sm dropdown-content bg-amber-50 rounded-box z-[1] pt3 w-52 p-2 shadow">
                   <li className='text-sm  text-gray-700 font-bold'><Link to={'/candidate-profile'}>Profile</Link></li>
                   <li className='text-sm  text-gray-700 font-bold'><Link to="/dashboard">Dashboard</Link></li>
                   <li onClick={open} className='text-sm  text-gray-700 font-bold'><Link>Review</Link></li>

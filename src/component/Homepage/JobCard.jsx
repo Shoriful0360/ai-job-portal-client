@@ -16,10 +16,10 @@ const JobCard = ({ job,index }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.6, delay: index * 0.2 }}
-        className="card group bg-gray-200 p-3 h-full border-gray-200 border border-spacing-0.5 shadow-lg border-b-fuchsia-200">
+        className="card group bg-[#EDE8E0] p-3 h-full border-gray-200 border border-spacing-0.5 shadow-lg border-b-fuchsia-200">
         <div className='flex justify-between items-center '>
           <img className='w-20 h-20 border-2 border-gray-400 rounded-xl' referrerPolicy='noreferrer' src={job?.image} alt="" />
-          <p className='  mb-12 rounded-xl px-2 py-1 bg-blue-100 text-sm font-bold text-blue-500'><i>{job?.jobType}</i></p>
+          <p className='  mb-12 rounded-xl px-2 py-1 bg-[#dad5cc] text-sm font-bold text-[#928073]'><i>{job?.jobType}</i></p>
         </div>
         <p className='text-xl font-bold my-4'>{job?.title}</p>
         <div className='flex justify-between items-center mt-auto'>

@@ -12,10 +12,6 @@ const JobBanner = () => {
       <div className="hero-content text-neutral-content text-center">
         <div className="max-w-md">
           <h1 className="mb-5 text-5xl font-bold">Job Details</h1>
-
-          <Link to={'/'}>
-            <button className="btn btn-primary">Home</button>
-          </Link>
         </div>
       </div>
     </div>

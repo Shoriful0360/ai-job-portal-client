@@ -11,13 +11,13 @@ const Category = () => {
     }, [])
 
     return (
-        <div className="mt-10 md:mx-10 mx-4 py-10">
+        <div className="mt-10 md:px-10 px-4 py-10 bg-orange-50">
             <div className="text-center max-w-2xl mx-auto space-y-3">
                 <h1 className="text-3xl font-bold ">Job Category</h1>
                 <p>Here are some well-structured descriptions for different job categories in your AI job portal. You can use them directly or modify them as needed.</p>
             </div>
             {/* map category card */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-10">
                 {
                     categoryJob?.map((item,index) => <CategoryCard index={index} key={item.id} item={item} />)
                 }

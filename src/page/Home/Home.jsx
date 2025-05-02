@@ -9,9 +9,9 @@ const Home = () => {
     return (
         <>
             <header>
-            <Navbar/>
+                <Navbar />
             </header>
-            <main className="min-h-[calc(100vh-300px)] pt-20">
+            <main className="min-h-[calc(100vh-300px)] pt-20 bg-orange-50 sm:px-16">
                 <Outlet></Outlet>
             </main>
             <footer>

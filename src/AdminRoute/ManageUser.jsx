@@ -67,7 +67,7 @@ const ManageUser = () => {
             <div className="overflow-x-auto">
                 <table className="table-auto w-full border">
                     <thead>
-                        <tr className="bg-gray-200">
+                        <tr className="bg-[#e5dad1] text-[#77685c]">
                             <th className="border px-4 py-2">#</th>
                             <th className="border px-4 py-2">Name</th>
                             <th className="border px-4 py-2">Email</th>
@@ -77,11 +77,11 @@ const ManageUser = () => {
                     </thead>
                     <tbody>
                         {users.map((user, index) => (
-                            <tr key={user._id}>
-                                <td className="border px-4 py-2">{index + 1}</td>
-                                <td className="border px-4 py-2">{user.name}</td>
-                                <td className="border px-4 py-2">{user.email}</td>
-                                <td className="border px-4 py-2">
+                            <tr className='bg-[#EDE8E0]' key={user._id}>
+                                <td className="border px-4 py-2 font-bold text-gray-700">{index + 1}</td>
+                                <td className="border px-4 py-2 font-bold text-gray-700">{user.name}</td>
+                                <td className="border px-4 py-2 font-bold text-gray-700">{user.email}</td>
+                                <td className="border px-4 py-2 font-bold text-gray-700">
                                     <select
                                         value={user.role}
                                         onChange={(e) => handleRoleChange(user._id, e.target.value)}
@@ -95,7 +95,7 @@ const ManageUser = () => {
                                 <td className="border px-4 py-2 text-center">
                                     <button
                                         onClick={() => handleDeleteUser(user._id)}
-                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                        className="bg-[#857569] text-white px-3 py-1 rounded font-bold  hover:text-black hover:bg-[#dad2c5]"
                                     >
                                         Delete
                                     </button>

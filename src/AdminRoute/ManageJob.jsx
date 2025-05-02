@@ -81,24 +81,24 @@ const ManageJob = () => {
                 </p>
             </div>
 
-            <div className="overflow-x-auto ">
-                <table className="table">
+            <div className="overflow-x-auto  pb-10">
+                <table className="table  ">
                     {/* head */}
                     <thead>
-                        <tr className="text-blue-500">
+                        <tr className="text-[#857569]">
                             <th>Name</th>
                             <th>Email</th>
                             <th>Title</th>
                             <th>Division</th>
                             <th> Price/Value </th>
-                            <th></th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
                             allPendingJob.slice(0,51).map(pendingJob =>
-                                <tr className="bg-base-200" key={pendingJob._id}>
+                                <tr className="bg-[#EDE8E0]" key={pendingJob._id}>
                                     <th className="text-sm font-bold text-gray-600">{pendingJob.name}</th>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.email}</td>
                                     <td className="text-sm font-bold text-gray-600">{pendingJob.title}</td>
@@ -108,21 +108,21 @@ const ManageJob = () => {
                                         {
                                             pendingJob.status === 'pending' &&
                                             <span>
-                                                <button onClick={() => handleReject(pendingJob._id)} className="sm:p-2 p-1 text-white m-1 bg-red-600 rounded-full"><FaDeleteLeft /></button>
-                                                <button onClick={() => handleVerify(pendingJob._id)} className="sm:p-2 p-1 text-white m-1 bg-blue-600 rounded-full "><SiVerizon /></button>
+                                                <button onClick={() => handleReject(pendingJob._id)} className="sm:p-2 p-1 font-bold  text-white m-1 bg-[#857569] rounded-full"><FaDeleteLeft /></button>
+                                                <button onClick={() => handleVerify(pendingJob._id)} className="sm:p-2 p-1 font-bold text-white m-1 bg-[#857569] rounded-full "><SiVerizon /></button>
                                             </span>
 
                                         }
                                         {
                                             pendingJob.status === 'verified' &&
-                                            <span className="text-green-500">
+                                            <span className="font-bold text-[#857569]">
                                                 Verified
                                             </span>
 
                                         }
                                         {
                                             pendingJob.status === 'rejected' &&
-                                            <span className="text-red-700">
+                                            <span className="font-bold text-[#857569]">
                                                 Rejected
                                             </span>
 

@@ -78,7 +78,7 @@ const ManageReview = () => {
     }
     return (
         <div>
-            <div className="sm:my-10">
+            <div className="sm:my-10 ">
                 <h3 className='text-3xl font-bold text-center my-3'>
                     Manage User Reviews
                 </h3>
@@ -87,15 +87,15 @@ const ManageReview = () => {
                     <br className="hidden sm:inline" /> maintain a trustworthy platform experience.
                 </p>
             </div>
-            <div className=" sm:grid lg:grid-cols-4 md:grid-cols-2 gap-6  my-10">
+            <div className=" sm:grid lg:grid-cols-4 md:grid-cols-2 gap-6 mx-4 sm:mx-0 my-10">
                 {
                     reviews.map(review =>
-                        <div key={review._id} className="relative py-16 h-full" >
-                            <img className=" absolute rounded-full border-4 w-28 h-28 bg-white object-cover  border-white top-4 left-32 " src={review.image} alt="" />
-                            <div className="bg-gray-300 rounded-xl py-12 text-gray-700 px-6 h-full">
+                        <div key={review._id} className="relative py-16 h-full " >
+                            <img className=" absolute rounded-full border-4 w-28 h-28 bg-[#EDE8E0] object-cover  border-white top-4 left-36  sm:left-28 " src={review.image} alt="" />
+                            <div className="bg-[#EDE8E0] rounded-xl py-12 text-gray-700 px-6 h-full">
                                 <p className="text-5xl "><RiDoubleQuotesL /></p>
                                 <p className="text-sm font-bold text-center">{review.review}</p>
-                                <p className="text-5xl ml-64"><RiDoubleQuotesR /></p>
+                                <p className="text-5xl ml-72 sm:ml-56"><RiDoubleQuotesR /></p>
                                 <p className="text-lg font-bold text-center  text-black">{review.name}</p>
                                 <p className="text-sm font-bold text-center mb-5 text-black">{review.profession}</p>
                                 {
@@ -112,8 +112,8 @@ const ManageReview = () => {
                                                     review.email,
                                                     review.reviewTime
                                                 )}
-                                            className="text-sm font-bold text-black px-3 py-1 bg-green-200 border-2 border-green-600 rounded-lg hover:text-white hover:bg-green-600  hover:border-white">Accept</button>
-                                        <button onClick={() => handleReject(review._id)} className="text-sm font-bold text-black px-3 py-1 bg-red-200 border-2 border-red-600 rounded-lg hover:text-white hover:bg-red-600  hover:border-white">Reject</button>
+                                            className="text-sm font-bold text-black px-3 py-1 bg-[#a29488] border-2 border-gray-200 rounded-lg hover:text-white hover:border-white">Accept</button>
+                                        <button onClick={() => handleReject(review._id)} className="text-sm font-bold text-black px-3 py-1 bg-[#a29488] border-2 border-gray-200 rounded-lg hover:text-white hover:border-white">Reject</button>
                                     </div>
                                 }
                             </div>

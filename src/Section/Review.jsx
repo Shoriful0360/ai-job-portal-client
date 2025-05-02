@@ -77,11 +77,11 @@ const Review = () => {
                     {allVerifiedReview.map((slideContent, index) => (
                         <SwiperSlide key={slideContent._id} virtualIndex={index}>
                             <div className="relative py-16 h-full" >
-                                <img className=" absolute rounded-full border-4 border-white top-4 w-28 h-28 bg-white left-36 md:left-28 lg:left-44" src={slideContent.image} alt="" />
-                                <div className="bg-gray-300 rounded-xl py-12 text-gray-700 px-6 h-full">
+                                <img className=" absolute rounded-full border-4 border-white top-4 w-28 h-28 bg-white left-36 md:left-20 lg:left-40" src={slideContent.image} alt="" />
+                                <div className="bg-[#EDE8E0] border border-gray-200 rounded-xl py-12 text-gray-700 px-6 h-full">
                                     <p className="text-5xl "><RiDoubleQuotesL /></p>
                                     <p className="text-sm font-bold text-center">{slideContent.review}</p>
-                                    <p className="text-5xl  ml-[290px] md:ml-[235px]  lg:ml-[335px]"><RiDoubleQuotesR /></p>
+                                    <p className="text-5xl  ml-[290px] md:ml-[170px]  lg:ml-[335px]"><RiDoubleQuotesR /></p>
                                     <p className="text-lg font-bold text-center  text-black">{slideContent.name}</p>
                                     <p className="text-sm font-bold text-center mb-5 text-black">{slideContent.profession}</p>
                                 </div>

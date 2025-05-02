@@ -26,7 +26,7 @@ const Employers = () => {
                     Easily manage and view all the job listings your company has posted. Keep track of active openings, <br className=" hidden sm:inline" />update job details, and monitor applicant interest — all in one place.
                 </p>
             </div>
-            <div>
+            <div className="pb-16 pt-2">
                 {
                     allEmployers.map((employer,index) => <EmployerCard index-={index} key={employer.email} employer={employer}></EmployerCard>)
                 }

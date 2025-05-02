@@ -9,7 +9,7 @@ const DashBoardHome = () => {
         <div className="">
            
             <a href="https://git.io/typing-svg">
-                    <img className="my-8 " src={`https://readme-typing-svg.herokuapp.com/?lines=Hello+${user?.displayName}....;Welcome+to+you!&center=true&size=30`} alt="" />
+                    <img className="my-8" src={`https://readme-typing-svg.herokuapp.com/?lines=Hello+${user?.displayName}....;Welcome+to+you!&center=true&size=30`} alt="" />
                 </a>
                 <StatisticsPage></StatisticsPage>
         </div>

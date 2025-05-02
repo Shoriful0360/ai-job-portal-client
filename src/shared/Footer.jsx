@@ -2,10 +2,10 @@
 
 const Footer = () => {
     return (
-        <footer className="footer sm:footer-horizontal bg-gray-200 p-10">
+        <footer className="footer  sm:footer-horizontal bg-[#e6dbd2]  px-7 sm:px-24 py-16">
             <aside>
                 <img src={pic} alt="" />
-                <p className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-3xl sm:font-extrabold bg-gradient-to-r from-blue-600 to-blue-900 bg-clip-text text-transparent">
+                <p className="text-lg font-bold p-0 m-0 md:text-2xl  lg:text-3xl sm:font-extrabold bg-[#68584c] bg-clip-text text-transparent">
                   <i> JobVision AI.com</i>
                 </p>
             </aside>

@@ -69,16 +69,16 @@ const ApplyModal = ({ isOpen, close, detailsJob, refetch, handlefileChange, file
     }
   }
   return (
-    <div>
-      <Dialog open={isOpen} as="div" className=" relative z-50 focus:outline-none" onClose={close}>
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex  min-h-full items-center justify-center p-4">
+    <div className=''>
+      <Dialog open={isOpen} as="div" className=" relative z-50 focus:outline-none " onClose={close}>
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto ">
+          <div className="flex  min-h-full items-center justify-center p-4 ">
             <form onSubmit={handleApply}>
               <DialogPanel
                 transition
                 className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0"
               >
-                <DialogTitle as="h3" className="text-2xl  font-medium ">
+                <DialogTitle as="h3" className="text-2xl  font-medium">
                   Applying for {title}
                 </DialogTitle>
                 <p>{name}</p>
@@ -160,12 +160,12 @@ const ApplyModal = ({ isOpen, close, detailsJob, refetch, handlefileChange, file
 
                   </div>
                 </div>
-                <div className="mt-4 flex justify-between">
-                  <button className='btn'>
+                <div className="mt-4 flex justify-between ">
+                  <button className='btn bg-[#A59488] text-black'>
                     submit
                   </button>
                   <Button
-                    className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[focus]:outline-1 data-[focus]:outline-white data-[open]:bg-gray-700"
+                    className="inline-flex items-center gap-2 rounded-md bg-[#A59488] py-1.5 px-3 text-sm/6 font-semibold text-black shadow-inner shadow-white/10 focus:outline-none "
                     onClick={close}
                   >
                     close

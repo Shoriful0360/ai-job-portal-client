@@ -41,13 +41,13 @@ const ContactRequest = () => {
         }
     }
     return (
-        <div>
+        <div className={allContactRequests.length < 15? 'min-h-screen bg-orange-50':'bg-orange-50'}>
             <div className="overflow-x-auto border-2 border-gray-200">
 
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="text-blue-500">
+                        <tr className="text-[#857569] ">
                             <th>Name</th>
                             <th>Email</th>
                             <th>Contact No</th>
@@ -59,13 +59,13 @@ const ContactRequest = () => {
                         {/* row 1 */}
                         {
                             allContactRequests.map(allContactRequest =>
-                                <tr className="bg-base-200" key={allContactRequest._id}>
+                                <tr className="bg-[#EDE8E0]" key={allContactRequest._id}>
                                     <th className="text-sm font-bold text-gray-600">{allContactRequest.name}</th>
                                     <td className="text-sm font-bold text-gray-600">{allContactRequest.email}</td>
                                     <td className="text-sm font-bold text-gray-600 ">{allContactRequest.number}</td>
                                     <td title={allContactRequest.massage} className="text-sm font-bold text-gray-600 ">{allContactRequest.massage}</td>
                                     <td>
-                                        <button onClick={() => handleContact(allContactRequest._id)} className="text-sm px-2 py-1 rounded-lg font-bold bg-blue-500 hover:bg-blue-800 hover:text-white">Complete</button>
+                                        <button onClick={() => handleContact(allContactRequest._id)} className="text-sm px-2 py-1 rounded-lg font-bold bg-[#a39487]  hover:text-white">Complete</button>
                                     </td>
                                 </tr>)
                         }

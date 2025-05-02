@@ -8,8 +8,8 @@ const EmployerCard = ({ employer, index }) => {
             initial={{ opacity: 0, y: 80 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="flex items-center justify-between border-2 my-2 p-5 rounded-lg">
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="flex items-center justify-between border-2 border-gray-200 my-2 p-5 rounded-lg ">
             <div className="flex items-center gap-5">
                 <img className="rounded-full h-12 w-12 sm:w-20 sm:h-20 object-cover" src={employer.photoUrl} alt="" />
                 <div className="">

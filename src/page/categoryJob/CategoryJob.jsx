@@ -24,9 +24,18 @@ const CategoryJob = () => {
     }
 
     return (
-        <div className={category.length < 12?"min-h-screen ":"" }>
+        <div className={category.length < 12 ? "min-h-screen " : ""}>
+            <div className="sm:my-10">
+                <h3 className='text-3xl font-bold text-center my-3'>
+                    Explore Job Opportunities
+                </h3>
+                <p className='text-sm font-bold text-center my-3 text-gray-600 px-6'>
+                    Explore available job listings in one place! From tech to teaching, startups to enterprises — we’ve got something for everyone. <br className="hidden sm:inline" /> Start scrolling, find your fit, and apply with confidence.
+                </p>
+            </div>
             {
                 category?.length ? <div className="grid my-10 md:mx-10 mx-4 md:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+                
                     {
                         category?.map((job) => <JobCard job={job}></JobCard>)
                     }

@@ -38,23 +38,23 @@ const FindJob = () => {
 
                 {/* Search ber */}
                 <div className="">
-                    <label className="input input-bordered flex mx-auto my-2 items-center gap-2 text-black">
+                    <label className="input input-bordered flex mx-auto my-2 items-center gap-2 bg-[#EDE8E0] shadow-sm text-black">
                         <input onChange={e => setSearch(e.target.value)} type="text" className="sm:w-96 " placeholder="Search By Job Title" />
-                        <button className="text-sm font-bold bg-black text-white px-2 py-1 rounded-sm">search</button>
+                        <button className="text-sm font-bold bg-[#A59488] text-black hover:text-white px-2 py-1 rounded-sm">search</button>
                     </label>
                 </div>
                 {/* Filter job */}
                 <div className="">
                     <div className="dropdown dropdown-end justify-center items-center">
-                        <div tabIndex={0} role="button" className=" flex items-center gap-1 px-2 py-1 border border-gray-200 hover:bg-gray-200 rounded-sm btn-circle avatar">
+                        <div tabIndex={0} role="button" className=" flex items-center gap-1 px-2 py-1 border bg-[#EDE8E0] shadow-sm border-gray-300 rounded-sm  btn-circle avatar">
                             <p><FaFilter /></p>
                             <p className="text-sm font-bold py-1">Filter</p>
                         </div>
                         <ul
                             tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1]  w-52  shadow">
+                            className="menu menu-sm dropdown-content bg-[#EDE8E0] rounded-box z-[1]  w-52  shadow">
                             <li className='text-sm  text-gray-700 font-bold'>
-                                <label className=" fieldset-label text-xm p-0 m-0 font-semibold text-gray-700 bg-white">Division</label>
+                                <label className=" fieldset-label text-xm p-0 m-0 font-semibold text-gray-700">Division</label>
                                 <select onChange={e => setDivision(e.target.value)} type="text" name="division">
                                     <option ></option>
                                     <option value="Dhaka">Dhaka</option>
@@ -68,7 +68,7 @@ const FindJob = () => {
                                 </select>
                             </li>
                             <li className='text-sm  text-gray-700 font-bold'>
-                                <label className=" fieldset-label text-xm p-0 m-0 font-semibold text-gray-700 bg-white">Job Type</label>
+                                <label className=" fieldset-label text-xm p-0 m-0 font-semibold text-gray-700 ">Job Type</label>
                                 <select onChange={e => setJobType(e.target.value)} type="text" name="jobType"   >
                                     <option ></option>
                                     <option value="Part Time">Part Time</option>
@@ -84,7 +84,7 @@ const FindJob = () => {
                 </div>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5 mb-10">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 pt-5 pb-18">
                 {
                     allVerifiedJob.map((job, index) => <JobCard index={index} key={job._id} job={job}></JobCard>)
                 }

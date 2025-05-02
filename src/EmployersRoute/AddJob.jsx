@@ -71,10 +71,10 @@ const AddJob = () => {
     return (
         <div>
             <h3 className="text-center mt-20 text-3xl font-bold my-8">Added New Job</h3>
-            <div className="sm:w-10/12 mx-auto sm:p-12 bg-blue-300 rounded-tl-full rounded-br-full ">
+            <div className="sm:w-10/12 mx-auto sm:p-12 bg-[#ae9c8f] rounded-tl-full rounded-br-full ">
                 <div className="card bg-base-100 lg:w-8/12 mx-auto my-4  ">
                     <form onSubmit={handleSubmit}>
-                        <fieldset className="fieldset p-6 bg-gray-300">
+                        <fieldset className="fieldset p-6 bg-[#EDE8E0]">
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Job Title</label>
                             <input type="text" name="title" className="input w-full" required placeholder="Title" />
 
@@ -174,7 +174,7 @@ const AddJob = () => {
                             <label className=" fieldset-label text-sm font-bold text-gray-700">Employer Name</label>
                             <input disabled defaultValue={user?.displayName} type="text" name="name" className="input w-full" placeholder="" />
 
-                            <button className="btn btn-primary mt-4">Add Task</button>
+                            <button className="btn bg-[#ae9c8f] mt-4">Add Task</button>
                         </fieldset>
                     </form>
                 </div>
