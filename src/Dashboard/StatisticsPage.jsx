@@ -217,7 +217,20 @@ const StatisticsPage = () => {
         </CardContent>
       </Card>
 
-      
+      <Card>
+        <CardContent>
+          <h4 className="text-center text-lg font-semibold mb-4">Job Post Growth</h4>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={jobPostGrowthData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="value" fill="#4F46E5" />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {jobTrends.map((trend, index) => (
