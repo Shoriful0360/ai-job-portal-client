@@ -140,7 +140,9 @@ useEffect(()=>{
                                 <MyAppliedJob></MyAppliedJob>
                         </PrivateRoute>}></Route>
              
-                    <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
+                    <Route path="/dashboard/myWishlist" element={<PrivateRoute allowedRoles={["Job Seeker"]}>
+                                <Wishlist></Wishlist>
+                        </PrivateRoute>}></Route>
                 </Route>
             </Routes>
         </div>
