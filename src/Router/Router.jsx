@@ -34,6 +34,7 @@ import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
 import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
 import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
 import PrivateRoute from "./PrivateRoute";
+import Resume from "../page/ResumeForm";
 
 
 
@@ -67,6 +68,7 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
+                    <Route path="/resume" element={<Resume></Resume>}></Route>
                     
                     
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
