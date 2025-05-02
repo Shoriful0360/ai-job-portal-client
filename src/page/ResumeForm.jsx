@@ -101,7 +101,7 @@ const ResumeForm = () => {
       });
     }
 
-    window.open(`http://localhost:5000/resume/download/${resumeId}`, '_blank');
+    
   };
 
   return (
