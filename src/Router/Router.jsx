@@ -1,4 +1,8 @@
 import { Route, Routes } from "react-router";
+import { useDispatch, useEffect } from "react-redux";
+import { checkAuthState } from "../Redux/authSlice";
+
+// Import pages
 import Home from "../page/Home/Home";
 import Login from "../page/Login";
 import Register from "../page/Register";
@@ -23,9 +27,6 @@ import Wishlist from "../JobSeekerRoute/Wishlist";
 import DashBoardHome from "../page/DashBoardHome";
 import ForgotPassword from "../page/ForgotPassword";
 import UpdatePage from "../page/UpdatePage";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { checkAuthState } from "../Redux/authSlice";
 import CategoryJob from "../page/categoryJob/CategoryJob";
 import Profile from "../page/profile/Profile";
 import AdditionalInfoSeeker from "../JobSeekerRoute/profile/AdditionalInfoSeeker";
@@ -33,85 +34,131 @@ import AddressSeeker from "../JobSeekerRoute/profile/AddressSeeker";
 import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
 import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
 import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
-import PrivateRoute from "./PrivateRoute";
 import Resume from "../page/ResumeForm";
 
-
-
-
-
-
+// Import PrivateRoute
+import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
-  
-const dispatch=useDispatch()
+  const dispatch = useDispatch();
 
-useEffect(()=>{
- dispatch(checkAuthState());
-},[dispatch])
+  useEffect(() => {
+    dispatch(checkAuthState());
+  }, [dispatch]);
 
-    return (
-        <div>
-            <Routes>
-                <Route path="/" element={<Home />}>
-                    <Route path="/" element={<HomePage></HomePage>}></Route>
-                    <Route path="/login" element={<Login></Login>}></Route>
-                    <Route path="/register" element={<Register></Register>}></Route>
-                    <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
-                    <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/" element={<HomePage></HomePage>}></Route>
-                    <Route path="/job-details/:id" element={<JobDetails></JobDetails>}></Route>
-                    <Route path="/category-job/:title" element={<CategoryJob/>}></Route>
-      
+  return (
+    <div>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Home />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/findJobs" element={<FindJob />} />
+          <Route path="/employers" element={<Employers />} />
+          <Route path="/job-details/:id" element={<JobDetails />} />
+          <Route path="/category-job/:title" element={<CategoryJob />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Route>
 
-                    <Route path="/login" element={<Login></Login>}></Route>
-                    <Route path="/register" element={<Register></Register>}></Route>
-                    <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
-                    <Route path="/employers" element={<Employers></Employers>}></Route>
-                    <Route path="/resume" element={<Resume></Resume>}></Route>
-                    
-                    
-                    <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
-                   
-                   {/* profile */}
-                
-                   <Route path="/candidate-profile" element={<PrivateRoute><Profile/></PrivateRoute>}>
-                   <Route path="/candidate-profile" element={<MyProfile/>}></Route>
-                   <Route path="/candidate-profile/my-profile" element={<MyProfile/>} />
-                   <Route path="/candidate-profile/additional-info" element={<AdditionalInfoSeeker/>}></Route>
-                   <Route path="/candidate-profile/address" element={<AddressSeeker/>}></Route>
-                   <Route path="/candidate-profile/education" element={<EducationSeeker/>}/>
-                   <Route path="/candidate-profile/important-link" element={<ImportantLinkSeeker/>}/>
-                   <Route path="/candidate-profile/skill-set" element={<SkillSeeker/>}/>
-                   </Route>
-                </Route>
+        {/* Candidate Profile Routes */}
+        <Route path="/candidate-profile" element={
+          <PrivateRoute allowedRoles={["jobseeker"]}>
+            <Profile />
+          </PrivateRoute>
+        }>
+          <Route path="my-profile" element={<MyProfile />} />
+          <Route path="additional-info" element={<AdditionalInfoSeeker />} />
+          <Route path="address" element={<AddressSeeker />} />
+          <Route path="education" element={<EducationSeeker />} />
+          <Route path="important-link" element={<ImportantLinkSeeker />} />
+          <Route path="skill-set" element={<SkillSeeker />} />
+        </Route>
 
-                {/* dashboard route */}
+        {/* Dashboard Routes */}
+        <Route path="/dashboard" element={<PrivateRoute allowedRoles={["admin", "employer", "jobseeker"]}><Dashboard /></PrivateRoute>}>
+          <Route path="/dashboard" element={<DashBoardHome />} />
 
-                <Route path="/dashboard" element={<Dashboard></Dashboard>}>
+          {/* Admin Routes */}
+          <Route path="/dashboard/adminProfile" element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <AdminProfile />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/manageJob" element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <ManageJob />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/manageUsers" element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <ManageUser />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/manageReview" element={
+            <PrivateRoute allowedRoles={["admin"]}>
+              <ManageReview />
+            </PrivateRoute>
+          } />
 
-                    <Route path="/dashboard" element={<DashBoardHome></DashBoardHome>}></Route>
+          {/* Employer Routes */}
+          <Route path="/dashboard/employerProfile" element={
+            <PrivateRoute allowedRoles={["employer"]}>
+              <EmployerProfile />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/addJob" element={
+            <PrivateRoute allowedRoles={["employer"]}>
+              <AddJob />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/myAddJob" element={
+            <PrivateRoute allowedRoles={["employer"]}>
+              <MyAddJob />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/CandidatesRequest" element={
+            <PrivateRoute allowedRoles={["employer"]}>
+              <RequestCandidates />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/hiredCandidates" element={
+            <PrivateRoute allowedRoles={["employer"]}>
+              <HiredCandidates />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/myAddJob/updatePage/:id" element={
+            <PrivateRoute allowedRoles={["employer"]}>
+              <UpdatePage />
+            </PrivateRoute>
+          } />
 
-                    <Route path="/dashboard/adminProfile" element={<AdminProfile></AdminProfile>}></Route>
-                    <Route path="/dashboard/manageJob" element={<ManageJob></ManageJob>}></Route>
-                    <Route path="/dashboard/manageUsers" element={<ManageUser></ManageUser>}></Route>
-                    <Route path="/dashboard/manageReview" element={<ManageReview></ManageReview>}></Route>
-
-                    <Route path="/dashboard/employerProfile" element={<EmployerProfile></EmployerProfile>}></Route>
-                    <Route path="/dashboard/addJob" element={<AddJob></AddJob>}></Route>
-                    <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>
-                    <Route path="/dashboard/CandidatesRequest" element={<RequestCandidates></RequestCandidates>}></Route>
-                    <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
-                    <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
-
-                    <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
-                    <Route path="/dashboard/myProfile" element={<MyProfile/>}></Route>
-                    <Route path="/dashboard/myReview" element={<MyReview></MyReview>}></Route>
-                    <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
-                </Route>
-            </Routes>
-        </div>
-    );
+          {/* JobSeeker Routes */}
+          <Route path="/dashboard/myAppliedJob" element={
+            <PrivateRoute allowedRoles={["jobseeker"]}>
+              <MyAppliedJob />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/myProfile" element={
+            <PrivateRoute allowedRoles={["jobseeker"]}>
+              <MyProfile />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/myReview" element={
+            <PrivateRoute allowedRoles={["jobseeker"]}>
+              <MyReview />
+            </PrivateRoute>
+          } />
+          <Route path="/dashboard/myWishlist" element={
+            <PrivateRoute allowedRoles={["jobseeker"]}>
+              <Wishlist />
+            </PrivateRoute>
+          } />
+        </Route>
+      </Routes>
+    </div>
+  );
 };
 
 export default Router;
