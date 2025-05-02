@@ -63,47 +63,7 @@ const ManageUser = () => {
     return (
         <div className="p-5">
             <h3 className="text-xl font-bold mb-4">Manage Users</h3>
-            <div className="overflow-x-auto">
-                <table className="table-auto w-full border">
-                    <thead>
-                        <tr className="bg-gray-200">
-                            <th className="border px-4 py-2">#</th>
-                            <th className="border px-4 py-2">Name</th>
-                            <th className="border px-4 py-2">Email</th>
-                            <th className="border px-4 py-2">Role</th>
-                            <th className="border px-4 py-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map((user, index) => (
-                            <tr key={user._id}>
-                                <td className="border px-4 py-2">{index + 1}</td>
-                                <td className="border px-4 py-2">{user.name}</td>
-                                <td className="border px-4 py-2">{user.email}</td>
-                                <td className="border px-4 py-2">
-                                    <select
-                                        value={user.role}
-                                        onChange={(e) => handleRoleChange(user._id, e.target.value)}
-                                        className="border px-2 py-1 rounded"
-                                    >
-                                        {roles.map(role => (
-                                            <option key={role} value={role}>{role}</option>
-                                        ))}
-                                    </select>
-                                </td>
-                                <td className="border px-4 py-2 text-center">
-                                    <button
-                                        onClick={() => handleDeleteUser(user._id)}
-                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            
         </div>
     );
 };
