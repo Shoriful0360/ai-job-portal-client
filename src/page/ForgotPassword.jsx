@@ -1,6 +1,7 @@
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -19,12 +20,23 @@ const ForgotPassword = () => {
 
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        alert('Password reset email sent! Please check inbox.');
-        window.open('https://mail.google.com', '_blank');
-        navigate('/login');
+        Swal.fire({
+          icon: 'success',
+          title: 'Password Reset Email Sent',
+          text: 'Please check your inbox.',
+          confirmButtonColor: '#a59387'
+        }).then(() => {
+          window.open('https://mail.google.com', '_blank');
+          navigate('/login');
+        });
       })
       .catch((error) => {
-        alert(error.message); // You can use toast here if preferred
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.message,
+          confirmButtonColor: '#a59387'
+        });
       });
   };
 
