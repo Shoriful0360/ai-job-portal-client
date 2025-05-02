@@ -19,27 +19,13 @@ const ResumeForm = () => {
       technical: '',
       soft: '',
     },
-    experience: [
-      { jobTitle: '', company: '', duration: '', jobDescription: '' },
-    ],
-    education: [
-      { degree: '', university: '', graduationDate: '', relevantCourses: '' },
-    ],
-    certifications: [
-      { certificationName: '', issuingOrganization: '', dateEarned: '' },
-    ],
-    projects: [
-      { title: '', technologiesUsed: '', duration: '', description: '' },
-    ],
-    awards: [
-      { awardName: '', issuingOrganization: '', date: '' },
-    ],
-    languages: [
-      { languageName: '', proficiency: '' },
-    ],
-    volunteerExperience: [
-      { position: '', organization: '', duration: '', description: '' },
-    ],
+    experience: [{ jobTitle: '', company: '', duration: '', jobDescription: '' }],
+    education: [{ degree: '', university: '', graduationDate: '', relevantCourses: '' }],
+    certifications: [{ certificationName: '', issuingOrganization: '', dateEarned: '' }],
+    projects: [{ title: '', technologiesUsed: '', duration: '', description: '' }],
+    awards: [{ awardName: '', issuingOrganization: '', date: '' }],
+    languages: [{ languageName: '', proficiency: '' }],
+    volunteerExperience: [{ position: '', organization: '', duration: '', description: '' }],
     interests: '',
   });
 
@@ -52,38 +38,36 @@ const ResumeForm = () => {
     const { name, value } = e.target;
     setResumeData((prev) => ({
       ...prev,
-      skills: {
-        ...prev.skills,
-        [name]: value,
-      },
+      skills: { ...prev.skills, [name]: value },
     }));
   };
 
   const handleSectionChange = (e, section, index) => {
     const { name, value } = e.target;
-    const updatedSection = [...resumeData[section]];
-    updatedSection[index][name] = value;
-    setResumeData((prev) => ({ ...prev, [section]: updatedSection }));
+    const updated = [...resumeData[section]];
+    updated[index][name] = value;
+    setResumeData((prev) => ({ ...prev, [section]: updated }));
   };
 
-  const handleAddField = (section, newField) => {
+  const handleAddField = (section, fields) => {
     setResumeData((prev) => ({
       ...prev,
-      [section]: [...prev[section], newField],
+      [section]: [...prev[section], Object.fromEntries(fields.map((f) => [f, '']))],
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!userEmail) return alert('User not logged in');
+    if (!userEmail) return alert('Please log in first');
 
     try {
       const res = await axios.post(`http://localhost:5000/resume/${userEmail}`, resumeData);
-      const insertedId = res.data.insertedId || res.data.upsertedId || res.data._id || res.data?.result?.upsertedId?._id;
+      const insertedId =
+        res.data.insertedId || res.data.upsertedId || res.data._id || res.data?.result?.upsertedId?._id;
       setResumeId(insertedId);
       alert('Resume saved successfully!');
     } catch (error) {
-      console.error('Error saving resume:', error);
+      console.error('Error:', error);
       alert('Failed to save resume');
     }
   };
@@ -94,69 +78,121 @@ const ResumeForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Build Your Resume</h1>
+    <div className="min-h-screen w-full" style={{ backgroundColor: '#faf9f5' }}>
+      <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto text-[#3a3b40]">
+        <h1 className="text-3xl font-bold mb-6 text-[#3a3b40]">Build Your Resume</h1>
 
-      {/* Basic Info */}
-      <input name="title" placeholder="Resume Title" value={resumeData.title} onChange={handleChange} className="input" required />
-      <input name="fullName" placeholder="Full Name" value={resumeData.fullName} onChange={handleChange} className="input" required />
-      <input name="phone" placeholder="Phone" value={resumeData.phone} onChange={handleChange} className="input" required />
-      <input name="linkedin" placeholder="LinkedIn URL" value={resumeData.linkedin} onChange={handleChange} className="input" />
-      <input name="address" placeholder="Address" value={resumeData.address} onChange={handleChange} className="input" />
-      <textarea name="objective" placeholder="Career Objective" value={resumeData.objective} onChange={handleChange} className="input" />
-
-      {/* Skills */}
-      <h2 className="font-bold mt-6">Skills</h2>
-      <input name="technical" placeholder="Technical Skills (comma separated)" value={resumeData.skills.technical} onChange={handleSkillsChange} className="input" />
-      <input name="soft" placeholder="Soft Skills (comma separated)" value={resumeData.skills.soft} onChange={handleSkillsChange} className="input" />
-
-      {/* Dynamic Sections */}
-      {[
-        { key: 'experience', label: 'Experience', fields: ['jobTitle', 'company', 'duration', 'jobDescription'] },
-        { key: 'education', label: 'Education', fields: ['degree', 'university', 'graduationDate', 'relevantCourses'] },
-        { key: 'certifications', label: 'Certifications', fields: ['certificationName', 'issuingOrganization', 'dateEarned'] },
-        { key: 'projects', label: 'Projects', fields: ['title', 'technologiesUsed', 'duration', 'description'] },
-        { key: 'awards', label: 'Awards', fields: ['awardName', 'issuingOrganization', 'date'] },
-        { key: 'languages', label: 'Languages', fields: ['languageName', 'proficiency'] },
-        { key: 'volunteerExperience', label: 'Volunteer Experience', fields: ['position', 'organization', 'duration', 'description'] }
-      ].map(({ key, label, fields }) => (
-        <div key={key}>
-          <h2 className="font-bold mt-6">{label}</h2>
-          {resumeData[key].map((entry, idx) => (
-            <div key={idx} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {fields.map((field) => (
-                <input
-                  key={field}
-                  name={field}
-                  placeholder={field}
-                  value={entry[field]}
-                  onChange={(e) => handleSectionChange(e, key, idx)}
-                  className="input"
-                />
-              ))}
-            </div>
+        {/* Basic Details */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          {['title', 'fullName', 'phone', 'linkedin', 'address'].map((field) => (
+            <input
+              key={field}
+              name={field}
+              placeholder={field.replace(/([A-Z])/g, ' $1')}
+              value={resumeData[field]}
+              onChange={handleChange}
+              className="input border-[#a59387] focus:ring-[#a59387]"
+              required={field !== 'linkedin' && field !== 'address'}
+            />
           ))}
-          <button type="button" onClick={() => handleAddField(key, Object.fromEntries(fields.map(f => [f, ''])))} className="mt-2 text-blue-600">
-            + Add More {label}
-          </button>
+          <textarea
+            name="objective"
+            placeholder="Career Objective"
+            value={resumeData.objective}
+            onChange={handleChange}
+            className="input border-[#a59387] focus:ring-[#a59387] md:col-span-2"
+          />
         </div>
-      ))}
 
-      {/* Interests */}
-      <h2 className="font-bold mt-6">Interests</h2>
-      <input name="interests" placeholder="Your Interests" value={resumeData.interests} onChange={handleChange} className="input" />
+        {/* Skills */}
+        <h2 className="font-bold text-xl mt-6 mb-2">Skills</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input
+            name="technical"
+            placeholder="Technical Skills"
+            value={resumeData.skills.technical}
+            onChange={handleSkillsChange}
+            className="input border-[#a59387] focus:ring-[#a59387]"
+          />
+          <input
+            name="soft"
+            placeholder="Soft Skills"
+            value={resumeData.skills.soft}
+            onChange={handleSkillsChange}
+            className="input border-[#a59387] focus:ring-[#a59387]"
+          />
+        </div>
 
-      {/* Actions */}
-      <button type="submit" className="mt-6 bg-blue-500 text-white px-4 py-2 rounded">
-        Save Resume
-      </button>
+        {/* Repeating Sections */}
+        {[
+          { key: 'experience', label: 'Experience', fields: ['jobTitle', 'company', 'duration', 'jobDescription'] },
+          { key: 'education', label: 'Education', fields: ['degree', 'university', 'graduationDate', 'relevantCourses'] },
+          { key: 'certifications', label: 'Certifications', fields: ['certificationName', 'issuingOrganization', 'dateEarned'] },
+          { key: 'projects', label: 'Projects', fields: ['title', 'technologiesUsed', 'duration', 'description'] },
+          { key: 'awards', label: 'Awards', fields: ['awardName', 'issuingOrganization', 'date'] },
+          { key: 'languages', label: 'Languages', fields: ['languageName', 'proficiency'] },
+          {
+            key: 'volunteerExperience',
+            label: 'Volunteer Experience',
+            fields: ['position', 'organization', 'duration', 'description'],
+          },
+        ].map(({ key, label, fields }) => (
+          <div key={key}>
+            <h2 className="font-bold text-lg mt-6 mb-2">{label}</h2>
+            {resumeData[key].map((entry, idx) => (
+              <div key={idx} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                {fields.map((field) => (
+                  <input
+                    key={field}
+                    name={field}
+                    placeholder={field.replace(/([A-Z])/g, ' $1')}
+                    value={entry[field]}
+                    onChange={(e) => handleSectionChange(e, key, idx)}
+                    className="input border-[#a59387] focus:ring-[#a59387]"
+                  />
+                ))}
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => handleAddField(key, fields)}
+              className="text-[#a59387] mt-2 mb-4"
+            >
+              + Add More {label}
+            </button>
+          </div>
+        ))}
 
-      {resumeId && (
-        <button type="button" onClick={handleDownload} className="ml-4 bg-green-500 text-white px-4 py-2 rounded">
-          Download PDF
-        </button>
-      )}
-    </form>
+        {/* Interests */}
+        <h2 className="font-bold text-lg mt-6 mb-2">Interests</h2>
+        <input
+          name="interests"
+          placeholder="Your Interests"
+          value={resumeData.interests}
+          onChange={handleChange}
+          className="input border-[#a59387] focus:ring-[#a59387] mb-6 w-full"
+        />
+
+        {/* Buttons */}
+        <div>
+          <button
+            type="submit"
+            className="mt-6 bg-[#a59387] text-white px-6 py-3 rounded-lg hover:bg-[#898278]"
+          >
+            Save Resume
+          </button>
+          {resumeId && (
+            <button
+              type="button"
+              onClick={handleDownload}
+              className="ml-4 mt-6 bg-[#ddd3c2] text-[#3a3b40] px-6 py-3 rounded-lg hover:bg-[#a59387]"
+            >
+              Download PDF
+            </button>
+          )}
+        </div>
+      </form>
+    </div>
   );
 };
 
