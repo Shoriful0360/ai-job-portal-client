@@ -124,7 +124,7 @@ const StatisticsPage = () => {
   ];
 
   return (
-    <div className="p-6 space-y-10">
+    <div className="p-6 space-y-10 bg-white">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center">
         <Card><CardContent><h4>👀 Profile Viewed</h4><p className="text-2xl font-bold">125+</p></CardContent></Card>
         <Card><CardContent><h4>📤 Applications Sent</h4><p className="text-2xl font-bold">500+</p></CardContent></Card>
