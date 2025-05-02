@@ -151,11 +151,6 @@ const ResumeForm = () => {
         Save Resume
       </button>
 
-      {resumeId && (
-        <button type="button" onClick={handleDownload} className="ml-4 bg-green-500 text-white px-4 py-2 rounded">
-          Download PDF
-        </button>
-      )}
     </form>
   );
 };
