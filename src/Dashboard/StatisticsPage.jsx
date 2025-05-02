@@ -185,6 +185,24 @@ const StatisticsPage = () => {
           </CardContent>
         </Card>
 
+        <Card>
+          <CardContent>
+            <h4 className="text-center text-lg font-semibold mb-4">Vacancy Status</h4>
+            <ResponsiveContainer width="100%" height={250}>
+              <LineChart data={vacancyStatusData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="sent" stroke="#3B82F6" />
+                <Line type="monotone" dataKey="rejected" stroke="#EF4444" />
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </div>
+
+     
       </div>
     </div>
   );
