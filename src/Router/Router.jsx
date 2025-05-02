@@ -40,6 +40,7 @@ import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
 import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
 import PrivateRoute from "./PrivateRoute";
 import HiredCandidateDetails from "../page/HiredCandidateDetails";
+import ResumeForm from "../page/ResumeForm";
 
 
 
@@ -74,6 +75,7 @@ useEffect(()=>{
                     <Route path="/employers" element={<Employers></Employers>}></Route>
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                     <Route path="/suggestJob" element={<Suggestion></Suggestion>}></Route>
+                    <Route path="/resume" element={<ResumeForm></ResumeForm>}></Route>
                     
                   
                    
@@ -87,6 +89,7 @@ useEffect(()=>{
                    <Route path="/candidate-profile/education" element={<EducationSeeker/>}/>
                    <Route path="/candidate-profile/important-link" element={<ImportantLinkSeeker/>}/>
                    <Route path="/candidate-profile/skill-set" element={<SkillSeeker/>}/>
+                   
                    </Route>
                 </Route>
 
@@ -123,11 +126,19 @@ useEffect(()=>{
                     <Route path="/dashboard/hiredCandidates/hiredCandidateDetails" element={<PrivateRoute allowedRoles={["Employer"]}>
                             <HiredCandidateDetails></HiredCandidateDetails>
                         </PrivateRoute>}></Route>
-                    <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
-                    <Route path="/dashboard/myAddJob/candidate/:id" element={<AllCandidates></AllCandidates>}></Route>
-                    <Route path="/dashboard/myAddJob/candidate/resume/:id" element={<Resume></Resume>}></Route>
+                    <Route path="/dashboard/myAddJob/updatePage/:id" element={<PrivateRoute allowedRoles={["Employer"]}>
+                                <UpdatePage></UpdatePage>
+                        </PrivateRoute>}></Route>
+                    <Route path="/dashboard/myAddJob/candidate/:id" element={<PrivateRoute allowedRoles={["Employer"]}>
+                                <AllCandidates></AllCandidates>
+                        </PrivateRoute>}></Route>
+                    <Route path="/dashboard/myAddJob/candidate/resume/:id" element={<PrivateRoute allowedRoles={["Employer"]}>
+                                <Resume></Resume>
+                        </PrivateRoute>}></Route>
 
-                    <Route path="/dashboard/myAppliedJob" element={<MyAppliedJob></MyAppliedJob>}></Route>
+                    <Route path="/dashboard/myAppliedJob" element={<PrivateRoute allowedRoles={["Job Seeker"]}>
+                                <MyAppliedJob></MyAppliedJob>
+                        </PrivateRoute>}></Route>
              
                     <Route path="/dashboard/myWishlist" element={<Wishlist></Wishlist>}></Route>
                 </Route>
