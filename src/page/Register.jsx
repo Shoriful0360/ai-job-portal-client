@@ -119,11 +119,7 @@ const Register = () => {
 
                             <p className="text-2xl font-bold text-white mx-auto">Sign Up</p>
                             
-                            <label className="font-bold text-white">Select Role</label>
-                            <select name="role" className="select select-bordered w-full" onChange={e => setRole(e.target.value)} required>
-                                <option value="Job Seeker">Job Seeker</option>
-                                <option value="Employer">Employer</option>
-                            </select>
+                            
                             <label className="font-bold text-white fieldset-label">User Name</label>
                             <input required type="text" placeholder="User Name" name="name" className="input w-full" />
                             <label className="font-bold text-white fieldset-label">Email</label>
