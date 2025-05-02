@@ -135,16 +135,7 @@ const Register = () => {
                             <input type="file" name="image" className="file-input file-input-md" />
 
                             
-                            {/* Only show these if role is Employer */}
-                            {role === "Employer" && (
-                                <>
-                                    <label className="font-bold text-white mt-2">Company Name</label>
-                                    <input required type="text" name="companyName" placeholder="Company Name" className="input w-full" />
-
-                                    <label className="font-bold text-white mt-2">Company Details</label>
-                                    <textarea required name="companyDetails" placeholder="Company Details" className="textarea textarea-bordered w-full" />
-                                </>
-                            )}
+                            
                             <button className="btn btn-neutral mt-4">Account Create</button>
                         </fieldset>
                     </form>
