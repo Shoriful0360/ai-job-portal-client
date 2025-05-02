@@ -114,7 +114,9 @@ useEffect(()=>{
                     <Route path="/dashboard/addJob" element={<PrivateRoute allowedRoles={["Admin"]}>
                             <AddJob></AddJob>
                         </PrivateRoute>}></Route>
-                    <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>                 
+                    <Route path="/dashboard/myAddJob" element={<PrivateRoute allowedRoles={["Admin"]}>
+                            <MyAddJob></MyAddJob>
+                        </PrivateRoute>}></Route>                 
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates/hiredCandidateDetails" element={<HiredCandidateDetails></HiredCandidateDetails>}></Route>
                     <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
