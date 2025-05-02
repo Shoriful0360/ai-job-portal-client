@@ -202,7 +202,44 @@ const StatisticsPage = () => {
         </Card>
       </div>
 
-     
+      <Card>
+        <CardContent>
+          <h4 className="text-center text-lg font-semibold mb-4">User Signups Over Time</h4>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={monthlyUserSignupData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="value" stroke="#4F46E5" />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {jobTrends.map((trend, index) => (
+          <Card key={index}>
+            <CardContent className="text-center">
+              <h5 className="font-semibold mb-2">{trend.role}</h5>
+              <ResponsiveContainer width="100%" height={150}>
+                <PieChart>
+                  <Pie
+                    dataKey="value"
+                    data={[{ name: trend.role, value: trend.count }]}
+                    innerRadius={40}
+                    outerRadius={60}
+                    fill={COLORS[index % COLORS.length]}
+                    label
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+              <p className="mt-2 text-lg font-bold">{trend.count}</p>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
