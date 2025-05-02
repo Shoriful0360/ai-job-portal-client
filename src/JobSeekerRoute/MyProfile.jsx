@@ -35,7 +35,7 @@ const MyProfile = () => {
            </p>
         </div>
 
-        <h4 className="text-md font-semibold text-purple-400 mb-2 border-b border-dashed pb-1">Device Activity</h4>
+        {/* <h4 className="text-md font-semibold text-purple-400 mb-2 border-b border-dashed pb-1">Device Activity</h4>
         <div className="overflow-x-auto">
           <table className="table w-full text-sm">
             <thead className="text-purple-300">
@@ -63,7 +63,7 @@ const MyProfile = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
         </>
         }
       

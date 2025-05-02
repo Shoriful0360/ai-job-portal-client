@@ -28,69 +28,71 @@ const Review = () => {
     if (isLoading) return <LoadingSpinner />
 
     return (
-        <div className=" px-4 sm:px-10">
-            <div className="sm:my-10">
-                <h3 className='text-3xl font-bold text-center my-3'>
-                    What Our Users Say
-                </h3>
-                <p className='text-sm font-bold text-center my-3 text-gray-600 px-6'>
-                    Read authentic reviews from real users sharing their experiences. Your feedback helps
-                    <br className="hidden sm:inline" /> us grow and serve you better every day.
-                </p>
-            </div>
+        <div className=''>
+            <div className=" px-4 sm:px-10">
+                <div className="sm:my-10">
+                    <h3 className='text-3xl font-bold text-center my-3'>
+                        What Our Users Say
+                    </h3>
+                    <p className='text-sm font-bold text-center my-3 text-gray-600 px-6'>
+                        Read authentic reviews from real users sharing their experiences. Your feedback helps
+                        <br className="hidden sm:inline" /> us grow and serve you better every day.
+                    </p>
+                </div>
 
-            <div className="mt-auto">
-                <Swiper
-                    modules={[Autoplay]}
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 1,
-                        },
-                        480: {
-                            slidesPerView: 1,
-                        },
-                        640: {
-                            slidesPerView: 2,
-                        },
-                        768: {
-                            slidesPerView: 2,
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                        },
-                        1280: {
-                            slidesPerView: 3,
-                        },
-                        
-                    }}
-                    spaceBetween={30}
-                    loop={true}
-                    autoplay={{
-                        delay: 0,
-                        disableOnInteraction: false
-                    }}
-                    speed={5000}
-                    grabCursor={false}
-                    allowTouchMove={false}
-                    freeMode={true}
-                >
-                    {allVerifiedReview.map((slideContent, index) => (
-                        <SwiperSlide key={slideContent._id} virtualIndex={index}>
-                            <div className="relative py-16 h-full" >
-                                <img className=" absolute rounded-full border-4 border-white top-4 w-28 h-28 bg-white left-36 md:left-20 lg:left-40" src={slideContent.image} alt="" />
-                                <div className="bg-[#EDE8E0] border border-gray-200 rounded-xl py-12 text-gray-700 px-6 h-full">
-                                    <p className="text-5xl "><RiDoubleQuotesL /></p>
-                                    <p className="text-sm font-bold text-center">{slideContent.review}</p>
-                                    <p className="text-5xl  ml-[290px] md:ml-[170px]  lg:ml-[335px]"><RiDoubleQuotesR /></p>
-                                    <p className="text-lg font-bold text-center  text-black">{slideContent.name}</p>
-                                    <p className="text-sm font-bold text-center mb-5 text-black">{slideContent.profession}</p>
+                <div className="">
+                    <Swiper
+                        modules={[Autoplay]}
+                        breakpoints={{
+                            0: {
+                                slidesPerView: 1,
+                            },
+                            480: {
+                                slidesPerView: 1,
+                            },
+                            640: {
+                                slidesPerView: 2,
+                            },
+                            768: {
+                                slidesPerView: 2,
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                            },
+                            1280: {
+                                slidesPerView: 3,
+                            },
+
+                        }}
+                        spaceBetween={30}
+                        loop={true}
+                        autoplay={{
+                            delay: 0,
+                            disableOnInteraction: false
+                        }}
+                        speed={5000}
+                        grabCursor={false}
+                        allowTouchMove={false}
+                        freeMode={true}
+                    >
+                        {allVerifiedReview.map((slideContent, index) => (
+                            <SwiperSlide key={slideContent._id} virtualIndex={index}>
+                                <div className="relative py-16 h-[450px] " >
+                                    <img className=" absolute rounded-full border-4 border-white top-4 w-28 h-28 bg-white left-36 md:left-20 lg:left-40" src={slideContent.image} alt="" />
+                                    <div className="bg-[#EDE8E0] border border-gray-200 rounded-xl py-12 text-gray-700 px-6 h-[350px]">
+                                        <p className="text-5xl "><RiDoubleQuotesL /></p>
+                                        <p className="text-sm font-bold text-center">{slideContent.review}</p>
+                                        <p className="text-5xl  ml-[290px] md:ml-[170px]  lg:ml-[335px]"><RiDoubleQuotesR /></p>
+                                        <p className="text-lg font-bold text-center  text-black">{slideContent.name}</p>
+                                        <p className="text-sm font-bold text-center mb-5 text-black">{slideContent.profession}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
 
+            </div>
         </div>
     );
 };

@@ -124,15 +124,15 @@ const StatisticsPage = () => {
   ];
 
   return (
-    <div className="pb-10 space-y-10">
+    <div className="pb-10 space-y-10 mx-4 sm:mx-0">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center">
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">👀 Profile Viewed</h4><p className="text-2xl font-bold">125+</p></CardContent></Card>
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">📤 Applications Sent</h4><p className="text-2xl font-bold">500+</p></CardContent></Card>
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">📬 Applications Answered</h4><p className="text-2xl font-bold">234+</p></CardContent></Card>
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">🤝 Interviewed</h4><p className="text-2xl font-bold">329+</p></CardContent></Card>
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">✅ Hired</h4><p className="text-2xl font-bold">200+</p></CardContent></Card>
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">📋 Total Jobs</h4><p className="text-2xl font-bold">2500+</p></CardContent></Card>
-        <Card><CardContent  className='bg-[#EDE8E0] rounded-lg' ><h4 className="font-bold text-gray-600">🏢 Total Companies</h4><p className="text-2xl font-bold">1500+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">👀 Profile Viewed</h4><p className="text-2xl font-bold">125+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">📤 Applications Sent</h4><p className="text-2xl font-bold">500+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">📬 Applications Answered</h4><p className="text-2xl font-bold">234+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">🤝 Interviewed</h4><p className="text-2xl font-bold">329+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">✅ Hired</h4><p className="text-2xl font-bold">200+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">📋 Total Jobs</h4><p className="text-2xl font-bold">2500+</p></CardContent></Card>
+        <Card><CardContent  className='bg-[#EDE8E0] h-full rounded-lg' ><h4 className="font-bold text-gray-600">🏢 Total Companies</h4><p className="text-2xl font-bold">1500+</p></CardContent></Card>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

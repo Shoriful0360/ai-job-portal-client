@@ -24,7 +24,7 @@ const CategoryJob = () => {
     }
 
     return (
-        <div className={category.length < 12 ? "min-h-screen " : ""}>
+        <div className={category.length < 8 ? "min-h-screen " : ""}>
             <div className="sm:my-10">
                 <h3 className='text-3xl font-bold text-center my-3'>
                     Explore Job Opportunities
@@ -34,7 +34,7 @@ const CategoryJob = () => {
                 </p>
             </div>
             {
-                category?.length ? <div className="grid my-10 md:mx-10 mx-4 md:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
+                category?.length ? <div className="grid py-10 md:mx-10 mx-4 md:grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
                 
                     {
                         category?.map((job) => <JobCard job={job}></JobCard>)

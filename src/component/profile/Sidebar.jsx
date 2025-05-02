@@ -57,7 +57,7 @@ const Sidebar = () => {
       <div className="flex flex-col items-center">
         <div className="avatar">
           <div className="w-24 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
-            <img src={photoUrl || user?.photoURL} alt="profile" />
+            <img src={user?.photoURL} alt="profile" />
           </div>
         </div>
         <h2 className="mt-4 text-xl font-bold">{name}</h2>

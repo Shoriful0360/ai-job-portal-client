@@ -1,3 +1,4 @@
+
 import { Pencil, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import SkillForm from '../../Form/ProfileForm/SkillForm';
@@ -129,7 +130,7 @@ const{user}=useSelector((state)=>state.auth)
               <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
                   <p className="text-sm text-gray-400">Skill Name</p>
-                  <p className="font-semibold">{skill?.skill_name}</p>
+                  <p className="font-semibold">{Array.isArray(formData.skill_name) ? formData.skill_name.join(', ') : ''}</p>
                 </div>
                 <div>
                   <p className="text-sm text-gray-400">Year of Experience</p>

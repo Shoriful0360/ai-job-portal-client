@@ -11,7 +11,7 @@ const EmployerCard = ({ employer, index }) => {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className="flex items-center justify-between border-2 border-gray-200 my-2 p-5 rounded-lg ">
             <div className="flex items-center gap-5">
-                <img className="rounded-full h-12 w-12 sm:w-20 sm:h-20 object-cover" src={employer.photoUrl} alt="" />
+                <img className="rounded-full h-12 w-12 sm:w-20 sm:h-20 object-cover" src={employer.phtotoUrl} alt="" />
                 <div className="">
                     <p className="text-sm sm:text-2xl font-bold text-gray-700 ">{employer.companyName}</p>
                     <div className="sm:flex items-center gap-9 my-2 justify-between sm:mt-8">

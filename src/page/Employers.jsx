@@ -17,7 +17,7 @@ const Employers = () => {
     })
     console.log(allEmployers)
     return (
-        <div className={allEmployers.length < 5?"min-h-screen sm:px-10 px-4":"sm:px-10 px-4" }>
+        <div className={allEmployers.length < 3?"min-h-screen sm:px-10 px-4":"sm:px-10 px-4" }>
             <div className="sm:my-10">
                 <h3 className='text-3xl font-bold text-center my-3'>
                     Explore All Companies

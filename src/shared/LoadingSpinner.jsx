@@ -2,7 +2,7 @@ import React from 'react';
 
 const LoadingSpinner = () => {
   return (
-    <div className='flex items-center text-red-500 justify-center w-full min-h-[calc(100vh-305px)]'>
+    <div className='flex items-center text-red-500 justify-center w-full min-h-screen'>
       <div
         aria-label='Loading...'
         role='status'

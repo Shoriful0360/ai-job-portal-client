@@ -138,22 +138,22 @@ const Resume = () => {
                 </div>
                 <div className="gap-4 flex justify-center items-center my-8">
                     {
-                        status === 'pending' && <button onClick={handleReject} className="block px-3 py-2 rounded-lg bg-red-500 text-white hover:text-black text-sm font-bold">Reject</button>
+                        status === 'pending' && <button onClick={handleReject} className="block px-3 py-2 rounded-lg bg-[#857569] text-white hover:text-black hover:bg-[#dad2c5]   text-sm font-bold">Reject</button>
                     }
                     {
-                        status === 'pending' && <button onClick={handleListed} className="block px-3 py-2 rounded-lg bg-blue-500 text-white hover:text-black text-sm font-bold">Listed</button>
+                        status === 'pending' && <button onClick={handleListed} className="block px-3 py-2 rounded-lg bg-[#857569] text-white hover:text-black hover:bg-[#dad2c5]   text-sm font-bold">Listed</button>
                     }
                     {
-                        status === 'listed' && <button onClick={handleReject} className="block px-3 py-2 rounded-lg bg-red-500 text-white hover:text-black text-sm font-bold">Reject</button>
+                        status === 'listed' && <button onClick={handleReject} className="block px-3 py-2 rounded-lg bg-[#857569] text-white hover:text-black hover:bg-[#dad2c5]   text-sm font-bold">Reject</button>
                     }
                     {
-                        status === 'listed' && <button onClick={handleHired} className="block px-3 py-2 rounded-lg bg-green-500 text-white hover:text-black text-sm font-bold">Hired</button>
+                        status === 'listed' && <button onClick={handleHired} className="block px-3 py-2 rounded-lg bg-[#857569] text-white hover:text-black hover:bg-[#dad2c5]   text-sm font-bold">Hired</button>
                     }
                     {
-                        status === 'hired' && <p className="block px-3 py-2 rounded-lg bg-gray-200 text-green-500 text-sm font-bold">This Candidate Already Hired</p>
+                        status === 'hired' && <p className="block px-3 py-2 rounded-lg bg-gray-200 text-black  text-sm font-bold">This Candidate Already Hired</p>
                     }
                     {
-                        status === 'reject' && <p className="block px-3 py-2 rounded-lg bg-gray-200 text-red-500 text-sm font-bold">This Candidate Already Rejected This Job </p>
+                        status === 'reject' && <p className="block px-3 py-2 rounded-lg bg-gray-200 text-black text-sm font-bold">This Candidate Already Rejected This Job </p>
                     }
                 </div>
             </div>
