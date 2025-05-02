@@ -16,16 +16,16 @@ const MyAppliedJob = () => {
             return data
         }
     })
-    if(isLoading) return <LoadingSpinner/>
+    if (isLoading) return <LoadingSpinner />
     return (
-        <div>
+        <div className={myApplyJobs.length < 9 ? 'min-h-screen':''}>
 
             <div className="overflow-x-auto ">
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr className="text-blue-500">
-                          
+                        <tr className="text-[#857569]">
+
                             <th>Name</th>
                             <th>Title</th>
                             <th>Location</th>
@@ -38,41 +38,14 @@ const MyAppliedJob = () => {
                         {/* row 1 */}
                         {
                             myApplyJobs.map(myApplyJob =>
-                                <tr className="bg-base-200" key={myApplyJob._id}>
-                                    
+                                <tr className="bg-[#EDE8E0]" key={myApplyJob._id}>
+
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.companyName}</td>
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.title}</td>
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.location},{myApplyJob.division}</td>
                                     <td className="text-sm font-bold text-gray-600">{myApplyJob.minSalary}$ - {myApplyJob.maxSalary}$</td>
-                                    <td>
-                                        {
-                                            myApplyJob.status === 'pending' &&
-                                            <span className="text-xs font-bold text-gray-600">
-                                                pending
-                                            </span>
-
-                                        }
-                                        {
-                                            myApplyJob.status === 'Accepted' &&
-                                            <span className="text-xs font-bold text-blue-500">
-                                                Ready To Interview
-                                            </span>
-
-                                        }
-                                        {
-                                            myApplyJob.status === 'rejected' &&
-                                            <span className="text-xs font-bold text-red-700">
-                                                Rejected
-                                            </span>
-                                        }
-                                        {
-                                            myApplyJob.status === 'Hired' &&
-                                            <span className="text-xs font-bold bg-gradient-to-r from-blue-500 to-green-600 bg-clip-text text-transparent">
-                                                Hired
-                                            </span>
-                                        }
-                                    </td>
-                                    <td><Link className='text-xs font-bold  text-blue-500 px-1 py-1 rounded-xl bg-blue-200' to={`/job-details/${myApplyJob.jobId}`}>ViewJob</Link></td>
+                                    <td className="text-sm font-bold text-gray-600">{myApplyJob.status}</td>
+                                    <td><Link className='text-xs font-bold px-1 py-1 rounded-xl bg-[#857569] text-white hover:text-black hover:bg-[#dad2c5]' to={`/job-details/${myApplyJob.jobId}`}>ViewJob</Link></td>
                                 </tr>)
                         }
 
