@@ -6,7 +6,19 @@ import { useQuery } from "@tanstack/react-query";
 
 
 const AllCandidates = () => {
-    
+    const { id } = useParams()
+    const axiosSecure = UseAxios()
+
+    const { data: allCandidates = [], refetch } = useQuery({
+        queryKey: ['allCandidates', id],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/singleJob/all/Candidates/${id}`)
+            return data
+        }
+    })
+    console.log(allCandidates)
+    const listedCandidates = allCandidates.filter(allCandidate => allCandidate.status === 'listed')
+    const hiredCandidates = allCandidates.filter(allCandidate => allCandidate.status === 'hired')
     return (
         <div className={allCandidates.length < 11 ? 'min-h-screen' : ''} >
             {/* name of each tab group should be unique */}
