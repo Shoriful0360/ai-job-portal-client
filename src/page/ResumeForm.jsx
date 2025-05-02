@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const ResumeForm = () => {
   const user = useSelector((state) => state.auth.user);
@@ -58,22 +59,48 @@ const ResumeForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!userEmail) return alert('Please log in first');
+    if (!userEmail) {
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Login Required',
+        text: 'Please log in first.',
+        confirmButtonColor: '#a59387',
+      });
+    }
 
     try {
       const res = await axios.post(`http://localhost:5000/resume/${userEmail}`, resumeData);
       const insertedId =
         res.data.insertedId || res.data.upsertedId || res.data._id || res.data?.result?.upsertedId?._id;
       setResumeId(insertedId);
-      alert('Resume saved successfully!');
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Resume Saved',
+        text: 'Your resume has been saved successfully!',
+        confirmButtonColor: '#a59387',
+      });
     } catch (error) {
       console.error('Error:', error);
-      alert('Failed to save resume');
+      Swal.fire({
+        icon: 'error',
+        title: 'Error Saving Resume',
+        text: 'Something went wrong while saving your resume.',
+        confirmButtonColor: '#a59387',
+      });
     }
   };
 
   const handleDownload = () => {
-    if (!resumeId) return alert('Save your resume first');
+    if (!resumeId) {
+      return Swal.fire({
+        icon: 'info',
+        title: 'Save First',
+        text: 'Please save your resume before downloading.',
+        confirmButtonColor: '#a59387',
+      });
+    }
+
     window.open(`http://localhost:5000/resume/download/${resumeId}`, '_blank');
   };
 
