@@ -120,7 +120,9 @@ useEffect(()=>{
                     <Route path="/dashboard/hiredCandidates" element={<PrivateRoute allowedRoles={["Employer"]}>
                             <HiredCandidates></HiredCandidates>
                         </PrivateRoute>}></Route>
-                    <Route path="/dashboard/hiredCandidates/hiredCandidateDetails" element={<HiredCandidateDetails></HiredCandidateDetails>}></Route>
+                    <Route path="/dashboard/hiredCandidates/hiredCandidateDetails" element={<PrivateRoute allowedRoles={["Employer"]}>
+                            <HiredCandidateDetails></HiredCandidateDetails>
+                        </PrivateRoute>}></Route>
                     <Route path="/dashboard/myAddJob/updatePage/:id" element={<UpdatePage></UpdatePage>}></Route>
                     <Route path="/dashboard/myAddJob/candidate/:id" element={<AllCandidates></AllCandidates>}></Route>
                     <Route path="/dashboard/myAddJob/candidate/resume/:id" element={<Resume></Resume>}></Route>
