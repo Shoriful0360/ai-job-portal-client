@@ -33,7 +33,29 @@ const ManageUser = () => {
         }
     };
 
-    
+    const handleDeleteUser = async (userId) => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This user will be permanently deleted!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.delete(`http://localhost:5000/users/${userId}`);
+                    setUsers(users.filter(user => user._id !== userId));
+                    Swal.fire('Deleted!', 'User has been deleted.', 'success');
+                } catch (error) {
+                    console.error("Error deleting user:", error);
+                    Swal.fire('Error!', 'Something went wrong while deleting the user.', 'error');
+                }
+            }
+        });
+    };
+
     if (loading) {
         return <div>Loading users...</div>;
     }
