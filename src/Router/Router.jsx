@@ -97,13 +97,23 @@ useEffect(()=>{
                     <Route path="/dashboard" element={<DashBoardHome></DashBoardHome>}></Route>
 
                
-                    <Route path="/dashboard/manageJob" element={<ManageJob></ManageJob>}></Route>
-                    <Route path="/dashboard/manageUsers" element={<ManageUser></ManageUser>}></Route>
-                    <Route path="/dashboard/manageReview" element={<ManageReview></ManageReview>}></Route>
-                    <Route path="/dashboard/contactUs" element={<ContactRequest></ContactRequest>}></Route>
+                    <Route path="/dashboard/manageJob" element={<PrivateRoute allowedRoles={["Admin"]}>
+                            <ManageJob></ManageJob>
+                        </PrivateRoute>}></Route>
+                    <Route path="/dashboard/manageUsers" element={<PrivateRoute allowedRoles={["Admin"]}>
+                            <ManageUser></ManageUser>
+                        </PrivateRoute>}></Route>
+                    <Route path="/dashboard/manageReview" element={ <PrivateRoute allowedRoles={["Admin"]}>
+                            <ManageReview></ManageReview>
+                        </PrivateRoute>}></Route>
+                    <Route path="/dashboard/contactUs" element={ <PrivateRoute allowedRoles={["Admin"]}>
+                            <ContactRequest></ContactRequest>
+                        </PrivateRoute>}></Route>
 
     
-                    <Route path="/dashboard/addJob" element={<AddJob></AddJob>}></Route>
+                    <Route path="/dashboard/addJob" element={<PrivateRoute allowedRoles={["Admin"]}>
+                            <AddJob></AddJob>
+                        </PrivateRoute>}></Route>
                     <Route path="/dashboard/myAddJob" element={<MyAddJob></MyAddJob>}></Route>                 
                     <Route path="/dashboard/hiredCandidates" element={<HiredCandidates></HiredCandidates>}></Route>
                     <Route path="/dashboard/hiredCandidates/hiredCandidateDetails" element={<HiredCandidateDetails></HiredCandidateDetails>}></Route>
