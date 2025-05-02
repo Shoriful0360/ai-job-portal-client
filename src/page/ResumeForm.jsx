@@ -104,7 +104,24 @@ const ResumeForm = () => {
           />
         </div>
 
-        
+        {/* Skills */}
+        <h2 className="font-bold text-xl mt-6 mb-2">Skills</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input
+            name="technical"
+            placeholder="Technical Skills"
+            value={resumeData.skills.technical}
+            onChange={handleSkillsChange}
+            className="input border-[#a59387] focus:ring-[#a59387]"
+          />
+          <input
+            name="soft"
+            placeholder="Soft Skills"
+            value={resumeData.skills.soft}
+            onChange={handleSkillsChange}
+            className="input border-[#a59387] focus:ring-[#a59387]"
+          />
+        </div>
 
         {/* Repeating Sections */}
         {[
