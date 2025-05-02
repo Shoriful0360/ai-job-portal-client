@@ -34,6 +34,7 @@ import EducationSeeker from "../JobSeekerRoute/profile/EducationSeeker";
 import ImportantLinkSeeker from "../JobSeekerRoute/profile/ImportantLinkSeeker";
 import SkillSeeker from "../JobSeekerRoute/profile/SkillSeeker";
 import PrivateRoute from "./PrivateRoute";
+import Chatbot from "../page/Home/Chatbot";
 
 
 
@@ -66,6 +67,7 @@ useEffect(()=>{
                     <Route path="/register" element={<Register></Register>}></Route>
                     <Route path="/findJobs" element={<FindJob></FindJob>}></Route>
                     <Route path="/employers" element={<Employers></Employers>}></Route>
+                    <Route path="/chatbot" element={<Chatbot></Chatbot>}></Route>
                     
                     <Route path="/forgot-password" element={<ForgotPassword></ForgotPassword>}></Route>
                    

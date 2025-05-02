@@ -19,6 +19,13 @@ const Navbar = () => {
     <li className='text-sm bg-blue-500 bg-clip-text text-transparent font-bold  px-4 py-2'>
       <NavLink to='/employers'>Employers</NavLink>
     </li>
+    <NavLink to='/chatbot' className='flex items-center gap-1'>
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4-.832L3 20l1.52-4.557A8.973 8.973 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+  </svg>
+  ChatBot
+</NavLink>
+
     
   </>
   // const { user, logout } = useContext(AuthContext)
