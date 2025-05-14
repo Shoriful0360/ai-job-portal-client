@@ -6,7 +6,7 @@ const MessageLayout = () => {
     return (
         <div className="  h-[calc(100vh-80px)]">
         <div className="  md:flex h-full p-4 max-w-[1600px] md:p-10 mx-auto gap-6">
-         <div className=" w-[250px]   ">
+         <div className="    ">
              <LeftSideMessage/>
          </div>
          

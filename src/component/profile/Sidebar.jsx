@@ -12,7 +12,7 @@ import LoadingSpinner from "../../shared/LoadingSpinner";
 import { useSelector } from "react-redux";
 const Sidebar = () => {
   const{user}=useSelector((state)=>state.auth)
-  console.log('user',user?.photoURL)
+ 
   const{role,isLoading}=useRole()
   if(isLoading) return <LoadingSpinner/>
   const{name,email,number,_id,photoUrl,presentAddress,permanentAddress,companyName,companyDatail,skills}=role || {}

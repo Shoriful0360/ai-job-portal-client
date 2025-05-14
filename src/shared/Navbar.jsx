@@ -4,6 +4,8 @@ import { AuthContext } from '../Utility/AuthProvidor';
 import pic from '../../public/Photo/icons8-permanent-job-96.png'
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../Redux/authSlice';
+import { MdOutlineNotificationsActive } from "react-icons/md";
+
 const Navbar = () => {
   const dispatch=useDispatch()
   const{user}=useSelector((state)=>state.auth || {user:null})
@@ -54,8 +56,15 @@ const Navbar = () => {
         {
           user ?
             <span className='flex justify-center items-center'>
+                  <div className='text-4xl mr-0.5'>
+                    <Link to={'/message/content'}> 
+                    <MdOutlineNotificationsActive />
+                    </Link>
+                  </div>
               <div className="dropdown dropdown-end justify-center items-center">
+                
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+              
                   <div className="w-10 hidden sm:block rounded-full ">
                     <img
                       referrerPolicy='noreferrer'
