@@ -7,7 +7,63 @@ import { useSearchParams } from "react-router";
 const socket = io("http://localhost:5000");
 
 export default function ChatBox() {
- 
+  const [message, setMessage] = useState("");
+  const {user:currentUser}=useSelector((state)=>state.auth)
+  const [chats, setChats] = useState([]);
+  const [user, setUser] = useState(null);
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');
+// Replace with actual recipient
+console.log('chat',chats)
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (currentUser && email) {
+      setUser(currentUser);
+      socket.emit("register", currentUser?.email);
+
+      // Fetch past messages
+      axios
+        .get("http://localhost:5000/messages", {
+          params: {
+            user1: currentUser?.email,
+            user2: email,
+          },
+        })
+        .then((res) => setChats(res.data));
+    }
+
+    // Listen for messages
+    socket.on("private_message", (msg) => {
+      setChats((prev) => [...prev, msg]);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [currentUser,email]);
+
+  const sendChat = (e) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+
+    const msgData = {
+      senderEmail: currentUser?.email,
+      receiverEmail: email,
+      message,
+    };
+
+    socket.emit("private_message", msgData);
+    setChats((prev) => [
+      ...prev,
+      { ...msgData, timeStamp: new Date().toISOString() },
+    ]);
+    setMessage("");
+  };
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chats]);
 
   return (
     <div className="flex relative flex-col h-screen bg-white border">
