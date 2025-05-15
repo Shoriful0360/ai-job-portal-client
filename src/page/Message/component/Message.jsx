@@ -3,27 +3,32 @@ import { io } from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router";
+import UseAxios from "../../../Utility/UseAxios";
 
 const socket = io("http://localhost:5000");
 
 export default function ChatBox() {
+  const axiosPublic=UseAxios()
   const [message, setMessage] = useState("");
+  const[allMessage,setAllMessage]=useState([])
   const {user:currentUser}=useSelector((state)=>state.auth)
   const [chats, setChats] = useState([]);
   const [user, setUser] = useState(null);
   const [searchParams] = useSearchParams();
   const email = searchParams.get('email');
 // Replace with actual recipient
-console.log('chat',chats)
   const scrollRef = useRef(null);
 
   useEffect(() => {
     if (currentUser && email) {
       setUser(currentUser);
       socket.emit("register", currentUser?.email);
+// fetch all message user
+axiosPublic.get(`/all-message/${currentUser?.email}`)
+.then((res)=>console.log(res.data))
 
       // Fetch past messages
-      axios
+     axios
         .get("http://localhost:5000/messages", {
           params: {
             user1: currentUser?.email,
